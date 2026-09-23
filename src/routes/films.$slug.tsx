@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, Play, X } from "lucide-react";
+import { ArrowLeft, Play } from "lucide-react";
 
 import { SiteFooter, SiteHeader } from "@/components/SiteHeader";
 import { PlayerModal, prefetchTrailer } from "@/components/PlayerModal";
@@ -84,8 +84,6 @@ function FilmDetail() {
   const film = all.find((f) => f.slug === slug) ?? null;
   const [trailerOpen, setTrailerOpen] = useState(false);
   const [supportAmount, setSupportAmount] = useState<number | null>(null);
-  const [customAmount, setCustomAmount] = useState("");
-  const [donateOpen, setDonateOpen] = useState(false);
 
 
   // Warm the playback link while the page is being read, so the trailer starts
@@ -105,7 +103,6 @@ function FilmDetail() {
   const genre = detail?.genre ?? film.genre;
   const supportCopy =
     detail?.support ?? `Help us bring ${film.name} to life and move this story from vision to screen.`;
-  const customValue = Math.round(Number(customAmount) * 100) / 100;
 
   return (
     <main>
@@ -188,10 +185,7 @@ function FilmDetail() {
               <button
                 type="button"
                 className="support-tier support-tier-donate"
-                onClick={() => {
-                  setCustomAmount("");
-                  setDonateOpen(true);
-                }}
+                onClick={() => setSupportAmount(5)}
               >
                 <strong>Donate</strong>
                 <span>Any amount</span>
@@ -200,51 +194,6 @@ function FilmDetail() {
           </div>
         ) : null}
 
-        {donateOpen ? (
-          <div className="pay-overlay" role="dialog" aria-modal="true" aria-label="Donate any amount">
-            <div className="pay-modal pay-modal-donate">
-              <div className="pay-modal-head">
-                <h2>Donate to {film.name}</h2>
-                <button
-                  type="button"
-                  className="pay-close"
-                  onClick={() => setDonateOpen(false)}
-                  aria-label="Close"
-                >
-                  <X size={20} />
-                </button>
-              </div>
-              <form
-                className="support-custom"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (customValue >= 1) {
-                    setDonateOpen(false);
-                    setSupportAmount(customValue);
-                  }
-                }}
-              >
-                <label htmlFor="support-amount">Enter your amount (USD)</label>
-                <div className="support-custom-row">
-                  <input
-                    id="support-amount"
-                    type="number"
-                    min="1"
-                    step="1"
-                    inputMode="decimal"
-                    placeholder="Enter amount"
-                    value={customAmount}
-                    onChange={(e) => setCustomAmount(e.target.value)}
-                    autoFocus
-                  />
-                  <button className="film-btn film-btn-primary" type="submit" disabled={!(customValue >= 1)}>
-                    Donate
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        ) : null}
       </section>
 
 
