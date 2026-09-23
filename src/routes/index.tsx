@@ -10,6 +10,7 @@ import {
   Play,
   Video,
   Wrench,
+  X,
 } from "lucide-react";
 
 import { hideBrokenImage } from "@/lib/utils";
