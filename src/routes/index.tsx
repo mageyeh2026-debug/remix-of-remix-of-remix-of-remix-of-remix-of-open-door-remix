@@ -176,6 +176,7 @@ function Index() {
   const { content } = useSiteContent();
   const projectRailRef = useRef<HTMLDivElement>(null);
   const upcomingRailRef = useRef<HTMLDivElement>(null);
+  const pressRailRef = useRef<HTMLDivElement>(null);
   const [activeFilm, setActiveFilm] = useState<number | null>(null);
   const [trailerSlug, setTrailerSlug] = useState<string | null>(null);
 
@@ -351,31 +352,49 @@ function Index() {
         <p className="eyebrow">{content.media.eyebrow}</p>
         <h2 id="media-title">{content.media.title}</h2>
         <p className="awards-text">{content.media.description}</p>
-        <div className="media-grid">
-          {content.media.items.map((card) => {
-            const body = (
-              <>
-                <img src={card.src} alt={card.alt} loading="lazy" decoding="async" fetchPriority="low" onError={hideBrokenImage} />
-                <span className="media-card-overlay">
-                  <span className="media-card-meta">{card.meta}</span>
-                  <strong className="media-card-title">{card.title}</strong>
-                </span>
-              </>
-            );
-            return card.link ? (
-              <a
-                className="media-card media-card-link"
-                key={card.id}
-                href={card.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {body}
-              </a>
-            ) : (
-              <article className="media-card" key={card.id}>{body}</article>
-            );
-          })}
+        <div className="press-carousel">
+          <button
+            className="carousel-arrow carousel-arrow-left press-arrow-left"
+            type="button"
+            aria-label="Previous press items"
+            onClick={() => scrollRail(pressRailRef.current, -1)}
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <div className="press-rail" ref={pressRailRef}>
+            {content.media.items.map((card) => {
+              const body = (
+                <>
+                  <img src={card.src} alt={card.alt} loading="lazy" decoding="async" fetchPriority="low" onError={hideBrokenImage} />
+                  <span className="media-card-overlay">
+                    <span className="media-card-meta">{card.meta}</span>
+                    <strong className="media-card-title">{card.title}</strong>
+                  </span>
+                </>
+              );
+              return card.link ? (
+                <a
+                  className="media-card media-card-link"
+                  key={card.id}
+                  href={card.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {body}
+                </a>
+              ) : (
+                <article className="media-card" key={card.id}>{body}</article>
+              );
+            })}
+          </div>
+          <button
+            className="carousel-arrow carousel-arrow-right press-arrow-right"
+            type="button"
+            aria-label="Next press items"
+            onClick={() => scrollRail(pressRailRef.current, 1)}
+          >
+            <ChevronRight size={24} />
+          </button>
         </div>
         <a className="button button-dark" href={`mailto:${content.contact.email}`}>{content.media.buttonLabel}</a>
       </section>
