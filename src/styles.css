@@ -336,8 +336,8 @@ footer > p:last-child { justify-self: end; }
 
 .film-detail { padding: clamp(28px, 4vw, 54px) clamp(18px, 4vw, 56px) clamp(24px, 3vw, 40px); }
 .film-back { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted-foreground); margin-bottom: 22px; }
-.film-detail-grid { display: grid; grid-template-columns: 0.72fr 1fr; gap: clamp(22px, 3vw, 46px); align-items: start; }
-.film-detail-media { position: relative; border-radius: 14px; overflow: hidden; max-width: 560px; }
+.film-detail-grid { display: grid; grid-template-columns: 0.58fr 1fr; gap: clamp(22px, 3vw, 46px); align-items: start; }
+.film-detail-media { position: relative; border-radius: 14px; overflow: hidden; max-width: 440px; justify-self: center; }
 .film-detail-media img { display: block; width: 100%; height: auto; object-fit: contain; background: var(--muted); }
 .film-detail-copy h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(28px, 3.6vw, 46px); margin: 8px 0 8px; }
 .film-detail-copy p { font-size: 14px; line-height: 1.75; color: var(--muted-foreground); }
