@@ -17,6 +17,9 @@ async function proxy(request: Request, token: string, bodyless: boolean) {
   if (!source) {
     return new Response("No video available for this film yet", { status: 404 });
   }
+  if (source.type === "drive") {
+    return new Response("This Google Drive video must be opened in the embedded player", { status: 409 });
+  }
 
 
   const range = request.headers.get("range");

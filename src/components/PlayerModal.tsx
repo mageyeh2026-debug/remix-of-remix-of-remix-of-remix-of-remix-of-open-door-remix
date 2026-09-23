@@ -16,12 +16,10 @@ const cache = new Map<string, Promise<TrailerResult>>();
 export function prefetchTrailer(slug: string | null | undefined) {
   if (!slug) return;
   if (!cache.has(slug)) {
-    cache.set(
-      slug,
-      fetchTrailer({ data: { slug } }).then((result) => result as TrailerResult),
-    );
+    const request = fetchTrailer({ data: { slug } }).then((result) => result as TrailerResult);
+    cache.set(slug, request);
     // A failed link should not be remembered.
-    cache.get(slug)!.catch(() => cache.delete(slug));
+    request.catch(() => cache.delete(slug));
   }
 }
 
@@ -45,8 +43,9 @@ export function PlayerModal({ slug, title, poster, onClose }: Props) {
     if (!slug) return;
 
     prefetchTrailer(slug);
-    cache
-      .get(slug)!
+    const request = cache.get(slug);
+    if (!request) return;
+    request
       .then((result) => {
         if (cancelled) return;
         if (!result.available || !result.url) {

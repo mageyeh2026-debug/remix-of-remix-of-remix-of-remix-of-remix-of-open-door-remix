@@ -93,9 +93,12 @@ export const checkMomoPayment = createServerFn({ method: "POST" })
       return { status: state.status, message: state.message };
     }
 
-    const { signPlaybackToken } = await import("./stream-token.server");
     const { signEntitlement } = await import("./entitlement.server");
-    const token = await signPlaybackToken({ slug: data.slug, kind: "film" }, 60 * 60 * 4);
+    const { issuePlaybackSource } = await import("./playback.server");
+    const source = await issuePlaybackSource(data.slug, "film", 60 * 60 * 4);
+    if (!source) {
+      return { status: "failed" as const, message: "This film does not have a playable video yet." };
+    }
     const entitlement = await signEntitlement({
       slug: data.slug,
       guestId: data.guestId ?? "guest",
@@ -105,7 +108,7 @@ export const checkMomoPayment = createServerFn({ method: "POST" })
     return {
       status: "success" as const,
       message: state.message || "Payment received",
-      source: { url: `/api/public/stream/${token}`, type: "mp4" as const },
+      source,
       entitlement,
     };
   });
