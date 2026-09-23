@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   BriefcaseBusiness,
   Building2,
@@ -179,6 +179,7 @@ function Index() {
   const pressRailRef = useRef<HTMLDivElement>(null);
   const [activeFilm, setActiveFilm] = useState<number | null>(null);
   const [trailerSlug, setTrailerSlug] = useState<string | null>(null);
+  const [galleryOpenIndex, setGalleryOpenIndex] = useState<number | null>(null);
 
   const films = content.films;
   const projects = films.map((film) => ({
@@ -188,7 +189,19 @@ function Index() {
     slug: film.slug,
   }));
   const galleryPreview = content.gallery.items.slice(0, 8);
+  const activeGalleryPhoto = galleryOpenIndex === null ? null : galleryPreview[galleryOpenIndex];
   const trailerFilm = films.find((f) => f.slug === trailerSlug);
+
+  const closeGalleryPhoto = useCallback(() => setGalleryOpenIndex(null), []);
+  const stepGalleryPhoto = useCallback(
+    (direction: -1 | 1) =>
+      setGalleryOpenIndex((current) =>
+        current === null || !galleryPreview.length
+          ? current
+          : (current + direction + galleryPreview.length) % galleryPreview.length,
+      ),
+    [galleryPreview.length],
+  );
 
   const scrollRail = (rail: HTMLDivElement | null, direction: -1 | 1) => {
     if (!rail) return;
@@ -202,6 +215,21 @@ function Index() {
   useEffect(() => {
     projectRailRef.current?.scrollTo({ left: 0 });
   }, [films.length]);
+
+  useEffect(() => {
+    if (galleryOpenIndex === null) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeGalleryPhoto();
+      if (event.key === "ArrowRight") stepGalleryPhoto(1);
+      if (event.key === "ArrowLeft") stepGalleryPhoto(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [galleryOpenIndex, closeGalleryPhoto, stepGalleryPhoto]);
 
   return (
 
@@ -340,13 +368,70 @@ function Index() {
         <p className="eyebrow">{content.gallery.eyebrow}</p>
         <h2 id="gallery-title">{content.gallery.title}</h2>
         <p className="awards-text">{content.gallery.description}</p>
-        <div className="home-photo-strip home-photo-strip-portrait" aria-hidden="true">
-          {galleryPreview.map((photo) => (
-            <img key={photo.id} src={photo.src} alt={photo.alt} loading="lazy" decoding="async" fetchPriority="low" onError={hideBrokenImage} />
+        <div className="home-photo-strip home-photo-strip-portrait">
+          {galleryPreview.map((photo, index) => (
+            <img
+              key={photo.id}
+              src={photo.src}
+              alt={photo.alt}
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+              onError={hideBrokenImage}
+              role="button"
+              tabIndex={0}
+              aria-label={`Enlarge ${photo.title}`}
+              onClick={() => setGalleryOpenIndex(index)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  setGalleryOpenIndex(index);
+                }
+              }}
+            />
           ))}
         </div>
         <Link className="button button-dark" to="/gallery">{content.gallery.buttonLabel}</Link>
       </section>
+
+      {activeGalleryPhoto ? (
+        <div className="lightbox" role="dialog" aria-modal="true" aria-label={activeGalleryPhoto.title ?? "Gallery picture"} onClick={closeGalleryPhoto}>
+          <button className="lightbox-close" type="button" aria-label="Close" onClick={closeGalleryPhoto}>
+            <X size={22} />
+          </button>
+          <button
+            className="lightbox-nav lightbox-prev"
+            type="button"
+            aria-label="Previous picture"
+            onClick={(event) => {
+              event.stopPropagation();
+              stepGalleryPhoto(-1);
+            }}
+          >
+            <ChevronLeft size={28} />
+          </button>
+          <figure className="lightbox-figure" onClick={(event) => event.stopPropagation()}>
+            <div className="lightbox-image-wrap">
+              <img src={activeGalleryPhoto.src} alt={activeGalleryPhoto.alt} decoding="async" onError={hideBrokenImage} />
+            </div>
+            <figcaption>
+              {activeGalleryPhoto.title}
+              <span className="lightbox-count">{galleryOpenIndex + 1} / {galleryPreview.length}</span>
+            </figcaption>
+          </figure>
+          <button
+            className="lightbox-nav lightbox-next"
+            type="button"
+            aria-label="Next picture"
+            onClick={(event) => {
+              event.stopPropagation();
+              stepGalleryPhoto(1);
+            }}
+          >
+            <ChevronRight size={28} />
+          </button>
+        </div>
+      ) : null}
 
       <section className="awards-section" id="media" aria-labelledby="media-title">
         <p className="eyebrow">{content.media.eyebrow}</p>
@@ -396,7 +481,6 @@ function Index() {
             <ChevronRight size={24} />
           </button>
         </div>
-        <a className="button button-dark" href={`mailto:${content.contact.email}`}>{content.media.buttonLabel}</a>
       </section>
 
 

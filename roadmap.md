@@ -15,3 +15,4 @@
 - [x] Make the Donate tile visible and support Google Drive video share links safely
 - [x] Make support amounts and payment currencies editable with a compact mobile layout
 - [x] Open Donate directly in the same editable USD and UGX payment window
+- [x] Remove the press inquiries button and add homepage gallery zoom
