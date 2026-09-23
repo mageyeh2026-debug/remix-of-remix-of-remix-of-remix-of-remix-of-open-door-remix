@@ -11,8 +11,10 @@ import { fetchTrailer } from "@/lib/streaming.functions";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { redeemAccess } from "@/lib/access.functions";
 import { clearAccess, formatRemaining, loadAccess, saveAccess } from "@/lib/access";
+import type { PlaybackKind, PlaybackSource } from "@/lib/playback";
 
 const ShakaPlayer = lazy(() => import("@/components/ShakaPlayer"));
+const DrivePlayer = lazy(() => import("@/components/DrivePlayer"));
 
 export const Route = createFileRoute("/watch/$slug")({
   validateSearch: (search) =>
@@ -42,6 +44,7 @@ function WatchPage() {
   const navigate = useNavigate();
 
   const [src, setSrc] = useState<string | null>(null);
+  const [playbackKind, setPlaybackKind] = useState<PlaybackKind>("mp4");
   const [state, setState] = useState<"loading" | "ready" | "locked">("loading");
   const [payOpen, setPayOpen] = useState(false);
   const [expiresAt, setExpiresAt] = useState<number | null>(null);
@@ -55,6 +58,7 @@ function WatchPage() {
         if (!cancelled) {
           if (source.url) {
             setSrc(source.url);
+            setPlaybackKind(source.type);
             setState("ready");
           } else {
             setState("locked");
@@ -72,6 +76,7 @@ function WatchPage() {
           if (cancelled) return;
           if (result.ok) {
             setSrc(result.source.url);
+            setPlaybackKind(result.source.type);
             setExpiresAt(result.expiresAt);
             setState("ready");
             setPayOpen(false);
@@ -111,7 +116,11 @@ function WatchPage() {
       <section className="watch-page">
         {state === "ready" && src ? (
           <Suspense fallback={<p className="watch-note">Loading player…</p>}>
-            <ShakaPlayer src={src} poster={film?.image} title={film?.name} />
+            {playbackKind === "drive" ? (
+              <DrivePlayer src={src} title={film?.name} />
+            ) : (
+              <ShakaPlayer src={src} kind={playbackKind} poster={film?.image} title={film?.name} />
+            )}
           </Suspense>
         ) : (
           <div className="watch-locked-player">
@@ -134,9 +143,10 @@ function WatchPage() {
         slug={slug}
         title={film?.name}
         onBack={() => navigate({ to: "/films/$slug", params: { slug } })}
-        onPaid={(url, entitlement) => {
+        onPaid={(source: PlaybackSource, entitlement) => {
           saveAccess(slug, entitlement);
-          setSrc(url);
+          setSrc(source.url);
+          setPlaybackKind(source.type);
           setExpiresAt(entitlement.expiresAt);
           setState("ready");
           setPayOpen(false);

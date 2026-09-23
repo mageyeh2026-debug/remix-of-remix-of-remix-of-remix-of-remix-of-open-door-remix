@@ -17,14 +17,15 @@ export const redeemAccess = createServerFn({ method: "POST" })
       return { ok: false as const, reason: "expired" as const };
     }
 
-    const { signPlaybackToken } = await import("./stream-token.server");
     const remainingSeconds = Math.floor((entitlement.exp - Date.now()) / 1000);
     const ttl = Math.min(60 * 60 * 4, Math.max(60, remainingSeconds));
-    const token = await signPlaybackToken({ slug: data.slug, kind: "film" }, ttl);
+    const { issuePlaybackSource } = await import("./playback.server");
+    const source = await issuePlaybackSource(data.slug, "film", ttl);
+    if (!source) return { ok: false as const, reason: "missing" as const };
 
     return {
       ok: true as const,
       expiresAt: entitlement.exp,
-      source: { url: `/api/public/stream/${token}`, type: "mp4" as const },
+      source,
     };
   });

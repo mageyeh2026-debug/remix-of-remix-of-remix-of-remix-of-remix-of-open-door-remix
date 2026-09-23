@@ -2,10 +2,12 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { X } from "lucide-react";
 
 import { fetchTrailer } from "@/lib/streaming.functions";
+import type { PlaybackKind } from "@/lib/playback";
 
 const ShakaPlayer = lazy(() => import("@/components/ShakaPlayer"));
+const DrivePlayer = lazy(() => import("@/components/DrivePlayer"));
 
-type TrailerResult = { available: boolean; url: string | null; type: "mp4" | "dash" | "hls" };
+type TrailerResult = { available: boolean; url: string | null; type: PlaybackKind };
 
 // Playback links are requested once per film and reused, so opening the player
 // feels instant instead of waiting for a round trip on click.
@@ -14,12 +16,10 @@ const cache = new Map<string, Promise<TrailerResult>>();
 export function prefetchTrailer(slug: string | null | undefined) {
   if (!slug) return;
   if (!cache.has(slug)) {
-    cache.set(
-      slug,
-      fetchTrailer({ data: { slug } }).then((result) => result as TrailerResult),
-    );
+    const request = fetchTrailer({ data: { slug } }).then((result) => result as TrailerResult);
+    cache.set(slug, request);
     // A failed link should not be remembered.
-    cache.get(slug)!.catch(() => cache.delete(slug));
+    request.catch(() => cache.delete(slug));
   }
 }
 
@@ -33,6 +33,7 @@ type Props = {
 /** Floating trailer player — no page change, plays over the current screen. */
 export function PlayerModal({ slug, title, poster, onClose }: Props) {
   const [src, setSrc] = useState<string | null>(null);
+  const [kind, setKind] = useState<PlaybackKind>("mp4");
   const [status, setStatus] = useState<"loading" | "ready" | "missing" | "failed">("loading");
 
   useEffect(() => {
@@ -42,8 +43,9 @@ export function PlayerModal({ slug, title, poster, onClose }: Props) {
     if (!slug) return;
 
     prefetchTrailer(slug);
-    cache
-      .get(slug)!
+    const request = cache.get(slug);
+    if (!request) return;
+    request
       .then((result) => {
         if (cancelled) return;
         if (!result.available || !result.url) {
@@ -51,6 +53,7 @@ export function PlayerModal({ slug, title, poster, onClose }: Props) {
           return;
         }
         setSrc(result.url);
+        setKind(result.type);
         setStatus("ready");
       })
       .catch(() => !cancelled && setStatus("failed"));
@@ -84,7 +87,11 @@ export function PlayerModal({ slug, title, poster, onClose }: Props) {
         </button>
         {src ? (
           <Suspense fallback={<div className="player-loading">Loading player…</div>}>
-            <ShakaPlayer src={src} poster={poster} title={title ? `${title} — Trailer` : "Trailer"} />
+            {kind === "drive" ? (
+              <DrivePlayer src={src} title={title ? `${title} — Trailer` : "Trailer"} />
+            ) : (
+              <ShakaPlayer src={src} kind={kind} poster={poster} title={title ? `${title} — Trailer` : "Trailer"} />
+            )}
           </Suspense>
         ) : (
           <div className="player-loading">

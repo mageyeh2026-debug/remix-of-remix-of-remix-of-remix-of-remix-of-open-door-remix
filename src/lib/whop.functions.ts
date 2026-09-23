@@ -100,9 +100,10 @@ export const confirmFilmPayment = createServerFn({ method: "POST" })
       return { ok: false as const, message: "We couldn't confirm the payment yet." };
     }
 
-    const { signPlaybackToken } = await import("./stream-token.server");
     const { signEntitlement } = await import("./entitlement.server");
-    const token = await signPlaybackToken({ slug: data.slug, kind: "film" }, 60 * 60 * 4);
+    const { issuePlaybackSource } = await import("./playback.server");
+    const source = await issuePlaybackSource(data.slug, "film", 60 * 60 * 4);
+    if (!source) return { ok: false as const, message: "This film does not have a playable video yet." };
     const entitlement = await signEntitlement({
       slug: data.slug,
       guestId: data.guestId ?? "guest",
@@ -111,7 +112,7 @@ export const confirmFilmPayment = createServerFn({ method: "POST" })
     });
     return {
       ok: true as const,
-      source: { url: `/api/public/stream/${token}`, type: "mp4" as const },
+      source,
       entitlement,
     };
   });

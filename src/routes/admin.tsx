@@ -258,10 +258,11 @@ function VideoField({
       <div className="admin-image-controls">
         <input
           className="admin-input"
-          placeholder="Video URL"
+          placeholder="Direct video URL or Google Drive share link"
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />
+        <p className="admin-note">Paste a direct video URL or a Google Drive file share link set to “Anyone with the link”.</p>
         <label className="admin-btn admin-btn-ghost admin-upload">
           {busy ? "Uploading…" : "Upload video"}
           <input type="file" accept="video/*" hidden onChange={pick} />
