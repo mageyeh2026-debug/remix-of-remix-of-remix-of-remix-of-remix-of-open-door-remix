@@ -294,6 +294,11 @@ footer > p:last-child { justify-self: end; }
   .about-img-mobile { display: block; }
   footer { grid-template-columns: 1fr; gap: 18px; text-align: left; }
   footer > p:last-child { justify-self: start; }
+  .contact-details-section { padding: 50px 20px 56px; }
+  .contact-details-grid { margin-top: 24px; grid-template-columns: 1fr; }
+  .contact-card { padding: 16px; gap: 12px; }
+  .contact-card-icon { width: 42px; height: 42px; }
+  .contact-card-body a, .contact-card-body > span { font-size: 14px; }
 }
 
 @media (hover: none) {
