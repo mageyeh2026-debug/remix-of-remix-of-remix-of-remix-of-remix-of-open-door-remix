@@ -22,6 +22,7 @@ import visaLogo from "@/assets/payment-logos/visa.svg";
 import mastercardLogo from "@/assets/payment-logos/mastercard.svg";
 import airtelLogo from "@/assets/payment-logos/airtel.svg";
 import mtnLogo from "@/assets/payment-logos/mtn.svg";
+import type { PlaybackSource } from "@/lib/playback";
 
 type Method = "mobile_money" | "card";
 
@@ -70,7 +71,7 @@ export function PayModal({
   slug: string;
   title?: string | undefined;
   onBack: () => void;
-  onPaid: (url: string, entitlement: StoredAccess) => void;
+  onPaid: (source: PlaybackSource, entitlement: StoredAccess) => void;
   paymentBackendUrl?: string | undefined;
 }) {
   const startPayment = useServerFn(startPesapalPayment);
@@ -154,7 +155,7 @@ export function PayModal({
           stop = true;
           clearInterval(timer);
           clearPendingMomo();
-          onPaid(result.source.url, result.entitlement);
+          onPaid(result.source, result.entitlement);
           return;
         }
         if (result.status === "failed") {
