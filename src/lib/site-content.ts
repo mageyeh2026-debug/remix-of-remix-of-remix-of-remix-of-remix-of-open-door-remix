@@ -461,7 +461,12 @@ export function mergeContent(stored: unknown): SiteContent {
     // the dashboard. This permanently excludes the bundled sample catalogue.
     films: arr<FilmItem>(s.films).filter(dashboardFilm).map(film),
     upcomingHeading: { ...base.upcomingHeading, ...(s.upcomingHeading ?? {}) },
-    upcoming: arr<FilmItem>(s.upcoming).filter(upcomingFilm).map(film),
+    // When the dashboard has no upcoming projects saved, keep showing the
+    // studio's own upcoming slate instead of an empty section.
+    upcoming: (() => {
+      const saved = arr<FilmItem>(s.upcoming).filter(upcomingFilm).map(film);
+      return saved.length ? saved : base.upcoming.map(film);
+    })(),
     services: {
       ...base.services,
       ...(s.services ?? {}),

@@ -165,7 +165,17 @@ export const startPesapalSupportPayment = createServerFn({ method: "POST" })
       countryCode,
     }, await pesapalConfig());
 
-    if (!result.ok) return { ok: false as const, message: result.message };
+    if (!result.ok) {
+      // Pesapal caps how much a merchant account may take in one transaction
+      // until the account limit is raised, so explain that plainly.
+      const overLimit = /exceeds limit/i.test(result.message);
+      return {
+        ok: false as const,
+        message: overLimit
+          ? `This payment account can’t accept $${amount} in one payment yet. Please try a smaller amount, or ask us to raise the limit.`
+          : result.message,
+      };
+    }
 
     return {
       ok: true as const,

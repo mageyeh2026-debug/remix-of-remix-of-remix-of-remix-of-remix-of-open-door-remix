@@ -19,8 +19,7 @@ export type Database = {
           created_at: string
           current_period_end: string | null
           id: string
-          payment_method: string | null
-          plan: string
+          plan: string | null
           status: string
           updated_at: string
           user_id: string
@@ -29,8 +28,7 @@ export type Database = {
           created_at?: string
           current_period_end?: string | null
           id?: string
-          payment_method?: string | null
-          plan?: string
+          plan?: string | null
           status?: string
           updated_at?: string
           user_id: string
@@ -39,8 +37,7 @@ export type Database = {
           created_at?: string
           current_period_end?: string | null
           id?: string
-          payment_method?: string | null
-          plan?: string
+          plan?: string | null
           status?: string
           updated_at?: string
           user_id?: string
