@@ -417,7 +417,7 @@ function Index() {
             </div>
             <figcaption>
               {activeGalleryPhoto.title}
-              <span className="lightbox-count">{galleryOpenIndex + 1} / {galleryPreview.length}</span>
+              <span className="lightbox-count">{(galleryOpenIndex ?? 0) + 1} / {galleryPreview.length}</span>
             </figcaption>
           </figure>
           <button
