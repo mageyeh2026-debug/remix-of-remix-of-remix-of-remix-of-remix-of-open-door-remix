@@ -348,6 +348,8 @@ footer > p:last-child { justify-self: end; }
   .film-item-thumb { border-radius: 8px; }
   .film-item-thumb img { aspect-ratio: 1 / 1; }
   .film-item-play { width: 38px; height: 38px; }
+  .film-detail-actions { gap: 12px; }
+  .film-detail-actions .film-btn { min-height: 44px; padding: 12px 22px; font-size: 11px; letter-spacing: .04em; }
 }
 
 
