@@ -16,3 +16,4 @@
 - [x] Make support amounts and payment currencies editable with a compact mobile layout
 - [x] Open Donate directly in the same editable USD and UGX payment window
 - [x] Remove the press inquiries button and add homepage gallery zoom
+- [x] Separate the Media and news images from the Contact section
