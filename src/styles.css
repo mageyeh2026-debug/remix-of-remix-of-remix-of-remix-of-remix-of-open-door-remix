@@ -657,7 +657,7 @@ footer > p:last-child { justify-self: end; }
   .press-rail { grid-auto-columns: calc((100% - 14px) / 2); }
 }
 @media (max-width: 720px) {
-  .press-carousel { margin: 26px -20px -50px; }
+  .press-carousel { margin: 40px -20px -50px; }
   .press-rail { grid-auto-columns: calc(100% - 32px); padding-inline: 16px; gap: 10px; }
   .press-arrow-left { left: 2px; }
   .press-arrow-right { right: 2px; }
