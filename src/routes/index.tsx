@@ -176,6 +176,7 @@ function Index() {
   const { content } = useSiteContent();
   const projectRailRef = useRef<HTMLDivElement>(null);
   const upcomingRailRef = useRef<HTMLDivElement>(null);
+  const pressRailRef = useRef<HTMLDivElement>(null);
   const [activeFilm, setActiveFilm] = useState<number | null>(null);
   const [trailerSlug, setTrailerSlug] = useState<string | null>(null);
 

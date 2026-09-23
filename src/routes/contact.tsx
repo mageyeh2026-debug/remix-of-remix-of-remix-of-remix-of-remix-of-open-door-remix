@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BriefcaseBusiness, Mail, MapPin } from "lucide-react";
+import { BriefcaseBusiness, Mail, MapPin, Phone } from "lucide-react";
 
 import { SiteFooter, SiteHeader } from "@/components/SiteHeader";
 import { SocialProfiles } from "@/components/SocialLinks";
@@ -36,7 +36,9 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   const { content } = useSiteContent();
   const c = content.contact;
+  const phone = c.phone || "+256 782 673592";
   const details = [
+    { icon: Phone, label: "Phone", value: phone, href: `tel:${phone.replace(/\s/g, "")}` },
     { icon: Mail, label: "Email", value: c.email, href: `mailto:${c.email}` },
     { icon: MapPin, label: "Based in", value: c.location },
   ];
@@ -56,15 +58,19 @@ function ContactPage() {
         <a className="button button-light-on-dark" href={`mailto:${c.email}`}>Send an email</a>
       </section>
 
-      <section className="awards-section" aria-labelledby="contact-details-title">
+      <section className="contact-details-section" aria-labelledby="contact-details-title">
         <p className="eyebrow">Get in touch</p>
         <h2 id="contact-details-title">Contact details</h2>
-        <div className="awards-grid">
+        <div className="contact-details-grid">
           {details.map(({ icon: Icon, label, value, href }) => (
-            <article className="award" key={label}>
-              <Icon size={26} strokeWidth={1.3} aria-hidden="true" />
-              <strong>{label}</strong>
-              {href ? <a href={href}>{value}</a> : <span>{value}</span>}
+            <article className="contact-card" key={label}>
+              <div className="contact-card-icon">
+                <Icon size={24} strokeWidth={1.3} aria-hidden="true" />
+              </div>
+              <div className="contact-card-body">
+                <span className="contact-card-label">{label}</span>
+                {href ? <a href={href}>{value}</a> : <span>{value}</span>}
+              </div>
             </article>
           ))}
         </div>

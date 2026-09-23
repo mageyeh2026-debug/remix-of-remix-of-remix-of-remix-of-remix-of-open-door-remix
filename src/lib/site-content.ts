@@ -315,7 +315,7 @@ export const defaultContent: SiteContent = {
     title: "Let’s create something that matters.",
     lede: "For film screenings, distribution, press, partnerships, and production inquiries.",
     email: "mageyeglobalworks@gmail.com",
-    phone: "",
+    phone: "+256 782 673592",
     location: "California, USA · Available worldwide",
     buttonLabel: "Contact us",
   },
