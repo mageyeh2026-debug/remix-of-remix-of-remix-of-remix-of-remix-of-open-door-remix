@@ -1,0 +1,14 @@
+## Active
+- [x] Make public films and gallery show only Firebase dashboard content
+- [x] Prevent fallback/mock content during loading or network failure
+- [x] Verify current Firebase data and public pages
+- [x] Rebuild upcoming projects section from supplied reference
+- [x] Optimize upcoming posters for fast delivery
+- [x] Restore three compact mobile movie cards per view
+- [x] Make Pesapal card choice open card-first in the hosted checkout
+- [x] Remove gallery clearing effects and preload all saved gallery photos immediately
+- [x] Route upcoming film support buttons through Pesapal instead of email
+- [x] Fit the Pesapal checkout window cleanly on desktop and mobile
+- [x] Verify successful, failed, and cancelled payment handling
+- [x] Add social profile links, sitemap and search metadata
+- [x] Preload all site images on open
