@@ -382,11 +382,19 @@ export function SupportPayModal({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [paid, setPaid] = useState(false);
+  const [currency, setCurrency] = useState<"USD" | "UGX">("USD");
+  const [usdAmount, setUsdAmount] = useState(String(amountUsd));
+  const [ugxAmount, setUgxAmount] = useState("5000");
+  const [phone, setPhone] = useState("");
   const startedAt = useRef(0);
 
   const guestId = useMemo(() => (typeof window === "undefined" ? "" : getGuestId()), []);
   const guestEmail = useMemo(() => (guestId ? getGuestEmail(guestId) : ""), [guestId]);
-  const amountLabel = formatUsd(amountUsd);
+  const amountValue = Number(currency === "USD" ? usdAmount : ugxAmount);
+  const amountIsValid = Number.isFinite(amountValue) && amountValue >= (currency === "USD" ? 1 : 1000);
+  const amountLabel = currency === "USD"
+    ? formatUsd(amountIsValid ? amountValue : 0)
+    : `UGX ${Math.round(amountIsValid ? amountValue : 0).toLocaleString()}`;
   const isCheckoutOpen = Boolean(frameUrl);
 
   useEffect(() => {
@@ -397,6 +405,10 @@ export function SupportPayModal({
     setBusy(false);
     setError(null);
     setPaid(false);
+    setCurrency("USD");
+    setUsdAmount(String(amountUsd));
+    setUgxAmount("5000");
+    setPhone("");
   }, [open, slug, amountUsd]);
 
   useEffect(() => {
@@ -472,6 +484,7 @@ export function SupportPayModal({
   }
 
   async function paySupport() {
+    if (!amountIsValid) return;
     setError(null);
     setBusy(true);
     setStatus("Opening the secure payment page…");
@@ -480,8 +493,10 @@ export function SupportPayModal({
         data: {
           slug,
           title,
-          amountUsd: Math.round(amountUsd * 100) / 100,
+          amount: amountValue,
+          currency,
           origin: window.location.origin,
+          ...(currency === "UGX" && phone.trim() ? { phone: phone.trim() } : {}),
           ...(guestEmail ? { email: guestEmail } : {}),
         },
       });
@@ -539,11 +554,54 @@ export function SupportPayModal({
         ) : (
           <div className="pay-modal-body pay-support-body">
             <div className="pay-methods">
-              <p className="pay-label">Support this film</p>
-              <div className="support-checkout-copy">
-                <strong>{amountLabel}</strong>
-                <span>{title}</span>
+              <p className="pay-label">Amount and payment method</p>
+              <div className="support-currency-options" role="radiogroup" aria-label="Payment currency">
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={currency === "USD"}
+                  className={`support-currency-option${currency === "USD" ? " selected" : ""}`}
+                  onClick={() => { setCurrency("USD"); setError(null); }}
+                >
+                  <span className="pay-logos"><BrandLogo src={visaLogo} label="Visa" /><BrandLogo src={mastercardLogo} label="Mastercard" /></span>
+                  <strong>USD</strong>
+                  <small>Card</small>
+                </button>
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={currency === "UGX"}
+                  className={`support-currency-option${currency === "UGX" ? " selected" : ""}`}
+                  onClick={() => { setCurrency("UGX"); setError(null); }}
+                >
+                  <span className="pay-logos"><BrandLogo src={mtnLogo} label="MTN MoMo" /><BrandLogo src={airtelLogo} label="Airtel Money" /></span>
+                  <strong>UGX</strong>
+                  <small>Mobile Money</small>
+                </button>
               </div>
+              <div className="support-checkout-copy">
+                <label htmlFor="support-payment-amount">Amount</label>
+                <div className="support-amount-entry">
+                  <span>{currency}</span>
+                  <input
+                    id="support-payment-amount"
+                    type="number"
+                    min={currency === "USD" ? "1" : "1000"}
+                    step={currency === "USD" ? "0.01" : "1000"}
+                    inputMode="decimal"
+                    value={currency === "USD" ? usdAmount : ugxAmount}
+                    onChange={(event) => currency === "USD" ? setUsdAmount(event.target.value) : setUgxAmount(event.target.value)}
+                    aria-label={`Support amount in ${currency}`}
+                  />
+                </div>
+                <span>{currency === "USD" ? "Pay by Visa or Mastercard" : "Pay by MTN or Airtel Money"}</span>
+              </div>
+              {currency === "UGX" ? (
+                <label className="pay-field support-phone-field">
+                  <span>MTN or Airtel number</span>
+                  <input type="tel" inputMode="tel" placeholder="0770 123 456" value={phone} onChange={(event) => setPhone(event.target.value)} />
+                </label>
+              ) : null}
               {paid ? <p className="pay-note">Thank you. Your support payment was received.</p> : null}
             </div>
 
@@ -558,7 +616,7 @@ export function SupportPayModal({
                 <span>Amount due</span>
                 <strong>{amountLabel}</strong>
               </div>
-              <button type="button" className="pay-button" onClick={() => void paySupport()} disabled={busy || paid}>
+              <button type="button" className="pay-button" onClick={() => void paySupport()} disabled={busy || paid || !amountIsValid || (currency === "UGX" && !phone.trim())}>
                 {paid ? "Payment received" : busy ? "Opening…" : `Pay ${amountLabel}`}
               </button>
               {paid ? (

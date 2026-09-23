@@ -13,3 +13,4 @@
 - [x] Add social profile links, sitemap and search metadata
 - [x] Preload all site images on open
 - [x] Make the Donate tile visible and support Google Drive video share links safely
+- [x] Make support amounts and payment currencies editable with a compact mobile layout

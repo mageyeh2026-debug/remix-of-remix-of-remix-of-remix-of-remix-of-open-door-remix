@@ -141,8 +141,10 @@ export const startPesapalSupportPayment = createServerFn({ method: "POST" })
       .object({
         slug: z.string().min(1),
         title: z.string().min(1),
-        amountUsd: z.number().positive().max(100000),
+        amount: z.number().positive().max(100000000),
+        currency: z.enum(["USD", "UGX"]),
         origin: z.string().url(),
+        phone: z.string().optional(),
         email: z.string().email().optional(),
       })
       .parse(data),
@@ -152,18 +154,19 @@ export const startPesapalSupportPayment = createServerFn({ method: "POST" })
     const origin = data.origin.replace(/\/+$/, "");
     // Pesapal rejects long merchant references, so keep this well under 50 chars.
     const safeSlug = safeReferencePart(data.slug, "support").slice(0, 14);
-    const amount = Math.round(data.amountUsd * 100) / 100;
+    const amount = data.currency === "UGX" ? Math.round(data.amount) : Math.round(data.amount * 100) / 100;
     const reference = `SUP-${safeSlug}-${Date.now().toString(36)}`;
     const countryCode = await requestCountryCode();
 
     const result = await submitOrder({
       merchantReference: reference,
       amount,
-      currency: "USD",
-      description: `Support: ${data.title} - $${amount}`.slice(0, 100),
+      currency: data.currency,
+      description: `Support: ${data.title} - ${data.currency} ${amount}`.slice(0, 100),
       callbackUrl: `${origin}/?support=${encodeURIComponent(data.slug)}`,
       cancellationUrl: `${origin}/?support=${encodeURIComponent(data.slug)}&payment=cancelled`,
       ipnUrl: `${origin}/api/public/pesapal-ipn`,
+      phone: data.phone,
       email: data.email,
       countryCode,
     }, await pesapalConfig());
@@ -175,7 +178,7 @@ export const startPesapalSupportPayment = createServerFn({ method: "POST" })
       return {
         ok: false as const,
         message: overLimit
-          ? `This payment account can’t accept $${amount} in one payment yet. Please try a smaller amount, or ask us to raise the limit.`
+          ? `This payment account can’t accept ${data.currency} ${amount.toLocaleString()} in one payment yet. Please try a smaller amount, or ask us to raise the limit.`
           : result.message,
       };
     }
@@ -186,7 +189,7 @@ export const startPesapalSupportPayment = createServerFn({ method: "POST" })
       orderTrackingId: result.data.orderTrackingId,
       redirectUrl: result.data.redirectUrl,
       amount,
-      currency: "USD",
+      currency: data.currency,
       countryCode,
     };
   });
