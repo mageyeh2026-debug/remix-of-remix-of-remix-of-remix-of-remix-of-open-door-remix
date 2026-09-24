@@ -11,7 +11,7 @@ const modernRoadCopy: UpcomingCopy = {
 
 export const upcomingDetails: Record<string, UpcomingCopy> = {
   "the-silence-we-flee": {
-    genre: "Drama | Thriller | International",
+    genre: "Political Thriller",
     synopsis:
       "After fleeing her homeland with evidence connected to her father’s murder, a young woman seeks safety in America—only to discover that distance cannot silence the forces hunting her. The Silence We Flee is a tense drama about survival, displacement, truth, and the price of carrying a secret across borders.",
     support:
@@ -21,7 +21,7 @@ export const upcomingDetails: Record<string, UpcomingCopy> = {
   "modern-road": modernRoadCopy,
   "mordern-road": modernRoadCopy,
   "john-bullock": {
-    genre: "Psychological Thriller | Drama",
+    genre: "Psychological Thriller",
     synopsis:
       "A young African student takes a caregiving job inside a quiet family home, where locked doors, strange routines, and a mother’s obsessive control begin to reveal something deeply unsettling. John Bullock is a psychological thriller about family, control, memory, and the terrifying things people can justify in the name of love.",
     support:

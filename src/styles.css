@@ -100,12 +100,12 @@ img { display: block; max-width: 100%; }
 
 .services-carousel, .upcoming-carousel { position: relative; }
 .rail-arrow { display: none; }
-.services { display: grid; grid-template-columns: repeat(4, 1fr); padding: 50px clamp(24px, 5.2vw, 78px); background: var(--card); border-bottom: 1px solid var(--border); }
-.service { min-height: 150px; padding: 0 clamp(22px, 3vw, 48px); border-right: 1px solid var(--border); }
-.service:first-child { padding-left: 0; }
-.service:last-child { border-right: 0; }
-.service h2 { margin: 20px 0 10px; font-size: 12.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
-.service p { max-width: 250px; margin: 0; color: var(--muted-foreground); font-size: 12.5px; line-height: 1.75; }
+.services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 28px clamp(24px, 5.2vw, 78px) 56px; background: var(--card); border-bottom: 1px solid var(--border); }
+.service { min-height: 310px; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; background: var(--background); }
+.service-image { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.service-copy { padding: 20px; }
+.service h3 { margin: 0 0 10px; font-size: 12.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.service p { margin: 0; color: var(--muted-foreground); font-size: 12.5px; line-height: 1.7; }
 
 .services-intro { padding: 84px clamp(24px, 5.2vw, 78px) 26px; text-align: center; }
 .services-intro h2 { margin: 14px 0 0; font-family: var(--font-display); font-size: clamp(32px, 3.8vw, 54px); font-weight: 500; letter-spacing: -0.01em; }
@@ -145,8 +145,8 @@ img { display: block; max-width: 100%; }
 .project-label strong { font-size: 11px; font-weight: 600; letter-spacing: .01em; }
 
 .about-section { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(50px, 7vw, 110px); align-items: center; padding: 58px clamp(24px, 5.2vw, 78px) 74px; background: var(--card); }
-.about-image { height: 390px; overflow: hidden; border-radius: var(--radius); background: #0d0c0a; }
-.about-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 42%; }
+.about-image { height: min(68vw, 620px); max-height: 620px; overflow: hidden; border-radius: var(--radius); background: #0d0c0a; }
+.about-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 34%; }
 .about-image img.about-img-desktop { object-fit: cover; object-position: center; }
 .about-img-mobile { display: none; }
 .about-copy { max-width: 560px; }
@@ -235,14 +235,15 @@ footer > p:last-child { justify-self: end; }
   .hero-actions { flex-wrap: nowrap; gap: 8px; margin-top: 26px; justify-content: center; }
   .hero-actions .button { min-width: 0; flex: 0 1 auto; padding: 0 14px; min-height: 34px; font-size: 9px; letter-spacing: .02em; white-space: nowrap; }
   .hero-actions .button:nth-child(2) { display: none; }
-  .services { display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: calc((100% - 2 * 12px) / 2.2); gap: 0; padding: 18px 14px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .services { display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: min(82vw, 320px); gap: 10px; padding: 18px 14px 34px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
   .services::-webkit-scrollbar { display: none; }
-  .service, .service:first-child { min-height: 0; padding: 20px 14px; scroll-snap-align: start; }
+  .service, .service:first-child { min-height: 0; padding: 0; scroll-snap-align: start; }
   .service:nth-child(2) { border-right: 1px solid var(--border); }
-  .service:nth-child(-n+2) { border-bottom: 0; }
+  .service:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
   .service svg { width: 22px; height: 22px; }
-  .service h2 { font-size: 10px; letter-spacing: .06em; margin: 12px 0 8px; }
-  .service p { font-size: 9px; line-height: 1.55; }
+  .service-copy { padding: 16px; }
+  .service h3 { font-size: 11px; letter-spacing: .06em; margin: 0 0 8px; }
+  .service p { font-size: 11px; line-height: 1.55; }
   .services-carousel .rail-arrow { display: none; }
   .project-carousel .carousel-arrow { display: none; }
   .portfolio-section { padding: 22px 0 22px; }
@@ -289,9 +290,7 @@ footer > p:last-child { justify-self: end; }
   .services-intro .button { margin-top: 24px; min-height: 44px; padding: 0 20px; font-size: 12px; }
   .awards-text { margin-top: 16px; font-size: 9.5px; line-height: 1.7; }
   .contact-lede { font-size: 9.5px; }
-  .about-image { height: 240px; border-radius: 10px; background: transparent; }
-  .about-img-desktop { display: none; }
-  .about-img-mobile { display: block; }
+  .about-image { height: 310px; border-radius: 10px; background: transparent; }
   footer { grid-template-columns: 1fr; gap: 18px; text-align: left; }
   footer > p:last-child { justify-self: start; }
   .contact-details-section { padding: 50px 20px 56px; }

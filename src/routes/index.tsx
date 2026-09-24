@@ -21,6 +21,10 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 import { DEFAULT_SHARE_IMAGE, SITE_URL } from "@/lib/seo";
 
 import contactBackground from "@/assets/hassan-mageye-coming-soon.avif";
+import serviceLocations from "@/assets/service-locations.jpg";
+import serviceLocalCrew from "@/assets/service-local-crew.jpg";
+import servicePermits from "@/assets/service-permits.jpg";
+import serviceProductionSupport from "@/assets/service-production-support.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -90,6 +94,13 @@ const iconMap: Record<string, typeof Play> = {
   Play,
   Clapperboard,
   Wrench,
+};
+
+const serviceImages: Record<string, string> = {
+  locations: serviceLocations,
+  crew: serviceLocalCrew,
+  permits: servicePermits,
+  support: serviceProductionSupport,
 };
 
 
@@ -343,7 +354,6 @@ function Index() {
 
       <section className="services-section services-intro-section" id="services">
         <div className="services-intro">
-          <p className="eyebrow">{content.services.eyebrow}</p>
           <h2 id="services-title">{content.services.title}</h2>
           <p className="services-lede">{content.services.lede}</p>
           <a className="button button-dark" href="#contact">{content.services.buttonLabel}</a>
@@ -356,9 +366,21 @@ function Index() {
             const Icon = iconMap[item.icon] ?? Play;
             return (
               <article className="service" key={item.id}>
-                <Icon aria-hidden="true" size={30} strokeWidth={1.35} />
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
+                {serviceImages[item.id] ? (
+                  <img
+                    className="service-image"
+                    src={serviceImages[item.id]}
+                    alt={`${item.title} for film production`}
+                    width={1200}
+                    height={800}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : <Icon aria-hidden="true" size={30} strokeWidth={1.35} />}
+                <div className="service-copy">
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
               </article>
             );
           })}
@@ -435,7 +457,6 @@ function Index() {
       ) : null}
 
       <section className="awards-section" id="media" aria-labelledby="media-title">
-        <p className="eyebrow">{content.media.eyebrow}</p>
         <h2 id="media-title">{content.media.title}</h2>
         <p className="awards-text">{content.media.description}</p>
         <div className="press-carousel">
