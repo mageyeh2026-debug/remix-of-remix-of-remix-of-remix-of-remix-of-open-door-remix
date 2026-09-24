@@ -18,3 +18,8 @@
 - [x] Remove the press inquiries button and add homepage gallery zoom
 - [x] Separate the Media and news images from the Contact section
 - [x] Expand the sitemap to cover every public page, film, upcoming project, news item, and indexable image
+- [ ] Update Tinka’s Story year, genre, synopsis, and film credit
+- [ ] Correct upcoming project statuses, genres, and capitalization
+- [ ] Rework production support for Africa and America with supporting photography
+- [ ] Replace the About portrait and remove the requested headings
+- [ ] Verify the updated home, About, and film detail pages
