@@ -6,6 +6,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Clapperboard,
+  ArrowRight,
+  Newspaper,
   MonitorPlay,
   Play,
   Video,
@@ -471,8 +473,11 @@ function Index() {
       ) : null}
 
       <section className="awards-section" id="media" aria-labelledby="media-title">
-        <h2 id="media-title">{content.media.title}</h2>
-        <p className="awards-text">{content.media.description}</p>
+        <header className="media-heading">
+          <p className="media-eyebrow"><span />{content.media.eyebrow || "Media & News"}<span /></p>
+          <h2 id="media-title">Latest News & <strong>Updates</strong></h2>
+          <p>Stay informed with the latest stories, events, press releases and updates from our projects.</p>
+        </header>
         <div className="press-carousel">
           <button
             className="carousel-arrow carousel-arrow-left press-arrow-left"
@@ -488,8 +493,10 @@ function Index() {
                 <>
                   <img src={card.src} alt={card.alt} loading="lazy" decoding="async" fetchPriority="low" onError={hideBrokenImage} />
                   <span className="media-card-overlay">
+                    <span className="media-card-category"><Newspaper size={13} /> News</span>
                     <span className="media-card-meta">{card.meta}</span>
                     <strong className="media-card-title">{card.title}</strong>
+                    {card.link ? <span className="media-card-read">Read more <ArrowRight size={15} /></span> : null}
                   </span>
                 </>
               );

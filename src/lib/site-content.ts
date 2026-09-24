@@ -276,8 +276,8 @@ export const defaultContent: SiteContent = {
   },
   media: {
     eyebrow: "",
-    title: "Media and news",
-    description: AWARD_RECOGNITION,
+    title: "Latest News & Updates",
+    description: "",
     buttonLabel: "Press inquiries",
     items: [
       {
@@ -509,8 +509,9 @@ export function mergeContent(stored: unknown): SiteContent {
     media: {
       ...base.media,
       ...(s.media ?? {}),
-      eyebrow: "",
-      description: AWARD_RECOGNITION,
+      eyebrow: "Media & News",
+      title: "Latest News & Updates",
+      description: "",
       items: arr<MediaItem>(s.media?.items).map((i) => ({ ...i, src: resolvePicture(i.src) })),
     },
     contact: cleanContact({ ...base.contact, ...(s.contact ?? {}) }),
