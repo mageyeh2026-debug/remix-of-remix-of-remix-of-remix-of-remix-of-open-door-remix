@@ -434,7 +434,7 @@ export function mergeContent(stored: unknown): SiteContent {
   };
   const film = (f: FilmItem): FilmItem => {
     const normalized = { ...f };
-    if (f.slug === "tinkas-story") {
+    if (f.slug === "tinkas-story" || f.slug === "tinka's-story") {
       normalized.year = "2023";
       normalized.genre = "Supernatural Thriller / Horror / Drama";
       normalized.logline = "A Film by Hassan Mageye";
