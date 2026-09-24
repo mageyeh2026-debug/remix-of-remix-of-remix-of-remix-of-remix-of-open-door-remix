@@ -476,7 +476,7 @@ function Index() {
         <header className="media-heading">
           <p className="media-eyebrow"><span />{content.media.eyebrow || "Media & News"}<span /></p>
           <h2 id="media-title">Latest News & <strong>Updates</strong></h2>
-          <p>Stay informed with the latest stories, events, press releases and updates from our projects.</p>
+          <p>Stay informed with the latest stories, events, press releases and updates from Hassan Mageye.</p>
         </header>
         <div className="press-carousel">
           <button
