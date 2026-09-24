@@ -3,8 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFooter, SiteHeader } from "@/components/SiteHeader";
 import { AWARD_RECOGNITION } from "@/lib/site-content";
 import { DEFAULT_SHARE_IMAGE, SITE_URL } from "@/lib/seo";
-import hassanImage from "@/assets/hassan-mageye.png";
-import hassanDesktopImage from "@/assets/director-hero-2.png";
+import hassanOnSet from "@/assets/hassan-mageye-on-set.jpg.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -39,11 +38,9 @@ function AboutPage() {
 
       <section className="about-section" id="about">
         <div className="about-image">
-          <img className="about-img-desktop" src={hassanDesktopImage} alt="Hassan Mageye, writer, director and producer" />
-          <img className="about-img-mobile" src={hassanImage} alt="Hassan Mageye, writer, director and producer" width={1400} height={950} />
+          <img src={hassanOnSet.url} alt="Hassan Mageye on a film set" width={1080} height={1620} />
         </div>
         <div className="about-copy">
-          <p className="eyebrow">Hi, I’m Hassan</p>
           <h1>Ugandan/American writer, director and producer.</h1>
           <p>
             Hassan Mageye is a Ugandan/American writer, director and producer whose filmmaking career
@@ -62,7 +59,6 @@ function AboutPage() {
       </section>
 
       <section className="awards-section" id="awards" aria-labelledby="awards-title">
-        <p className="eyebrow">Recognition</p>
         <h2 id="awards-title">Selected recognition</h2>
         <p className="awards-text">{AWARD_RECOGNITION}</p>
       </section>

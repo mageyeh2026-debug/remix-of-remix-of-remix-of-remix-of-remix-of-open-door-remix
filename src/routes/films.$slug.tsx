@@ -126,7 +126,7 @@ function FilmDetail() {
           <div className="film-detail-copy">
             {film.status && <span className="upcoming-status static">{film.status}</span>}
             <h1>{film.name}</h1>
-            <p className="film-meta">{film.runtime} · {film.year} · {genre}</p>
+            <p className="film-meta">{[film.runtime, film.year, genre].filter(Boolean).join(" · ")}</p>
             <p className="film-logline">{film.logline}</p>
             <p>{synopsis}</p>
             <dl className="film-facts">

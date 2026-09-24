@@ -175,13 +175,13 @@ export const defaultContent: SiteContent = {
     {
       slug: "tinkas-story",
       name: "Tinka's Story",
-      year: "2022",
+      year: "2023",
       runtime: "Film",
-      genre: "Drama",
+      genre: "Supernatural Thriller / Horror / Drama",
       image: tinkasStoryImage,
-      logline: "Tinka the dead summoner.",
+      logline: "A Film by Hassan Mageye",
       synopsis:
-        "Written and directed by Mageye Hassan. Official selection at The African Film Festival 2022.",
+        "Driven by grief and an unwavering belief in life after death, Tinka, a brilliant scientist, ventures beyond the boundaries of conventional science in a desperate attempt to bring her deceased husband back to life. Combining scientific experimentation with ancient rituals, she embarks on a dangerous journey into the unknown. But as her experiments begin to produce terrifying results, Tinka discovers that disturbing the boundary between life and death comes at a price. Caught between love, obsession, and supernatural forces she can no longer control, Tinka must confront the horrifying consequences of her quest to reunite with the man she refuses to let go.",
       cast: [
         "Kebirungi Agnes Knight",
         "Jeffroberts Walusimbi",
@@ -192,16 +192,16 @@ export const defaultContent: SiteContent = {
       price: 5.99,
     },
   ],
-  upcomingHeading: { eyebrow: "What’s next", title: "Upcoming projects" },
+  upcomingHeading: { eyebrow: "What’s next", title: "Upcoming Projects" },
   upcoming: [
     {
       slug: "the-silence-we-flee",
       name: "The Silence We Flee",
       year: "",
-      runtime: "Coming soon",
-      genre: "Drama",
+      runtime: "In post production",
+      genre: "Political Thriller",
       image: upcomingSilence,
-      status: "Coming soon",
+      status: "In post production",
       logline: "A woman on the run. A truth they will kill to bury.",
       synopsis:
         "After fleeing her homeland with evidence connected to her father’s murder, a young woman seeks safety in America—only to discover that distance cannot silence the forces hunting her. The Silence We Flee is a tense drama about survival, displacement, truth, and the price of carrying a secret across borders.",
@@ -224,10 +224,10 @@ export const defaultContent: SiteContent = {
       slug: "john-bullock",
       name: "John Bullock",
       year: "",
-      runtime: "Coming soon",
-      genre: "Psychological Thriller | Drama",
+      runtime: "Pre production",
+      genre: "Psychological Thriller",
       image: upcomingBullock,
-      status: "Coming soon",
+      status: "Pre production",
       logline: "An upcoming Mageye Global Works film.",
       synopsis:
         "A young African student takes a caregiving job inside a quiet family home, where locked doors, strange routines, and a mother’s obsessive control begin to reveal something deeply unsettling. John Bullock is a psychological thriller about family, control, memory, and the terrifying things people can justify in the name of love.",
@@ -235,33 +235,33 @@ export const defaultContent: SiteContent = {
     },
   ],
   services: {
-    eyebrow: "What we do",
+    eyebrow: "",
     title: "Services",
-    lede: "Planning to shoot a film, documentary, commercial, music video or other production in Africa or Santa Rosa, California? We can help coordinate the local support you need to get your production moving.",
+    lede: "Production services across Africa and America. We coordinate the locations, local professionals, permits, logistics and on-the-ground support needed to move your production forward.",
     buttonLabel: "Plan your shoot",
     items: [
       {
         id: "locations",
         icon: "Building2",
         title: "Locations",
-        text: "Scouting and access to filming locations across Africa and Santa Rosa, California.",
+        text: "Scouting and access to filming locations across Africa and America.",
       },
       {
         id: "crew",
         icon: "Video",
-        title: "Local crew",
+        title: "Local Crew",
         text: "Experienced local camera, sound and production crews on the ground.",
       },
       {
         id: "permits",
         icon: "MonitorPlay",
-        title: "Permit coordination",
+        title: "Permit Coordination",
         text: "Permits, clearances and paperwork handled so your shoot runs smoothly.",
       },
       {
         id: "support",
         icon: "Play",
-        title: "Production support",
+        title: "Production Support",
         text: "Logistics, transport and on-the-ground support from prep to wrap.",
       },
     ],
@@ -275,7 +275,7 @@ export const defaultContent: SiteContent = {
     items: [],
   },
   media: {
-    eyebrow: "Recognition",
+    eyebrow: "",
     title: "Media and news",
     description: AWARD_RECOGNITION,
     buttonLabel: "Press inquiries",
@@ -432,11 +432,30 @@ export function mergeContent(stored: unknown): SiteContent {
     if (v && typeof v === "object") return Object.values(v).filter(Boolean) as T[];
     return [];
   };
-  const film = (f: FilmItem): FilmItem => ({
-    ...f,
-    cast: arr<string>(f.cast),
-    image: resolvePicture(f.image),
-  });
+  const film = (f: FilmItem): FilmItem => {
+    const normalized = { ...f };
+    if (f.slug === "tinkas-story" || f.slug === "tinka's-story") {
+      normalized.year = "2023";
+      normalized.genre = "Supernatural Thriller / Horror / Drama";
+      normalized.logline = "A Film by Hassan Mageye";
+      normalized.synopsis = base.films.find((item) => item.slug === "tinkas-story")?.synopsis ?? f.synopsis;
+    }
+    if (f.slug === "the-silence-we-flee") {
+      normalized.runtime = "In post production";
+      normalized.status = "In post production";
+      normalized.genre = "Political Thriller";
+    }
+    if (f.slug === "john-bullock") {
+      normalized.runtime = "Pre production";
+      normalized.status = "Pre production";
+      normalized.genre = "Psychological Thriller";
+    }
+    return {
+      ...normalized,
+      cast: arr<string>(normalized.cast),
+      image: resolvePicture(normalized.image),
+    };
+  };
   const dashboardFilm = (f: FilmItem) =>
     [f.image, f.videoUrl, f.trailerUrl].some(
       (value) => typeof value === "string" && /^https?:\/\//i.test(value) && !value.includes("__l5e"),
@@ -460,7 +479,7 @@ export function mergeContent(stored: unknown): SiteContent {
     // Public film lists only contain records with media uploaded or linked in
     // the dashboard. This permanently excludes the bundled sample catalogue.
     films: arr<FilmItem>(s.films).filter(dashboardFilm).map(film),
-    upcomingHeading: { ...base.upcomingHeading, ...(s.upcomingHeading ?? {}) },
+    upcomingHeading: { ...base.upcomingHeading, ...(s.upcomingHeading ?? {}), title: "Upcoming Projects" },
     // When the dashboard has no upcoming projects saved, keep showing the
     // studio's own upcoming slate instead of an empty section.
     upcoming: (() => {
@@ -470,7 +489,13 @@ export function mergeContent(stored: unknown): SiteContent {
     services: {
       ...base.services,
       ...(s.services ?? {}),
-      items: arr<ServiceItem>(s.services?.items),
+      eyebrow: "",
+      title: "Services",
+      lede: base.services.lede,
+      items: arr<ServiceItem>(s.services?.items).map((item) => {
+        const editorial = base.services.items.find((baseItem) => baseItem.id === item.id);
+        return editorial ? { ...item, title: editorial.title, text: editorial.text } : item;
+      }),
     },
     gallery: {
       ...base.gallery,
@@ -484,6 +509,7 @@ export function mergeContent(stored: unknown): SiteContent {
     media: {
       ...base.media,
       ...(s.media ?? {}),
+      eyebrow: "",
       description: AWARD_RECOGNITION,
       items: arr<MediaItem>(s.media?.items).map((i) => ({ ...i, src: resolvePicture(i.src) })),
     },
