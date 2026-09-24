@@ -726,10 +726,10 @@ footer > p:last-child { justify-self: end; }
   .recognition-additional ul { grid-column: 1 / -1; justify-content: center; flex-wrap: wrap; }
 }
 @media (max-width: 720px) {
-  .media-heading h2 { font-size: 34px; line-height: 1.08; }
-  .media-heading > p:last-child { font-size: 12px; }
+  .media-heading h2 { font-size: 40px; line-height: 1.05; }
+  .media-heading > p:last-child { font-size: 13px; }
   .media-eyebrow span { width: 38px; }
-  .press-carousel { margin: 30px -20px 0; }
+  .press-carousel { margin: 30px 0 0; }
   .press-rail { grid-auto-columns: calc(100% - 32px); padding-inline: 16px; gap: 10px; }
   .press-arrow-left { left: 2px; }
   .press-arrow-right { right: 2px; }
