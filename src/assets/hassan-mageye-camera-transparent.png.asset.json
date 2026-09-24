@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "9acfe91c-9f9c-42ad-a49f-6a58868dd5f6",
-  "project_id": "541175e0-f413-4807-b045-2d46caf2fa7e",
-  "url": "/__l5e/assets-v1/9acfe91c-9f9c-42ad-a49f-6a58868dd5f6/hassan-mageye-camera-transparent.png",
-  "r2_key": "a/v1/541175e0-f413-4807-b045-2d46caf2fa7e/9acfe91c-9f9c-42ad-a49f-6a58868dd5f6/hassan-mageye-camera-transparent.png",
-  "original_filename": "hassan-mageye-camera-transparent.png",
-  "size": 209269,
   "content_type": "image/png",
-  "created_at": "2026-09-24T18:30:55Z"
+  "created_at": "2026-09-24T18:30:55Z",
+  "original_filename": "hassan-mageye-camera-transparent.png",
+  "project_id": "9bee32b2-fd32-4729-9bc3-4af8c5f55cf6",
+  "r2_key": "a/v1/9bee32b2-fd32-4729-9bc3-4af8c5f55cf6/9acfe91c-9f9c-42ad-a49f-6a58868dd5f6/hassan-mageye-camera-transparent.png",
+  "size": 209269,
+  "url": "/__l5e/assets-v1/9acfe91c-9f9c-42ad-a49f-6a58868dd5f6/hassan-mageye-camera-transparent.png",
+  "version": 1
 }
