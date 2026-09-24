@@ -21,6 +21,10 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 import { DEFAULT_SHARE_IMAGE, SITE_URL } from "@/lib/seo";
 
 import contactBackground from "@/assets/hassan-mageye-coming-soon.avif";
+import hassanOnSet from "@/assets/hassan-mageye-on-set.jpg.asset.json";
+import awardsBackground from "@/assets/awards-cinematic-background.jpg";
+import awardsTrophy from "@/assets/awards-golden-trophy.png";
+import cinemaStatuette from "@/assets/awards-cinema-statuette.png";
 import serviceLocations from "@/assets/service-locations.jpg";
 import serviceLocalCrew from "@/assets/service-local-crew.jpg";
 import servicePermits from "@/assets/service-permits.jpg";
@@ -102,6 +106,16 @@ const serviceImages: Record<string, string> = {
   permits: servicePermits,
   support: serviceProductionSupport,
 };
+
+const awardMilestones = [
+  { year: "2013", festival: "Pearl International Film Festival", film: "King’s Virgin", recognition: "Best Supporting Actor", result: "Award" },
+  { year: "2015", festival: "Uganda Film Festival", film: "The Tailor", recognition: "Best Director", result: "Nomination" },
+  { year: "2016", festival: "Uganda Film Festival", film: "Invisible Cuffs", recognition: "Best Actor in Film", result: "Award" },
+  { year: "2017", festival: "Uganda Film Festival", film: "Devil’s Chest", recognition: "Best Director · Best Feature Film", result: "Winner" },
+  { year: "2022", festival: "Africa Movie Academy Awards", film: "Tinka’s Story", recognition: "Best Visual Effects", result: "Nomination" },
+  { year: "2022", festival: "Africa Magic Viewers’ Choice Awards", film: "Tinka’s Story", recognition: "Best Sound Editor", result: "Nomination" },
+  { year: "2025", festival: "Uganda Film Festival", film: "Kimote", recognition: "Best Director · Best Screenplay", result: "Nominations" },
+];
 
 
 function ProjectCard({
@@ -503,6 +517,108 @@ function Index() {
             <ChevronRight size={24} />
           </button>
         </div>
+      </section>
+
+      <section
+        className="recognition-showcase"
+        aria-labelledby="recognition-title"
+        style={{ "--recognition-bg": `url(${awardsBackground})` } as React.CSSProperties}
+      >
+        <header className="recognition-hero">
+          <img
+            className="recognition-portrait"
+            src={hassanOnSet.url}
+            alt="Hassan Mageye on a film set"
+            width={900}
+            height={1200}
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="recognition-heading">
+            <p>Hassan Mageye</p>
+            <h2 id="recognition-title">
+              Awards, Nominations &amp;
+              <strong>International Recognition</strong>
+            </h2>
+            <span>Writer <i /> Director <i /> Producer <i /> Actor</span>
+            <blockquote>“Stories have the power to change the world.” <cite>— Hassan Mageye</cite></blockquote>
+          </div>
+          <img
+            className="recognition-trophy recognition-trophy-main"
+            src={awardsTrophy}
+            alt="Golden international film award trophy"
+            width={768}
+            height={1024}
+            loading="lazy"
+            decoding="async"
+          />
+        </header>
+
+        <div className="recognition-grid">
+          <article className="recognition-feature recognition-feature-winner">
+            <time>2017</time>
+            <img src={cinemaStatuette} alt="Golden cinema award statuette" width={768} height={1024} loading="lazy" decoding="async" />
+            <p>Uganda Film Festival</p>
+            <h3>Devil’s Chest</h3>
+            <div><strong>Best Director</strong><strong>Best Feature Film</strong></div>
+            <b>Winner</b>
+          </article>
+
+          {awardMilestones.filter((award) => award.year !== "2017").map((award, index) => (
+            <article className={`recognition-card${index === 4 ? " recognition-card-dark" : ""}`} key={`${award.year}-${award.festival}`}>
+              <div className="recognition-card-top">
+                <img src={index % 2 ? awardsTrophy : cinemaStatuette} alt="Golden film award" width={768} height={1024} loading="lazy" decoding="async" />
+                <time>{award.year}</time>
+              </div>
+              <p>{award.festival}</p>
+              <h3>{award.film}</h3>
+              <strong>{award.recognition}</strong>
+              <span>{award.result}</span>
+            </article>
+          ))}
+
+          <article className="recognition-wide recognition-silicon">
+            <time>2025</time>
+            <p>Silicon Valley African Film Festival · USA</p>
+            <h3>Kimote</h3>
+            <strong>Official Selection</strong>
+          </article>
+          <article className="recognition-wide recognition-academy">
+            <img src={cinemaStatuette} alt="Golden cinema award statuette" width={768} height={1024} loading="lazy" decoding="async" />
+            <div>
+              <time>2025</time>
+              <p>The Academy Awards</p>
+              <h3>Kimote</h3>
+              <strong>Uganda’s Official Submission for the 98th Academy Awards</strong>
+            </div>
+          </article>
+          <article className="recognition-wide recognition-amaa">
+            <time>2026</time>
+            <p>Africa Movie Academy Awards · Nigeria</p>
+            <h3>Kimote</h3>
+            <strong>Best Indigenous Language Film · East Africa — Nomination</strong>
+          </article>
+          <article className="recognition-wide recognition-quote">
+            <img src={awardsTrophy} alt="Golden international film award trophy" width={768} height={1024} loading="lazy" decoding="async" />
+            <p>Great stories<br />travel far…</p>
+          </article>
+        </div>
+
+        <aside className="recognition-additional">
+          <img src={cinemaStatuette} alt="Golden cinema award" width={768} height={1024} loading="lazy" decoding="async" />
+          <div>
+            <h3>Additional Achievements</h3>
+            <p>Devil’s Chest also received recognition for cinematography, sound, editing and post-production at the 2017 Uganda Film Festival.</p>
+          </div>
+          <ul aria-label="Recognition key">
+            <li>Winner</li><li>Nomination</li><li>Official Selection</li><li>Official Submission</li>
+          </ul>
+        </aside>
+
+        <footer className="recognition-signoff">
+          <strong>Hassan Mageye</strong>
+          <span>Real Stories <i /> Global Impact</span>
+        </footer>
       </section>
 
 
