@@ -21,7 +21,7 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 import { DEFAULT_SHARE_IMAGE, SITE_URL } from "@/lib/seo";
 
 import contactBackground from "@/assets/hassan-mageye-coming-soon.avif";
-import hassanOnSet from "@/assets/hassan-mageye-on-set.jpg.asset.json";
+import hassanCameraPortrait from "@/assets/hassan-mageye-camera-transparent.png.asset.json";
 import awardsBackground from "@/assets/awards-cinematic-background.jpg";
 import awardsTrophy from "@/assets/awards-golden-trophy.png";
 import cinemaStatuette from "@/assets/awards-cinema-statuette.png";
@@ -527,10 +527,10 @@ function Index() {
         <header className="recognition-hero">
           <img
             className="recognition-portrait"
-            src={hassanOnSet.url}
-            alt="Hassan Mageye on a film set"
-            width={900}
-            height={1200}
+            src={hassanCameraPortrait.url}
+            alt="Hassan Mageye standing beside a cinema camera"
+            width={408}
+            height={612}
             loading="lazy"
             decoding="async"
           />
@@ -541,7 +541,6 @@ function Index() {
               <strong>International Recognition</strong>
             </h2>
             <span>Writer <i /> Director <i /> Producer <i /> Actor</span>
-            <blockquote>“Stories have the power to change the world.” <cite>— Hassan Mageye</cite></blockquote>
           </div>
           <img
             className="recognition-trophy recognition-trophy-main"
@@ -597,10 +596,6 @@ function Index() {
             <p>Africa Movie Academy Awards · Nigeria</p>
             <h3>Kimote</h3>
             <strong>Best Indigenous Language Film · East Africa — Nomination</strong>
-          </article>
-          <article className="recognition-wide recognition-quote">
-            <img src={awardsTrophy} alt="Golden international film award trophy" width={768} height={1024} loading="lazy" decoding="async" />
-            <p>Great stories<br />travel far…</p>
           </article>
         </div>
 
