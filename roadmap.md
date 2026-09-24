@@ -1,4 +1,5 @@
 ## Active
+- [ ] Refine the awards portrait and winner badge, remove all quotes, and rebuild the gallery from the supplied reference
 - [x] Preserve the current design and add a reference-matched awards, wins, nominations and recognition section below Media and news
 - [x] Make public films and gallery show only Firebase dashboard content
 - [x] Prevent fallback/mock content during loading or network failure
