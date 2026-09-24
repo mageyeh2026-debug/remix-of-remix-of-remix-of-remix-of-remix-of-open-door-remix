@@ -1,5 +1,5 @@
 ## Active
-- [ ] Match Media and News to the supplied reference and remove the recognition paragraph
+- [x] Match Media and News to the supplied reference and remove the recognition paragraph
 - [ ] Refine the awards portrait and winner badge, remove all quotes, and rebuild the gallery from the supplied reference
 - [x] Preserve the current design and add a reference-matched awards, wins, nominations and recognition section below Media and news
 - [x] Make public films and gallery show only Firebase dashboard content
