@@ -6,6 +6,8 @@ import { SiteFooter, SiteHeader } from "@/components/SiteHeader";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { hideBrokenImage } from "@/lib/utils";
 import { DEFAULT_SHARE_IMAGE, SITE_URL } from "@/lib/seo";
+import galleryBackground from "@/assets/gallery-cinematic-landscape.jpg";
+import hassanCameraPortrait from "@/assets/hassan-mageye-camera-transparent.png.asset.json";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -69,11 +71,34 @@ function GalleryPage() {
     <main>
       <SiteHeader />
 
-      <section className="gallery-page-hero" aria-labelledby="gallery-page-title">
-        <p className="eyebrow">{gallery.eyebrow}</p>
-        <h1 id="gallery-page-title">{gallery.title}</h1>
-        <p>{gallery.description}</p>
+      <section
+        className="gallery-page-hero"
+        aria-labelledby="gallery-page-title"
+        style={{ "--gallery-hero-bg": `url(${galleryBackground})` } as React.CSSProperties}
+      >
+        <img
+          className="gallery-page-portrait"
+          src={hassanCameraPortrait.url}
+          alt="Hassan Mageye beside a cinema camera"
+          width={408}
+          height={612}
+          fetchPriority="high"
+        />
+        <div className="gallery-page-heading">
+          <p className="gallery-page-name">Hassan Mageye</p>
+          <h1 id="gallery-page-title">Gallery</h1>
+          <p className="gallery-page-kicker">Behind the scenes <i /> Production <i /> Memories <i /> Life</p>
+        </div>
       </section>
+
+      <nav className="gallery-page-filters" aria-label="Gallery categories">
+        <span className="active">All</span>
+        <span>Film Production</span>
+        <span>On Set</span>
+        <span>Landscapes</span>
+        <span>Portraits</span>
+        <span>Personal</span>
+      </nav>
 
       <section className="gallery-page-grid" aria-label="All gallery pictures">
         {items.map((item, index) => {
@@ -90,7 +115,6 @@ function GalleryPage() {
               height={800}
               onError={hideBrokenImage}
               onClick={() => setOpenIndex(index)}
-              style={{ cursor: "zoom-in" }}
             />
             <figcaption>{item.title}</figcaption>
           </figure>
