@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFooter, SiteHeader } from "@/components/SiteHeader";
 import { DEFAULT_SHARE_IMAGE, SITE_URL } from "@/lib/seo";
 import hassanOnSet from "@/assets/hassan-mageye-on-set.jpg.asset.json";
-import awardLaurel3d from "@/assets/award-laurel-3d.png";
+import awardLaurel3d from "@/assets/award-laurel-reference-exact.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({

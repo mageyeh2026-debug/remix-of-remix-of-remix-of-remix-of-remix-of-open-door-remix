@@ -25,7 +25,7 @@ import { DEFAULT_SHARE_IMAGE, SITE_URL } from "@/lib/seo";
 import contactBackground from "@/assets/hassan-mageye-coming-soon.avif";
 import hassanCameraPortrait from "@/assets/hassan-mageye-camera-transparent.png.asset.json";
 import awardsBackground from "@/assets/awards-cinematic-background.jpg";
-import awardLaurel3d from "@/assets/award-laurel-3d.png";
+import awardLaurel3d from "@/assets/award-laurel-reference-exact.png";
 import serviceLocations from "@/assets/service-locations.jpg";
 import serviceLocalCrew from "@/assets/service-local-crew.jpg";
 import servicePermits from "@/assets/service-permits.jpg";
@@ -60,7 +60,10 @@ export const Route = createFileRoute("/")({
       { name: "twitter:description", content: "African stories, cultural identity and character-driven drama." },
       { name: "twitter:image", content: DEFAULT_SHARE_IMAGE },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
+    links: [
+      { rel: "canonical", href: `${SITE_URL}/` },
+      { rel: "preload", href: awardLaurel3d, as: "image", type: "image/png" },
+    ],
     scripts: [
       {
         type: "application/ld+json",
