@@ -518,8 +518,8 @@ function Index() {
                   <img src={card.src} alt={card.alt} loading="lazy" decoding="async" fetchPriority="low" onError={hideBrokenImage} />
                   <span className="media-card-overlay">
                     <span className="media-card-category"><Newspaper size={13} /> News</span>
-                    <span className="media-card-meta">{card.meta}</span>
-                    <strong className="media-card-title">{card.title}</strong>
+                    {card.meta ? <span className="media-card-meta">{card.meta}</span> : null}
+                    {card.title ? <strong className="media-card-title">{card.title}</strong> : null}
                     {card.link ? <span className="media-card-read">Read more <ArrowRight size={15} /></span> : null}
                   </span>
                 </>
