@@ -91,15 +91,6 @@ function GalleryPage() {
         </div>
       </section>
 
-      <nav className="gallery-page-filters" aria-label="Gallery categories">
-        <span className="active">All</span>
-        <span>Film Production</span>
-        <span>On Set</span>
-        <span>Landscapes</span>
-        <span>Portraits</span>
-        <span>Personal</span>
-      </nav>
-
       <section className="gallery-page-grid" aria-label="All gallery pictures">
         {items.map((item, index) => {
           const imageKey = item.id ?? `${item.src}-${index}`;
