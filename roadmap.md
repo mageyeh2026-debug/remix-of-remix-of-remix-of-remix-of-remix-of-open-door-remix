@@ -28,6 +28,12 @@
 - [x] Verify the updated home, About, and film detail pages
 - [x] Rename the About label and add rounded animated gradient rings to sliding award cards
 - [x] Remove the floating laurel emblem from the top of the home page awards header
+- [x] Remove the portrait from the home page awards header
+- [x] Tighten the Contact page banner, heading, and contact tiles
+- [x] Add scroll-in and hover motion to the home page About and Services sections
+- [x] Give every home page award box a gradient edge
+- [x] Restore the sliding award cards on the About page and match the home page heading style
+- [x] Enlarge the suggested amount screen in the film support payment window
 
 - [x] Keep Latest News & Updates in one horizontal line on phones
 - [x] Simplify upcoming film support and move suggested amounts into the payment window
