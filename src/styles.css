@@ -166,7 +166,7 @@ img { display: block; max-width: 100%; }
 .about-name { display: flex; align-items: center; gap: 18px; margin: 0 0 6px; font-size: 11px; font-weight: 700; letter-spacing: .42em; text-transform: uppercase; color: var(--recognition-navy); }
 .about-name::before, .about-name::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--recognition-gold)); }
 .about-name::after { background: linear-gradient(90deg, var(--recognition-gold), transparent); }
-.about-title { margin: 0; font-family: Georgia, serif; font-size: clamp(42px, 5vw, 76px); line-height: .92; font-weight: 500; letter-spacing: 0; text-transform: uppercase; white-space: nowrap; background: linear-gradient(90deg, var(--recognition-gold), var(--recognition-navy-deep) 64%); background-clip: text; color: transparent; }
+.about-title { margin: 0; font-family: Georgia, serif; font-size: clamp(40px, 4.2vw, 68px); line-height: .92; font-weight: 500; letter-spacing: 0; text-transform: uppercase; white-space: nowrap; background: linear-gradient(90deg, var(--recognition-gold), var(--recognition-navy-deep) 64%); background-clip: text; color: transparent; }
 .about-role { margin: 18px 0 0; font-size: 15px; font-weight: 600; letter-spacing: .01em; color: var(--foreground); }
 
 /* About — sliding awards row */
