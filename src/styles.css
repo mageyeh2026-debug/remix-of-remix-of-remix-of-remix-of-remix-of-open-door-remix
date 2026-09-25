@@ -766,9 +766,9 @@ footer > p:last-child { justify-self: end; }
    isolated so the established site design remains unchanged. */
 .recognition-showcase { position: relative; isolation: isolate; overflow: hidden; padding: 0 clamp(20px, 3vw, 46px) 30px; color: var(--recognition-navy); background: var(--recognition-paper); background-image: linear-gradient(to bottom, color-mix(in oklab, var(--recognition-paper) 8%, transparent), color-mix(in oklab, var(--recognition-paper) 82%, transparent)), var(--recognition-bg); background-size: cover; background-position: center; }
 .recognition-showcase::after { content: ""; position: absolute; inset: auto 0 0; z-index: -1; height: 84px; background: linear-gradient(175deg, transparent 33%, color-mix(in oklab, var(--recognition-navy-deep) 94%, transparent) 34% 50%, color-mix(in oklab, var(--recognition-gold) 92%, transparent) 51% 58%, transparent 59%); opacity: .9; }
-.recognition-hero { position: relative; min-height: 300px; display: grid; grid-template-columns: minmax(250px, 1fr) minmax(430px, 2.35fr); align-items: center; gap: 26px; }
-.recognition-portrait { width: min(100%, 360px); height: 300px; align-self: end; justify-self: center; object-fit: contain; object-position: center bottom; filter: drop-shadow(0 16px 16px color-mix(in oklab, var(--recognition-navy) 16%, transparent)); }
-.recognition-heading { padding: 28px 0 22px; text-align: center; }
+.recognition-hero { position: relative; min-height: 300px; display: flex; align-items: center; justify-content: center; gap: 30px; padding-bottom: 16px; }
+.recognition-portrait { flex: 0 0 auto; width: min(100%, 360px); height: 300px; align-self: end; justify-self: center; object-fit: contain; object-position: center bottom; filter: drop-shadow(0 16px 16px color-mix(in oklab, var(--recognition-navy) 16%, transparent)); }
+.recognition-heading { flex: 1 1 auto; max-width: 700px; padding: 28px 0 22px; text-align: center; }
 .recognition-heading > p { display: flex; align-items: center; gap: 20px; margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .48em; text-transform: uppercase; }
 .recognition-heading > p::before, .recognition-heading > p::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--recognition-gold)); }
 .recognition-heading > p::after { background: linear-gradient(90deg, var(--recognition-gold), transparent); }
@@ -810,7 +810,8 @@ footer > p:last-child { justify-self: end; }
 .recognition-signoff span { margin-top: 8px; font-size: 7px; }
 @media (max-width: 980px) {
   .press-rail { grid-auto-columns: calc((100% - 14px) / 2); }
-  .recognition-hero { grid-template-columns: .9fr 2.2fr; }
+  .recognition-hero { gap: 18px; }
+  .recognition-portrait { width: min(100%, 260px); height: 250px; }
   .recognition-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .recognition-feature { grid-column: span 2; }
   .recognition-additional { grid-template-columns: 42px 1fr; }
@@ -827,8 +828,8 @@ footer > p:last-child { justify-self: end; }
   .press-rail .media-card { border-radius: 6px; }
   .media-card-category { top: 14px; left: 14px; }
   .recognition-showcase { padding: 0 12px 18px; }
-  .recognition-hero { min-height: 300px; grid-template-columns: 1fr; gap: 0; align-items: end; }
-  .recognition-portrait { width: min(100%, 250px); height: 220px; justify-self: center; align-self: end; object-position: center bottom; }
+  .recognition-hero { min-height: 0; flex-direction: column-reverse; gap: 0; padding-bottom: 8px; }
+  .recognition-portrait { width: min(100%, 250px); height: 220px; margin-top: 4px; justify-self: center; align-self: end; object-position: center bottom; }
   .recognition-heading { grid-column: 1; grid-row: 1; padding: 26px 4px 10px; }
   .recognition-heading > p { font-size: 8px; letter-spacing: .3em; }
   .recognition-heading h2 { font-size: clamp(23px, 7vw, 32px); }
