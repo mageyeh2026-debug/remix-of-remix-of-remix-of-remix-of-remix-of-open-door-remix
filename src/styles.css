@@ -221,7 +221,6 @@ img { display: block; max-width: 100%; }
   to   { opacity: 1; transform: translateY(0); }
 }
 .about-image { animation: about-image-rise 1s cubic-bezier(.2,.7,.2,1) both; }
-.about-image img { animation: about-image-rise 1s cubic-bezier(.2,.7,.2,1) both; }
 .about-name { animation: about-line-fade .7s ease both; animation-delay: .12s; }
 .about-name::before, .about-name::after { transform-origin: center; animation: about-rule-sweep .8s cubic-bezier(.2,.7,.2,1) both; animation-delay: .22s; }
 .about-name::after { animation-delay: .3s; }
