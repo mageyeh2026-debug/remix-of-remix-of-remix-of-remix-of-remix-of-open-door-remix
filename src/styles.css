@@ -886,8 +886,9 @@ footer > p:last-child { justify-self: end; }
   .media-grid { grid-template-columns: 1fr; gap: 4px; margin: 26px -20px -50px; }
   .media-card { aspect-ratio: 16 / 11; border-radius: 6px; }
   .media-card-overlay { padding: 14px; }
-  .media-card-meta { font-size: 9px; }
-  .media-card-title { font-size: 12px; margin-top: 4px; }
+  .media-card-meta { font-size: 10px; }
+  .media-card-title { font-size: 16px; margin-top: 6px; }
+
 }
 
 @media (max-width: 720px) {
