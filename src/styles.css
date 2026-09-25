@@ -110,9 +110,9 @@ img { display: block; max-width: 100%; }
 
 .services-carousel, .upcoming-carousel { position: relative; }
 .rail-arrow { display: none; }
-.services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding: 24px 0 4px; background: var(--card); border-bottom: 1px solid var(--border); }
+.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 4px; padding: 24px 0 4px; background: var(--card); border-bottom: 1px solid var(--border); }
 .service { min-height: 310px; overflow: hidden; border: 0; border-radius: 0; background: var(--background); }
-.service-image { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.service-image { width: 100%; height: clamp(190px, 19vw, 265px); object-fit: cover; }
 .service-copy { padding: 20px; }
 .service h3 { margin: 0 0 10px; font-size: 12.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
 .service p { margin: 0; color: var(--muted-foreground); font-size: 12.5px; line-height: 1.7; }
