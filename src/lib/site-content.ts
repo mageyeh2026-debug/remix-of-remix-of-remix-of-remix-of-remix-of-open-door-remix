@@ -512,9 +512,7 @@ export function mergeContent(stored: unknown): SiteContent {
       eyebrow: "Media & News",
       title: "Latest News & Updates",
       description: "",
-      // Dashboard items are appended when created; reverse them publicly so
-      // the most recently uploaded news always appears first.
-      items: arr<MediaItem>(s.media?.items).reverse().map((i) => ({ ...i, src: resolvePicture(i.src) })),
+      items: arr<MediaItem>(s.media?.items).map((i) => ({ ...i, src: resolvePicture(i.src) })),
     },
     contact: cleanContact({ ...base.contact, ...(s.contact ?? {}) }),
     wallet: {

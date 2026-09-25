@@ -29,8 +29,3 @@ export const upcomingDetails: Record<string, UpcomingCopy> = {
   },
 };
 
-export const supportLevels = [
-  { amount: "$25", amountUsd: 25, label: "Supporter", className: "support-tier-base" },
-  { amount: "$50", amountUsd: 50, label: "Film Friend", className: "support-tier-friend" },
-  { amount: "$100", amountUsd: 100, label: "Production Supporter", className: "support-tier-production" },
-] as const;
