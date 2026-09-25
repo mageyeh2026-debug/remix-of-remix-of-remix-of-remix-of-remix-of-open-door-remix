@@ -512,7 +512,9 @@ export function mergeContent(stored: unknown): SiteContent {
       eyebrow: "Media & News",
       title: "Latest News & Updates",
       description: "",
-      items: arr<MediaItem>(s.media?.items).map((i) => ({ ...i, src: resolvePicture(i.src) })),
+      // News is saved oldest-to-newest in the dashboard, then presented with
+      // the latest upload first on public pages.
+      items: arr<MediaItem>(s.media?.items).reverse().map((i) => ({ ...i, src: resolvePicture(i.src) })),
     },
     contact: cleanContact({ ...base.contact, ...(s.contact ?? {}) }),
     wallet: {

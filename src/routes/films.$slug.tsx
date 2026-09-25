@@ -8,7 +8,7 @@ import { SupportPayModal } from "@/components/PayModal";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { getSiteContent } from "@/lib/site-content.functions";
 import { filmShareImageUrl, SITE_URL } from "@/lib/seo";
-import { supportLevels, upcomingDetails } from "@/lib/upcoming-copy";
+import { upcomingDetails } from "@/lib/upcoming-copy";
 import type { FilmItem } from "@/lib/site-content";
 
 function titleFromSlug(slug: string) {
@@ -101,8 +101,7 @@ function FilmDetail() {
   const isUpcoming = Boolean(film.status);
   const synopsis = detail?.synopsis ?? film.synopsis;
   const genre = detail?.genre ?? film.genre;
-  const supportCopy =
-    detail?.support ?? `Help us bring ${film.name} to life and move this story from vision to screen.`;
+  const supportTitle = `Help bring ${film.name === "Modern Road" ? "The Modern Road" : film.name} to the screen`;
 
   return (
     <main>
@@ -168,29 +167,15 @@ function FilmDetail() {
 
         {isUpcoming ? (
           <div className="upcoming-support detail-support">
-            <h2>Support this film</h2>
-            <p>{supportCopy}</p>
-            <div className="support-options">
-              {supportLevels.map((level) => (
-                <button
-                  type="button"
-                  className={`support-tier ${level.className}`}
-                  onClick={() => setSupportAmount(level.amountUsd)}
-                  key={level.amount}
-                >
-                  <strong>{level.amount}</strong>
-                  <span>{level.label}</span>
-                </button>
-              ))}
-              <button
-                type="button"
-                className="support-tier support-tier-donate"
-                onClick={() => setSupportAmount(5)}
-              >
-                <strong>Donate</strong>
-                <span>Any amount</span>
-              </button>
-            </div>
+            <h2>{supportTitle}</h2>
+            <p>Your contribution helps fund the production of the film.</p>
+            <button
+              type="button"
+              className="button button-dark support-film-button"
+              onClick={() => setSupportAmount(25)}
+            >
+              Support the film
+            </button>
           </div>
         ) : null}
 

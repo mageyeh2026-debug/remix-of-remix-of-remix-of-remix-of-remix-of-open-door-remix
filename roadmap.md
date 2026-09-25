@@ -29,4 +29,6 @@
 - [x] Rename the About label and add rounded animated gradient rings to sliding award cards
 - [x] Remove the floating laurel emblem from the top of the home page awards header
 
-- [x] Show Latest News & Updates cards one per line on phones
+- [x] Keep Latest News & Updates in one horizontal line on phones
+- [x] Simplify upcoming film support and move suggested amounts into the payment window
+- [x] Show the newest uploaded news and media first

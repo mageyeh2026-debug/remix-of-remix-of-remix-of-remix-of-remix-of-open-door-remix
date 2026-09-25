@@ -581,6 +581,20 @@ export function SupportPayModal({
               </div>
               <div className="support-checkout-copy">
                 <label htmlFor="support-payment-amount">Amount</label>
+                {currency === "USD" ? (
+                  <div className="support-suggested" aria-label="Suggested amounts">
+                    {[25, 50, 100].map((amount) => (
+                      <button
+                        type="button"
+                        className={usdAmount === String(amount) ? "selected" : ""}
+                        onClick={() => setUsdAmount(String(amount))}
+                        key={amount}
+                      >
+                        ${amount}
+                      </button>
+                    ))}
+                  </div>
+                ) : null}
                 <div className="support-amount-entry">
                   <span>{currency}</span>
                   <input
