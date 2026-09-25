@@ -386,7 +386,7 @@ function Index() {
       </section>
 
       <section className="services-section services-intro-section" id="services">
-        <div className="services-intro reveal">
+        <div className="services-intro">
           <h2 id="services-title">{content.services.title}</h2>
           <p className="services-lede">{content.services.lede}</p>
           <a className="button button-dark" href="#contact">{content.services.buttonLabel}</a>
@@ -402,7 +402,7 @@ function Index() {
           {content.services.items.map((item) => {
             const Icon = iconMap[item.icon] ?? Play;
             return (
-              <article className="service reveal" key={item.id}>
+              <article className="service" key={item.id}>
                 {item.image || serviceGalleryImages[item.id] ? (
                   <img
                     className="service-image"
