@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { SiteFooter, SiteHeader } from "@/components/SiteHeader";
-import { AWARD_RECOGNITION } from "@/lib/site-content";
 import { DEFAULT_SHARE_IMAGE, SITE_URL } from "@/lib/seo";
 import hassanOnSet from "@/assets/hassan-mageye-on-set.jpg.asset.json";
+import awardsTrophy from "@/assets/awards-golden-trophy.png";
+import cinemaStatuette from "@/assets/awards-cinema-statuette.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -31,6 +32,19 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
+const awardBoxes = [
+  { year: "2013", festival: "Pearl International Film Festival", film: "King’s Virgin", recognition: "Best Supporting Actor", result: "Award", icon: "statuette" },
+  { year: "2015", festival: "Uganda Film Festival", film: "The Tailor", recognition: "Best Director", result: "Nomination", icon: "trophy" },
+  { year: "2016", festival: "Uganda Film Festival", film: "Invisible Cuffs", recognition: "Best Actor in Film", result: "Award", icon: "statuette" },
+  { year: "2017", festival: "Uganda Film Festival", film: "Devil’s Chest", recognition: "Best Director · Best Feature Film", result: "Winner", icon: "trophy" },
+  { year: "2022", festival: "Africa Movie Academy Awards", film: "Tinka’s Story", recognition: "Best Visual Effects", result: "Nomination", icon: "statuette" },
+  { year: "2022", festival: "Africa Magic Viewers’ Choice Awards", film: "Tinka’s Story", recognition: "Best Sound Editor", result: "Nomination", icon: "trophy" },
+  { year: "2025", festival: "Uganda Film Festival", film: "Kimote", recognition: "Best Director · Best Screenplay", result: "Nominations", icon: "statuette" },
+  { year: "2025", festival: "Silicon Valley African Film Festival · USA", film: "Kimote", recognition: "Official Selection", result: "Selection", icon: "trophy" },
+  { year: "2025", festival: "The Academy Awards", film: "Kimote", recognition: "Uganda’s Official Submission · 98th Academy Awards", result: "Submission", icon: "statuette" },
+  { year: "2026", festival: "Africa Movie Academy Awards · Nigeria", film: "Kimote", recognition: "Best Indigenous Language Film · East Africa", result: "Nomination", icon: "trophy" },
+];
+
 function AboutPage() {
   return (
     <main>
@@ -41,7 +55,9 @@ function AboutPage() {
           <img src={hassanOnSet.url} alt="Hassan Mageye on a film set" width={1080} height={1620} />
         </div>
         <div className="about-copy">
-          <h1>Ugandan/American writer, director and producer.</h1>
+          <p className="about-name">Hassan Mageye</p>
+          <h1 className="about-title">HASSAN MAGEYE</h1>
+          <p className="about-role">Ugandan/American writer, director and producer.</p>
           <p>
             Hassan Mageye is a Ugandan/American writer, director and producer whose filmmaking career
             spans more than a decade. He studied Mass Communication at Makerere University and moved
@@ -58,9 +74,54 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="awards-section" id="awards" aria-labelledby="awards-title">
-        <h2 id="awards-title">Selected recognition</h2>
-        <p className="awards-text">{AWARD_RECOGNITION}</p>
+      <section className="about-awards" id="awards" aria-labelledby="about-awards-title">
+        <header className="about-awards-head">
+          <p className="about-awards-eyebrow">Awards · Wins · Nominations</p>
+          <h2 id="about-awards-title">Recognition in motion</h2>
+        </header>
+
+        <div className="about-awards-track" aria-label="Awards and nominations">
+          <ul className="about-awards-row about-awards-row--a">
+            {awardBoxes.map((award, index) => (
+              <li className="about-award-box" key={`${award.year}-${index}`}>
+                <img
+                  className="about-award-icon"
+                  src={award.icon === "trophy" ? awardsTrophy : cinemaStatuette}
+                  alt=""
+                  width={768}
+                  height={1024}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <time className="about-award-year">{award.year}</time>
+                <p className="about-award-festival">{award.festival}</p>
+                <h3 className="about-award-film">{award.film}</h3>
+                <strong className="about-award-recognition">{award.recognition}</strong>
+                <span className={`about-award-result about-award-result--${award.result.toLowerCase()}`}>{award.result}</span>
+              </li>
+            ))}
+          </ul>
+          <ul className="about-awards-row about-awards-row--b" aria-hidden="true">
+            {awardBoxes.map((award, index) => (
+              <li className="about-award-box" key={`b-${award.year}-${index}`}>
+                <img
+                  className="about-award-icon"
+                  src={award.icon === "trophy" ? awardsTrophy : cinemaStatuette}
+                  alt=""
+                  width={768}
+                  height={1024}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <time className="about-award-year">{award.year}</time>
+                <p className="about-award-festival">{award.festival}</p>
+                <h3 className="about-award-film">{award.film}</h3>
+                <strong className="about-award-recognition">{award.recognition}</strong>
+                <span className={`about-award-result about-award-result--${award.result.toLowerCase()}`}>{award.result}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <SiteFooter />

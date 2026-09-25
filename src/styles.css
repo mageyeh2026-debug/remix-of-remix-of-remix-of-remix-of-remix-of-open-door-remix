@@ -158,9 +158,38 @@ img { display: block; max-width: 100%; }
 .about-image img.about-img-desktop { object-fit: cover; object-position: center; }
 .about-img-mobile { display: none; }
 .about-copy { max-width: 560px; }
-.about-copy p:not(.eyebrow) { max-width: 520px; margin: 24px 0 0; color: var(--muted-foreground); font-size: 13px; line-height: 1.85; }
+.about-copy p:not(.eyebrow):not(.about-name):not(.about-role) { max-width: 520px; margin: 24px 0 0; color: var(--muted-foreground); font-size: 13px; line-height: 1.85; }
 .about-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .about-actions .button { min-width: 172px; }
+
+/* About — classic name heading */
+.about-name { display: flex; align-items: center; gap: 18px; margin: 0 0 6px; font-size: 11px; font-weight: 700; letter-spacing: .42em; text-transform: uppercase; color: var(--recognition-navy); }
+.about-name::before, .about-name::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--recognition-gold)); }
+.about-name::after { background: linear-gradient(90deg, var(--recognition-gold), transparent); }
+.about-title { margin: 0; font-family: Georgia, serif; font-size: clamp(54px, 7vw, 104px); line-height: .92; font-weight: 500; letter-spacing: 0; text-transform: uppercase; background: linear-gradient(90deg, var(--recognition-gold), var(--recognition-navy-deep) 64%); background-clip: text; color: transparent; }
+.about-role { margin: 18px 0 0; font-size: 15px; font-weight: 600; letter-spacing: .01em; color: var(--foreground); }
+
+/* About — sliding awards row */
+.about-awards { padding: 56px 0 64px; background: var(--recognition-paper); overflow: hidden; }
+.about-awards-head { text-align: center; padding: 0 20px 8px; }
+.about-awards-eyebrow { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: .42em; text-transform: uppercase; color: var(--recognition-navy); }
+.about-awards-head h2 { margin: 10px 0 0; font-family: Georgia, serif; font-size: clamp(30px, 4vw, 52px); line-height: 1; font-weight: 500; letter-spacing: 0; text-transform: uppercase; background: linear-gradient(90deg, var(--recognition-gold), var(--recognition-navy-deep) 64%); background-clip: text; color: transparent; }
+.about-awards-track { position: relative; display: flex; width: max-content; margin-top: 34px; }
+.about-awards-row { display: flex; gap: 18px; padding-right: 18px; margin: 0; list-style: none; flex-shrink: 0; }
+.about-awards-row--a { animation: about-awards-slide 60s linear infinite; }
+.about-awards-row--b { animation: about-awards-slide 60s linear infinite; }
+@keyframes about-awards-slide { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+.about-award-box { position: relative; flex: 0 0 auto; width: 244px; min-height: 300px; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 22px 18px 20px; border: 1px solid color-mix(in oklab, var(--recognition-navy) 14%, transparent); border-radius: 12px; background: color-mix(in oklab, var(--card) 92%, transparent); box-shadow: 0 10px 26px color-mix(in oklab, var(--recognition-navy) 8%, transparent); }
+.about-award-icon { width: 64px; height: 80px; object-fit: contain; margin-bottom: 8px; filter: drop-shadow(0 8px 12px color-mix(in oklab, var(--recognition-gold) 30%, transparent)); }
+.about-award-year { font-size: 11px; font-weight: 700; letter-spacing: .22em; color: var(--recognition-navy); }
+.about-award-festival { margin: 10px 0 0; font-size: 11px; font-weight: 600; color: var(--muted-foreground); line-height: 1.4; }
+.about-award-film { margin: 8px 0 0; font-family: var(--font-display); font-size: 17px; font-weight: 700; line-height: 1.2; color: var(--foreground); }
+.about-award-recognition { margin: 10px 0 0; font-size: 12px; font-weight: 600; line-height: 1.4; color: var(--foreground); }
+.about-award-result { margin-top: auto; padding: 6px 14px; border-radius: 999px; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--recognition-paper); }
+.about-award-result--award, .about-award-result--winner { background: var(--recognition-gold); color: var(--recognition-navy-deep); }
+.about-award-result--nomination, .about-award-result--nominations { background: color-mix(in oklab, var(--recognition-navy) 78%, transparent); }
+.about-award-result--selection, .about-award-result--submission { background: color-mix(in oklab, var(--recognition-navy-deep) 85%, transparent); }
+@media (hover: hover) { .about-awards-track:hover .about-awards-row { animation-play-state: paused; } }
 
 .upcoming-section { padding: 28px 0 22px; background: var(--background); text-align: center; overflow: hidden; }
 .upcoming-heading { padding-inline: 20px; }
@@ -268,10 +297,10 @@ footer > p:last-child { justify-self: end; }
   .project-label { margin-top: 6px; }
   .project-label strong { font-size: 8px; line-height: 1.25; }
   .carousel-arrow { width: 24px; height: 24px; }
-  .about-section { padding: 30px 16px 36px; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 18px; align-items: center; }
+  .about-section { padding: 30px 16px 36px; grid-template-columns: 1fr; gap: 22px; align-items: start; }
   .about-section .eyebrow { font-size: 7px; letter-spacing: .16em; }
   .about-section h2 { font-size: clamp(15px, 4.4vw, 20px); line-height: 1.25; margin: 8px 0 10px; }
-  .about-section .about-copy p { font-size: 8.5px; line-height: 1.6; }
+  .about-section .about-copy p:not(.about-name):not(.about-role) { font-size: 8.5px; line-height: 1.6; }
   .about-section .about-actions { flex-wrap: nowrap; gap: 7px; margin-top: 14px; }
   .about-section .about-actions .button { min-width: 0; padding: 0 10px; min-height: 28px; font-size: 7px; letter-spacing: .04em; white-space: nowrap; }
   .upcoming-section { padding: 32px 0 34px; }
@@ -299,6 +328,16 @@ footer > p:last-child { justify-self: end; }
   .awards-text { margin-top: 16px; font-size: 9.5px; line-height: 1.7; }
   .contact-lede { font-size: 9.5px; }
   .about-image { height: 310px; border-radius: 10px; background: transparent; }
+  .about-name { font-size: 7px; gap: 10px; letter-spacing: .28em; }
+  .about-title { font-size: clamp(40px, 14vw, 64px); }
+  .about-role { font-size: 10px; margin-top: 12px; }
+  .about-awards { padding: 40px 0 48px; }
+  .about-awards-head h2 { font-size: 30px; }
+  .about-award-box { width: 190px; min-height: 250px; padding: 16px 13px 15px; }
+  .about-award-icon { width: 48px; height: 60px; }
+  .about-award-film { font-size: 15px; }
+  .about-award-recognition { font-size: 10px; }
+  .about-awards-row { gap: 12px; padding-right: 12px; }
   footer { grid-template-columns: 1fr; gap: 18px; text-align: left; }
   footer > p:last-child { justify-self: start; }
   .contact-details-section { padding: 50px 20px 56px; }
