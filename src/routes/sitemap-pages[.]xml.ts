@@ -22,7 +22,7 @@ export const Route = createFileRoute("/sitemap-pages.xml")({
             .map((film) => filmPath(film.slug));
           const paths = Array.from(new Set([...STATIC_PAGES, ...dynamicPaths]));
           const entries = paths
-            .map((path) => `<url><loc>${escapeSitemapXml(sitemapUrl(path))}</loc><changefreq>hourly</changefreq></url>`)
+            .map((path) => `<url><loc>${escapeSitemapXml(sitemapUrl(path))}</loc><changefreq>hourly</changefreq><priority>${path === "/" ? "1.0" : "0.8"}</priority></url>`)
             .join("");
 
           return new Response(

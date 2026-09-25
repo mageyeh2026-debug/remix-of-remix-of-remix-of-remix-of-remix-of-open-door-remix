@@ -96,7 +96,7 @@ export function collectSitemapImagePages(content: SiteContent): SitemapImagePage
 
 export const SITEMAP_HEADERS = {
   "Content-Type": "application/xml; charset=utf-8",
-  "Cache-Control": "public, max-age=0, must-revalidate",
+  "Cache-Control": "public, max-age=3600",
   "X-Robots-Tag": "noindex",
 };
 

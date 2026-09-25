@@ -132,24 +132,48 @@ export async function saveSection<K extends keyof SiteContent>(key: K, value: Si
   await set(ref(firebaseDb(), `${SITE_PATH}/${String(key)}`), value);
 }
 
+/** Every item id the dashboard has ever been shown. */
+const seenIds = new Set<string>();
+const itemKey = (item: any) => String(item?.id ?? item?.slug ?? item?.src ?? "");
+
+export function rememberItems(content: SiteContent) {
+  const c: any = content;
+  for (const list of [c.films, c.upcoming, c.gallery?.items, c.media?.items, c.services?.items]) {
+    if (Array.isArray(list)) for (const item of list) seenIds.add(itemKey(item));
+  }
+}
+
 /**
- * Saves the dashboard, but never lets a stale or half-loaded draft wipe
- * saved movies, gallery pictures, news or services. A list that is empty in
- * the draft keeps whatever is already stored online.
+ * Keeps anything stored online that this dashboard never saw (uploaded from
+ * another tab/device, or before the page loaded). Only items the admin could
+ * see and chose to remove are left out.
  */
+function mergeList(draft: unknown, stored: unknown) {
+  const mine = Array.isArray(draft) ? draft : [];
+  if (!Array.isArray(stored)) return mine;
+  const have = new Set(mine.map(itemKey));
+  const extra = stored.filter((item) => {
+    const key = itemKey(item);
+    return key && !have.has(key) && !seenIds.has(key);
+  });
+  return [...mine, ...extra];
+}
+
+/** Saves the dashboard without ever wiping content stored online. */
 export async function saveAll(content: SiteContent) {
-  const { get } = await import("firebase/database");
+  const { get, update } = await import("firebase/database");
   const snap = await get(ref(firebaseDb(), SITE_PATH));
   const current = (snap.val() ?? {}) as any;
   const next: any = JSON.parse(JSON.stringify(content));
-  const keep = (list: unknown, stored: unknown) =>
-    (!Array.isArray(list) || list.length === 0) && Array.isArray(stored) && stored.length > 0;
-  if (keep(next.films, current.films)) next.films = current.films;
-  if (keep(next.upcoming, current.upcoming)) next.upcoming = current.upcoming;
+  next.films = mergeList(next.films, current.films);
+  next.upcoming = mergeList(next.upcoming, current.upcoming);
   for (const key of ["gallery", "media", "services"]) {
-    if (next[key] && keep(next[key].items, current[key]?.items)) next[key].items = current[key].items;
+    if (!next[key]) continue;
+    next[key].items = mergeList(next[key].items, current[key]?.items);
   }
-  await set(ref(firebaseDb(), SITE_PATH), next);
+  rememberItems(next);
+  // update() only touches the sections sent — nothing else in the database is removed.
+  await update(ref(firebaseDb(), SITE_PATH), next);
 }
 
 /** Media (images, videos, trailers) go straight to Cloudflare R2. */
@@ -159,4 +183,8 @@ export async function uploadImage(
   onProgress?: (p: UploadProgress) => void,
 ) {
   return uploadToR2(`media/${folder}`, file, onProgress);
+}
+
+export function isSeen(key: string) {
+  return seenIds.has(key);
 }
