@@ -878,8 +878,42 @@ function Dashboard({ user }: { user: User }) {
   const autosaveReady = useRef(false);
 
   useEffect(() => {
-    if (loaded && !draft) setDraft(content);
-  }, [loaded, content, draft]);
+    if (!loaded) return;
+    if (!draft) {
+      rememberItems(content);
+      setDraft(content);
+      return;
+    }
+    // New uploads that arrive live (e.g. gallery photos) show up in the dashboard.
+    const known = new Set<string>();
+    const key = (i: any) => String(i?.id ?? i?.slug ?? i?.src ?? "");
+    const d: any = draft;
+    for (const list of [d.films, d.upcoming, d.gallery.items, d.media.items, d.services.items]) {
+      for (const i of list ?? []) known.add(key(i));
+    }
+    const fresh = (live: any[], mine: any[]) => {
+      const add = (live ?? []).filter((i) => !known.has(key(i)) && !isSeen(key(i)));
+      return add.length ? [...mine, ...add] : mine;
+    };
+    const c: any = content;
+    const films = fresh(c.films, d.films);
+    const upcoming = fresh(c.upcoming, d.upcoming);
+    const gallery = fresh(c.gallery.items, d.gallery.items);
+    const media = fresh(c.media.items, d.media.items);
+    const services = fresh(c.services.items, d.services.items);
+    rememberItems(content);
+    if (films !== d.films || upcoming !== d.upcoming || gallery !== d.gallery.items || media !== d.media.items || services !== d.services.items) {
+      setDraft({
+        ...draft,
+        films,
+        upcoming,
+        gallery: { ...draft.gallery, items: gallery },
+        media: { ...draft.media, items: media },
+        services: { ...draft.services, items: services },
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loaded, content]);
 
   useEffect(() => {
     if (!draft) return;
