@@ -297,7 +297,7 @@ footer > p:last-child { justify-self: end; }
   .project-label { margin-top: 6px; }
   .project-label strong { font-size: 8px; line-height: 1.25; }
   .carousel-arrow { width: 24px; height: 24px; }
-  .about-section { padding: 30px 16px 36px; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 18px; align-items: center; }
+  .about-section { padding: 30px 16px 36px; grid-template-columns: 1fr; gap: 22px; align-items: start; }
   .about-section .eyebrow { font-size: 7px; letter-spacing: .16em; }
   .about-section h2 { font-size: clamp(15px, 4.4vw, 20px); line-height: 1.25; margin: 8px 0 10px; }
   .about-section .about-copy p:not(.about-name):not(.about-role) { font-size: 8.5px; line-height: 1.6; }
