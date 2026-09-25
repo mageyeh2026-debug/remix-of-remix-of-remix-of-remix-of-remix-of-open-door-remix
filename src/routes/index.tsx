@@ -559,15 +559,6 @@ function Index() {
             </h2>
             <span>Writer <i /> Director <i /> Producer <i /> Actor</span>
           </div>
-          <img
-            className="recognition-trophy recognition-trophy-main"
-            src={awardLaurel3d}
-            alt="Golden 3D laurel award emblem"
-            width={1024}
-            height={1024}
-            loading="eager"
-            fetchPriority="high"
-          />
         </header>
 
         <div className="recognition-grid">
