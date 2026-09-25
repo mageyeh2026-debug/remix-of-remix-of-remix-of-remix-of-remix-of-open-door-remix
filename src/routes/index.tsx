@@ -542,15 +542,6 @@ function Index() {
         style={{ "--recognition-bg": `url(${awardsBackground})` } as React.CSSProperties}
       >
         <header className="recognition-hero">
-          <img
-            className="recognition-portrait"
-            src={hassanCameraPortrait.url}
-            alt="Hassan Mageye standing beside a cinema camera"
-            width={408}
-            height={612}
-            loading="lazy"
-            decoding="async"
-          />
           <div className="recognition-heading">
             <p>Hassan Mageye</p>
             <h2 id="recognition-title">
