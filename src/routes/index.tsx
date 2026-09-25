@@ -26,10 +26,6 @@ import contactBackground from "@/assets/hassan-mageye-coming-soon.avif";
 import hassanCameraPortrait from "@/assets/hassan-mageye-camera-transparent.png.asset.json";
 import awardsBackground from "@/assets/awards-cinematic-background.jpg";
 import awardLaurel3d from "@/assets/award-laurel-reference-exact.png";
-import serviceLocations from "@/assets/service-locations.jpg";
-import serviceLocalCrew from "@/assets/service-local-crew.jpg";
-import servicePermits from "@/assets/service-permits.jpg";
-import serviceProductionSupport from "@/assets/service-production-support.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -102,13 +98,6 @@ const iconMap: Record<string, typeof Play> = {
   Play,
   Clapperboard,
   Wrench,
-};
-
-const serviceImages: Record<string, string> = {
-  locations: serviceLocations,
-  crew: serviceLocalCrew,
-  permits: servicePermits,
-  support: serviceProductionSupport,
 };
 
 const awardMilestones = [
@@ -207,6 +196,7 @@ function Index() {
   const projectRailRef = useRef<HTMLDivElement>(null);
   const upcomingRailRef = useRef<HTMLDivElement>(null);
   const pressRailRef = useRef<HTMLDivElement>(null);
+  const servicesRailRef = useRef<HTMLDivElement>(null);
   const [activeFilm, setActiveFilm] = useState<number | null>(null);
   const [trailerSlug, setTrailerSlug] = useState<string | null>(null);
   const [galleryOpenIndex, setGalleryOpenIndex] = useState<number | null>(null);
@@ -221,6 +211,22 @@ function Index() {
   const galleryPreview = content.gallery.items.slice(0, 8);
   const activeGalleryPhoto = galleryOpenIndex === null ? null : galleryPreview[galleryOpenIndex];
   const trailerFilm = films.find((f) => f.slug === trailerSlug);
+  const serviceGalleryImages = (() => {
+    const unused = [...content.gallery.items];
+    const terms: Record<string, string[]> = {
+      locations: ["location", "outdoor", "landscape", "street", "building"],
+      crew: ["crew", "camera", "set", "behind", "production"],
+      permits: ["office", "meeting", "document", "planning", "city"],
+      support: ["equipment", "transport", "production", "set", "team"],
+    };
+    return Object.fromEntries(content.services.items.map((service) => {
+      const words = terms[service.id] ?? [];
+      let index = unused.findIndex((photo) => words.some((word) => `${photo.title} ${photo.alt}`.toLowerCase().includes(word)));
+      if (index < 0) index = 0;
+      const photo = unused.splice(index, 1)[0];
+      return [service.id, photo?.src];
+    }));
+  })();
 
   const closeGalleryPhoto = useCallback(() => setGalleryOpenIndex(null), []);
   const stepGalleryPhoto = useCallback(
@@ -388,15 +394,19 @@ function Index() {
       </section>
 
       <section className="services-section services-cards-section">
-        <div className="services">
+        <div className="services-carousel">
+          <button className="carousel-arrow carousel-arrow-left rail-arrow" type="button" aria-label="Previous service" onClick={() => scrollRail(servicesRailRef.current, -1)}>
+            <ChevronLeft size={20} />
+          </button>
+          <div className="services" ref={servicesRailRef}>
           {content.services.items.map((item) => {
             const Icon = iconMap[item.icon] ?? Play;
             return (
               <article className="service reveal" key={item.id}>
-                {serviceImages[item.id] ? (
+                {serviceGalleryImages[item.id] ? (
                   <img
                     className="service-image"
-                    src={serviceImages[item.id]}
+                    src={serviceGalleryImages[item.id]}
                     alt={`${item.title} for film production`}
                     width={1200}
                     height={800}
@@ -411,6 +421,10 @@ function Index() {
               </article>
             );
           })}
+          </div>
+          <button className="carousel-arrow carousel-arrow-right rail-arrow" type="button" aria-label="Next service" onClick={() => scrollRail(servicesRailRef.current, 1)}>
+            <ChevronRight size={20} />
+          </button>
         </div>
       </section>
 

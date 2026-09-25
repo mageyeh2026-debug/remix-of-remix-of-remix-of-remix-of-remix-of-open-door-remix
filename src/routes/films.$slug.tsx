@@ -83,7 +83,7 @@ function FilmDetail() {
   const all: FilmItem[] = [...content.films, ...content.upcoming];
   const film = all.find((f) => f.slug === slug) ?? null;
   const [trailerOpen, setTrailerOpen] = useState(false);
-  const [supportAmount, setSupportAmount] = useState<number | null>(null);
+  const [supportOpen, setSupportOpen] = useState(false);
 
 
   // Warm the playback link while the page is being read, so the trailer starts
@@ -135,13 +135,22 @@ function FilmDetail() {
             </dl>
             <div className="film-detail-actions">
               {film.status ? (
-                <button
-                  type="button"
-                  className="film-btn film-btn-ghost"
-                  onClick={() => setTrailerOpen(true)}
-                >
-                  <Play size={13} /> Trailer
-                </button>
+                <>
+                  <button
+                    type="button"
+                    className="film-btn film-btn-ghost"
+                    onClick={() => setTrailerOpen(true)}
+                  >
+                    <Play size={13} /> Trailer
+                  </button>
+                  <button
+                    type="button"
+                    className="film-btn support-film-button support-film-button-mobile"
+                    onClick={() => setSupportOpen(true)}
+                  >
+                    Support the film
+                  </button>
+                </>
               ) : (
                 <>
                   <Link
@@ -172,7 +181,7 @@ function FilmDetail() {
             <button
               type="button"
               className="button button-dark support-film-button"
-              onClick={() => setSupportAmount(25)}
+               onClick={() => setSupportOpen(true)}
             >
               Support the film
             </button>
@@ -211,13 +220,13 @@ function FilmDetail() {
         </div>
       </section>
 
-      {supportAmount ? (
+       {supportOpen ? (
         <SupportPayModal
           open
           slug={film.slug}
           title={film.name}
-          amountUsd={supportAmount}
-          onClose={() => setSupportAmount(null)}
+          amountUsd={0}
+          onClose={() => setSupportOpen(false)}
         />
       ) : null}
 
