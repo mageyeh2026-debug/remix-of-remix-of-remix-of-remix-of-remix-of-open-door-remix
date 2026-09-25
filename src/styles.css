@@ -329,8 +329,6 @@ footer > p:last-child { justify-self: end; }
   .services { display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: min(84vw, 320px); gap: 4px; padding: 16px 0 30px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
   .services::-webkit-scrollbar { display: none; }
   .service, .service:first-child { min-height: 0; padding: 0; scroll-snap-align: start; }
-  .service:nth-child(2) { border-right: 1px solid var(--border); }
-  .service:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
   .service svg { width: 22px; height: 22px; }
   .service-copy { padding: 16px; }
   .service h3 { font-size: 11px; letter-spacing: .06em; margin: 0 0 8px; }
