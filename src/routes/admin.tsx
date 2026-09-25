@@ -1290,18 +1290,20 @@ function Dashboard({ user }: { user: User }) {
                   const url = input.value.trim();
                   if (!/^https?:\/\//i.test(url)) return;
                   input.value = "";
+                  input.focus();
                   const next = {
                     ...draft,
                     gallery: {
                       ...draft.gallery,
                       items: [
-                        ...draft.gallery.items,
                         { id: `g-${Date.now()}`, src: url, alt: "Mageye photo", title: "New photo" },
+                        ...draft.gallery.items,
                       ],
                     },
                   };
+                  // Show instantly; save quietly in the background.
                   setDraft(next);
-                  await persist(next);
+                  void persist(next);
                 }}
               >
                 <input
@@ -1317,7 +1319,7 @@ function Dashboard({ user }: { user: User }) {
               <div className="admin-media-grid">
                 {draft.gallery.items.map((item, i) => (
                   <div className="admin-media-item" key={item.id}>
-                    <img src={item.src} alt={item.alt} />
+                    <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
                     <input
                       className="admin-input"
                       value={item.title}
