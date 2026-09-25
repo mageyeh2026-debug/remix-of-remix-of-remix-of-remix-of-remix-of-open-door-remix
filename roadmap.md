@@ -28,3 +28,5 @@
 - [x] Verify the updated home, About, and film detail pages
 - [x] Rename the About label and add rounded animated gradient rings to sliding award cards
 - [x] Remove the floating laurel emblem from the top of the home page awards header
+
+- [x] Show Latest News & Updates cards one per line on phones
