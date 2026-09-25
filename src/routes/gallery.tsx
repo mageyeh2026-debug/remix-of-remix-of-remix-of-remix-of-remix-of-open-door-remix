@@ -7,7 +7,6 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 import { hideBrokenImage } from "@/lib/utils";
 import { DEFAULT_SHARE_IMAGE, SITE_URL } from "@/lib/seo";
 import galleryBackground from "@/assets/gallery-cinematic-landscape.jpg";
-import hassanCameraPortrait from "@/assets/hassan-mageye-camera-transparent.png.asset.json";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
