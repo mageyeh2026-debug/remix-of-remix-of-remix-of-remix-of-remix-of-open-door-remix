@@ -114,6 +114,8 @@ img { display: block; max-width: 100%; }
 .service { min-height: 310px; overflow: hidden; border: 0; border-radius: 0; background: var(--background); }
 .service-image { width: 100%; height: clamp(190px, 19vw, 265px); object-fit: cover; }
 .service-copy { padding: 20px; }
+/* services without a photo: keep the mark centred so the card reads as intentional */
+.service > svg { display: block; margin: clamp(26px, 5vw, 52px) auto 0; color: var(--muted-foreground); opacity: .5; }
 .service h3 { margin: 0 0 10px; font-size: 12.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
 .service p { margin: 0; color: var(--muted-foreground); font-size: 12.5px; line-height: 1.7; }
 /* one service only: full-bleed feature instead of a squashed strip */
