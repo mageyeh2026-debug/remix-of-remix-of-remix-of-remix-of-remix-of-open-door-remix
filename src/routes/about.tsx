@@ -3,8 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFooter, SiteHeader } from "@/components/SiteHeader";
 import { DEFAULT_SHARE_IMAGE, SITE_URL } from "@/lib/seo";
 import hassanOnSet from "@/assets/hassan-mageye-on-set.jpg.asset.json";
-import awardsTrophy from "@/assets/awards-golden-trophy.png";
-import cinemaStatuette from "@/assets/awards-cinema-statuette.png";
+import awardLaurel3d from "@/assets/award-laurel-3d.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -27,22 +26,25 @@ export const Route = createFileRoute("/about")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: DEFAULT_SHARE_IMAGE },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/about` }],
+    links: [
+      { rel: "canonical", href: `${SITE_URL}/about` },
+      { rel: "preload", href: awardLaurel3d, as: "image", type: "image/png" },
+    ],
   }),
   component: AboutPage,
 });
 
 const awardBoxes = [
-  { year: "2013", festival: "Pearl International Film Festival", film: "King’s Virgin", recognition: "Best Supporting Actor", result: "Award", icon: "statuette" },
-  { year: "2015", festival: "Uganda Film Festival", film: "The Tailor", recognition: "Best Director", result: "Nomination", icon: "trophy" },
-  { year: "2016", festival: "Uganda Film Festival", film: "Invisible Cuffs", recognition: "Best Actor in Film", result: "Award", icon: "statuette" },
-  { year: "2017", festival: "Uganda Film Festival", film: "Devil’s Chest", recognition: "Best Director · Best Feature Film", result: "Winner", icon: "trophy" },
-  { year: "2022", festival: "Africa Movie Academy Awards", film: "Tinka’s Story", recognition: "Best Visual Effects", result: "Nomination", icon: "statuette" },
-  { year: "2022", festival: "Africa Magic Viewers’ Choice Awards", film: "Tinka’s Story", recognition: "Best Sound Editor", result: "Nomination", icon: "trophy" },
-  { year: "2025", festival: "Uganda Film Festival", film: "Kimote", recognition: "Best Director · Best Screenplay", result: "Nominations", icon: "statuette" },
-  { year: "2025", festival: "Silicon Valley African Film Festival · USA", film: "Kimote", recognition: "Official Selection", result: "Selection", icon: "trophy" },
-  { year: "2025", festival: "The Academy Awards", film: "Kimote", recognition: "Uganda’s Official Submission · 98th Academy Awards", result: "Submission", icon: "statuette" },
-  { year: "2026", festival: "Africa Movie Academy Awards · Nigeria", film: "Kimote", recognition: "Best Indigenous Language Film · East Africa", result: "Nomination", icon: "trophy" },
+  { year: "2013", festival: "Pearl International Film Festival", film: "King’s Virgin", recognition: "Best Supporting Actor", result: "Award" },
+  { year: "2015", festival: "Uganda Film Festival", film: "The Tailor", recognition: "Best Director", result: "Nomination" },
+  { year: "2016", festival: "Uganda Film Festival", film: "Invisible Cuffs", recognition: "Best Actor in Film", result: "Award" },
+  { year: "2017", festival: "Uganda Film Festival", film: "Devil’s Chest", recognition: "Best Director · Best Feature Film", result: "Winner" },
+  { year: "2022", festival: "Africa Movie Academy Awards", film: "Tinka’s Story", recognition: "Best Visual Effects", result: "Nomination" },
+  { year: "2022", festival: "Africa Magic Viewers’ Choice Awards", film: "Tinka’s Story", recognition: "Best Sound Editor", result: "Nomination" },
+  { year: "2025", festival: "Uganda Film Festival", film: "Kimote", recognition: "Best Director · Best Screenplay", result: "Nominations" },
+  { year: "2025", festival: "Silicon Valley African Film Festival · USA", film: "Kimote", recognition: "Official Selection", result: "Selection" },
+  { year: "2025", festival: "The Academy Awards", film: "Kimote", recognition: "Uganda’s Official Submission · 98th Academy Awards", result: "Submission" },
+  { year: "2026", festival: "Africa Movie Academy Awards · Nigeria", film: "Kimote", recognition: "Best Indigenous Language Film · East Africa", result: "Nomination" },
 ];
 
 function AboutPage() {
@@ -86,12 +88,12 @@ function AboutPage() {
               <li className="about-award-box" key={`${award.year}-${index}`}>
                 <img
                   className="about-award-icon"
-                  src={award.icon === "trophy" ? awardsTrophy : cinemaStatuette}
+                  src={awardLaurel3d}
                   alt=""
-                  width={768}
+                  width={1024}
                   height={1024}
-                  loading="lazy"
-                  decoding="async"
+                  loading="eager"
+                  fetchPriority="high"
                 />
                 <time className="about-award-year">{award.year}</time>
                 <p className="about-award-festival">{award.festival}</p>
@@ -106,12 +108,11 @@ function AboutPage() {
               <li className="about-award-box" key={`b-${award.year}-${index}`}>
                 <img
                   className="about-award-icon"
-                  src={award.icon === "trophy" ? awardsTrophy : cinemaStatuette}
+                  src={awardLaurel3d}
                   alt=""
-                  width={768}
+                  width={1024}
                   height={1024}
-                  loading="lazy"
-                  decoding="async"
+                  loading="eager"
                 />
                 <time className="about-award-year">{award.year}</time>
                 <p className="about-award-festival">{award.festival}</p>

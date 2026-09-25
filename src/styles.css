@@ -180,7 +180,7 @@ img { display: block; max-width: 100%; }
 .about-awards-row--b { animation: about-awards-slide 60s linear infinite; }
 @keyframes about-awards-slide { from { transform: translateX(0); } to { transform: translateX(-100%); } }
 .about-award-box { position: relative; flex: 0 0 auto; width: 244px; min-height: 300px; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 22px 18px 20px; border: 1px solid color-mix(in oklab, var(--recognition-navy) 14%, transparent); border-radius: 12px; background: color-mix(in oklab, var(--card) 92%, transparent); box-shadow: 0 10px 26px color-mix(in oklab, var(--recognition-navy) 8%, transparent); }
-.about-award-icon { width: 64px; height: 80px; object-fit: contain; margin-bottom: 8px; filter: drop-shadow(0 8px 12px color-mix(in oklab, var(--recognition-gold) 30%, transparent)); }
+.about-award-icon { width: 88px; height: 88px; object-fit: contain; margin-bottom: 8px; opacity: 1; filter: drop-shadow(0 8px 12px color-mix(in oklab, var(--recognition-gold) 30%, transparent)); }
 .about-award-year { font-size: 11px; font-weight: 700; letter-spacing: .22em; color: var(--recognition-navy); }
 .about-award-festival { margin: 10px 0 0; font-size: 11px; font-weight: 600; color: var(--muted-foreground); line-height: 1.4; }
 .about-award-film { margin: 8px 0 0; font-family: var(--font-display); font-size: 17px; font-weight: 700; line-height: 1.2; color: var(--foreground); }
@@ -334,7 +334,7 @@ footer > p:last-child { justify-self: end; }
   .about-awards { padding: 40px 0 48px; }
   .about-awards-head h2 { font-size: 30px; }
   .about-award-box { width: 190px; min-height: 250px; padding: 16px 13px 15px; }
-  .about-award-icon { width: 48px; height: 60px; }
+  .about-award-icon { width: 70px; height: 70px; }
   .about-award-film { font-size: 15px; }
   .about-award-recognition { font-size: 10px; }
   .about-awards-row { gap: 12px; padding-right: 12px; }
@@ -723,11 +723,11 @@ footer > p:last-child { justify-self: end; }
 .recognition-heading h2 strong { display: block; margin-top: 5px; color: var(--recognition-gold); font-weight: 600; }
 .recognition-heading > span, .recognition-signoff span { margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 14px; font-size: 9px; font-weight: 700; letter-spacing: .27em; text-transform: uppercase; }
 .recognition-heading i, .recognition-signoff i { width: 1px; height: 12px; display: inline-block; background: var(--recognition-navy); opacity: .45; }
-.recognition-trophy-main { width: min(100%, 168px); max-height: 244px; justify-self: center; object-fit: contain; filter: drop-shadow(0 14px 12px color-mix(in oklab, var(--foreground) 18%, transparent)); }
+.recognition-trophy-main { width: min(100%, 190px); aspect-ratio: 1; max-height: 244px; justify-self: center; object-fit: contain; opacity: 1; filter: drop-shadow(0 14px 12px color-mix(in oklab, var(--foreground) 18%, transparent)); }
 .recognition-grid { display: grid; grid-template-columns: 1.5fr repeat(6, minmax(0, 1fr)); grid-auto-flow: dense; gap: 10px; }
 .recognition-card, .recognition-feature, .recognition-wide, .recognition-additional { overflow: hidden; border: 1px solid color-mix(in oklab, var(--recognition-navy) 11%, transparent); border-radius: 8px; background: color-mix(in oklab, var(--card) 93%, transparent); box-shadow: 0 8px 26px color-mix(in oklab, var(--recognition-navy) 9%, transparent); }
 .recognition-feature { grid-row: span 2; min-height: 360px; position: relative; padding: 18px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; color: var(--recognition-paper); text-align: center; background: linear-gradient(to top, var(--recognition-navy-deep), color-mix(in oklab, var(--recognition-navy) 72%, transparent)), var(--recognition-bg); background-size: cover; background-position: center; }
-.recognition-feature img { width: 82px; height: 150px; object-fit: contain; }
+.recognition-feature img { width: 112px; height: 112px; object-fit: contain; opacity: 1; }
 .recognition-feature time, .recognition-card time, .recognition-wide time { display: inline-flex; width: max-content; padding: 4px 8px; border-radius: 5px; color: var(--recognition-navy-deep); background: var(--recognition-gold-soft); font-size: 10px; font-weight: 800; }
 .recognition-feature p { margin: 6px 0 0; font-size: 10px; text-transform: uppercase; }
 .recognition-feature h3 { margin: 7px 0; font-family: Georgia, serif; font-size: 21px; }
@@ -735,7 +735,7 @@ footer > p:last-child { justify-self: end; }
 .recognition-feature b { min-width: 126px; margin-top: 16px; padding: 9px 22px 10px; border: 1px solid color-mix(in oklab, var(--recognition-paper) 38%, transparent); border-radius: 999px; color: var(--recognition-navy-deep); background: linear-gradient(135deg, var(--recognition-gold-soft), var(--recognition-gold)); box-shadow: 0 8px 18px color-mix(in oklab, var(--recognition-navy-deep) 35%, transparent), inset 0 1px color-mix(in oklab, var(--recognition-paper) 72%, transparent); font-size: 10px; letter-spacing: .14em; line-height: 1; text-align: center; text-transform: uppercase; }
 .recognition-card { min-height: 205px; padding: 14px 12px; display: flex; flex-direction: column; text-align: left; }
 .recognition-card-top { display: flex; justify-content: space-between; align-items: flex-start; min-height: 68px; }
-.recognition-card-top img { width: 42px; height: 64px; object-fit: contain; }
+.recognition-card-top img { width: 62px; height: 62px; object-fit: contain; opacity: 1; }
 .recognition-card p, .recognition-wide p { margin: 8px 0 0; font-size: 9px; font-weight: 700; text-transform: uppercase; }
 .recognition-card h3, .recognition-wide h3 { margin: 7px 0; font-family: Georgia, serif; font-size: 15px; font-style: italic; }
 .recognition-card > strong, .recognition-wide > strong, .recognition-wide div > strong { font-size: 9px; line-height: 1.45; text-transform: uppercase; }
@@ -744,10 +744,10 @@ footer > p:last-child { justify-self: end; }
 .recognition-wide { grid-column: span 2; min-height: 146px; padding: 16px; background-position: center; background-size: cover; }
 .recognition-silicon { background-image: linear-gradient(90deg, color-mix(in oklab, var(--recognition-paper) 96%, transparent), color-mix(in oklab, var(--recognition-paper) 50%, transparent)), var(--recognition-bg); }
 .recognition-academy { display: flex; align-items: center; gap: 16px; color: var(--recognition-paper); background: linear-gradient(125deg, var(--recognition-navy-deep), var(--recognition-navy)); }
-.recognition-academy img { width: 62px; height: 112px; object-fit: contain; }
+.recognition-academy img { width: 86px; height: 86px; object-fit: contain; opacity: 1; }
 .recognition-amaa { background: color-mix(in oklab, var(--card) 95%, transparent); }
 .recognition-additional { margin-top: 10px; padding: 12px 20px; display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 16px; }
-.recognition-additional > img { width: 42px; height: 62px; object-fit: contain; }
+.recognition-additional > img { width: 58px; height: 58px; object-fit: contain; opacity: 1; }
 .recognition-additional h3 { margin: 0; font-family: Georgia, serif; font-size: 16px; text-transform: uppercase; }
 .recognition-additional p { margin: 4px 0 0; font-size: 9px; line-height: 1.5; }
 .recognition-additional ul { display: flex; gap: 20px; margin: 0; padding: 0; list-style: none; }

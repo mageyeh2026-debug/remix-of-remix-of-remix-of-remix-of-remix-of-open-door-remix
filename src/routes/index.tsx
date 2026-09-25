@@ -25,8 +25,7 @@ import { DEFAULT_SHARE_IMAGE, SITE_URL } from "@/lib/seo";
 import contactBackground from "@/assets/hassan-mageye-coming-soon.avif";
 import hassanCameraPortrait from "@/assets/hassan-mageye-camera-transparent.png.asset.json";
 import awardsBackground from "@/assets/awards-cinematic-background.jpg";
-import awardsTrophy from "@/assets/awards-golden-trophy.png";
-import cinemaStatuette from "@/assets/awards-cinema-statuette.png";
+import awardLaurel3d from "@/assets/award-laurel-3d.png";
 import serviceLocations from "@/assets/service-locations.jpg";
 import serviceLocalCrew from "@/assets/service-local-crew.jpg";
 import servicePermits from "@/assets/service-permits.jpg";
@@ -549,19 +548,19 @@ function Index() {
           </div>
           <img
             className="recognition-trophy recognition-trophy-main"
-            src={awardsTrophy}
-            alt="Golden international film award trophy"
-            width={768}
+            src={awardLaurel3d}
+            alt="Golden 3D laurel award emblem"
+            width={1024}
             height={1024}
-            loading="lazy"
-            decoding="async"
+            loading="eager"
+            fetchPriority="high"
           />
         </header>
 
         <div className="recognition-grid">
           <article className="recognition-feature recognition-feature-winner">
             <time>2017</time>
-            <img src={cinemaStatuette} alt="Golden cinema award statuette" width={768} height={1024} loading="lazy" decoding="async" />
+            <img src={awardLaurel3d} alt="Golden 3D laurel award emblem" width={1024} height={1024} loading="eager" />
             <p>Uganda Film Festival</p>
             <h3>Devil’s Chest</h3>
             <div><strong>Best Director</strong><strong>Best Feature Film</strong></div>
@@ -571,7 +570,7 @@ function Index() {
           {awardMilestones.filter((award) => award.year !== "2017").map((award, index) => (
             <article className={`recognition-card${index === 4 ? " recognition-card-dark" : ""}`} key={`${award.year}-${award.festival}`}>
               <div className="recognition-card-top">
-                <img src={index % 2 ? awardsTrophy : cinemaStatuette} alt="Golden film award" width={768} height={1024} loading="lazy" decoding="async" />
+                <img src={awardLaurel3d} alt="Golden 3D laurel award emblem" width={1024} height={1024} loading="eager" />
                 <time>{award.year}</time>
               </div>
               <p>{award.festival}</p>
@@ -588,7 +587,7 @@ function Index() {
             <strong>Official Selection</strong>
           </article>
           <article className="recognition-wide recognition-academy">
-            <img src={cinemaStatuette} alt="Golden cinema award statuette" width={768} height={1024} loading="lazy" decoding="async" />
+            <img src={awardLaurel3d} alt="Golden 3D laurel award emblem" width={1024} height={1024} loading="eager" />
             <div>
               <time>2025</time>
               <p>The Academy Awards</p>
@@ -605,7 +604,7 @@ function Index() {
         </div>
 
         <aside className="recognition-additional">
-          <img src={cinemaStatuette} alt="Golden cinema award" width={768} height={1024} loading="lazy" decoding="async" />
+          <img src={awardLaurel3d} alt="Golden 3D laurel award emblem" width={1024} height={1024} loading="eager" />
           <div>
             <h3>Additional Achievements</h3>
             <p>Devil’s Chest also received recognition for cinematography, sound, editing and post-production at the 2017 Uganda Film Festival.</p>
