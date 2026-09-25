@@ -166,7 +166,7 @@ img { display: block; max-width: 100%; }
 .about-name { display: flex; align-items: center; gap: 18px; margin: 0 0 6px; font-size: 11px; font-weight: 700; letter-spacing: .42em; text-transform: uppercase; color: var(--recognition-navy); }
 .about-name::before, .about-name::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--recognition-gold)); }
 .about-name::after { background: linear-gradient(90deg, var(--recognition-gold), transparent); }
-.about-title { margin: 0; font-family: Georgia, serif; font-size: clamp(54px, 7vw, 104px); line-height: .92; font-weight: 500; letter-spacing: 0; text-transform: uppercase; background: linear-gradient(90deg, var(--recognition-gold), var(--recognition-navy-deep) 64%); background-clip: text; color: transparent; }
+.about-title { margin: 0; font-family: Georgia, serif; font-size: clamp(42px, 5vw, 76px); line-height: .92; font-weight: 500; letter-spacing: 0; text-transform: uppercase; white-space: nowrap; background: linear-gradient(90deg, var(--recognition-gold), var(--recognition-navy-deep) 64%); background-clip: text; color: transparent; }
 .about-role { margin: 18px 0 0; font-size: 15px; font-weight: 600; letter-spacing: .01em; color: var(--foreground); }
 
 /* About — sliding awards row */
@@ -329,7 +329,7 @@ footer > p:last-child { justify-self: end; }
   .contact-lede { font-size: 9.5px; }
   .about-image { height: 310px; border-radius: 10px; background: transparent; }
   .about-name { font-size: 7px; gap: 10px; letter-spacing: .28em; }
-  .about-title { font-size: clamp(40px, 14vw, 64px); }
+  .about-title { font-size: clamp(31px, 10vw, 48px); }
   .about-role { font-size: 10px; margin-top: 12px; }
   .about-awards { padding: 40px 0 48px; }
   .about-awards-head h2 { font-size: 30px; }
