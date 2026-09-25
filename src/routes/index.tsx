@@ -413,7 +413,11 @@ function Index() {
                     loading="lazy"
                     decoding="async"
                   />
-                ) : <Icon aria-hidden="true" size={30} strokeWidth={1.35} />}
+                ) : (
+                  <div className="service-placeholder">
+                    <Icon aria-hidden="true" size={30} strokeWidth={1.35} />
+                  </div>
+                )}
                 <div className="service-copy">
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>
