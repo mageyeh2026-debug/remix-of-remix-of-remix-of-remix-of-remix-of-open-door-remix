@@ -256,7 +256,7 @@ function Index() {
     }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
     items.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [content]);
 
   useEffect(() => {
     projectRailRef.current?.scrollTo({ left: 0 });
