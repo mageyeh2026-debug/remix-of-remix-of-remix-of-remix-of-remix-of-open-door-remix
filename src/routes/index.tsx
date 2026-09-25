@@ -325,7 +325,6 @@ function Index() {
 
       <section className="upcoming-section" id="upcoming" aria-labelledby="upcoming-title">
         <div className="upcoming-heading">
-          <p className="eyebrow"><span>{content.upcomingHeading.eyebrow}</span></p>
           <h2 id="upcoming-title">{content.upcomingHeading.title}</h2>
           <p className="upcoming-tagline">New stories. Bigger impact.</p>
         </div>
@@ -404,7 +403,6 @@ function Index() {
       </section>
 
       <section className="gallery-section" id="gallery" aria-labelledby="gallery-title">
-        <p className="eyebrow">{content.gallery.eyebrow}</p>
         <h2 id="gallery-title">{content.gallery.title}</h2>
         <p className="awards-text">{content.gallery.description}</p>
         <div className="home-photo-strip home-photo-strip-portrait">
@@ -476,7 +474,7 @@ function Index() {
         <header className="media-heading">
           <p className="media-eyebrow"><span />{content.media.eyebrow || "Media & News"}<span /></p>
           <h2 id="media-title">Latest News & <strong>Updates</strong></h2>
-          <p>Stay informed with the latest stories, events, press releases and updates from Hassan Mageye.</p>
+          <p>Stay informed with the latest stories, events, press releases and updates about Hassan Mageye.</p>
         </header>
         <div className="press-carousel">
           <button

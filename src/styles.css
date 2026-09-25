@@ -658,10 +658,10 @@ footer > p:last-child { justify-self: end; }
 
 .media-heading { max-width: 920px; margin: 0 auto; padding: 0 clamp(24px, 5.2vw, 78px); }
 .media-heading > p:last-child { max-width: 760px; margin: 18px auto 0; color: var(--muted-foreground); font-size: 15px; line-height: 1.7; }
-.media-eyebrow { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0; color: var(--media-highlight); font-size: 11px; font-weight: 700; text-transform: uppercase; }
+.media-eyebrow { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0; color: var(--media-highlight); font-size: 20px; font-weight: 700; text-transform: uppercase; }
 .media-eyebrow span { width: 66px; height: 2px; background: linear-gradient(90deg, transparent, var(--media-highlight)); }
 .media-eyebrow span:last-child { background: linear-gradient(90deg, var(--media-badge), transparent); }
-.media-heading h2 { margin-top: 14px; font-size: clamp(40px, 6vw, 88px); font-weight: 700; line-height: 1.04; color: var(--media-card-ink); }
+.media-heading h2 { margin-top: 14px; font-size: clamp(32px, 4.4vw, 60px); font-weight: 700; line-height: 1.04; color: var(--media-card-ink); }
 .media-heading h2 strong { color: var(--media-highlight); font-weight: inherit; }
 .press-carousel { position: relative; margin: 38px 0 0; }
 .press-rail { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 2 * 14px) / 3); gap: 14px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; }
