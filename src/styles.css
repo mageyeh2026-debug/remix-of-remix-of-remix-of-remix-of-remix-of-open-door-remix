@@ -328,6 +328,16 @@ footer > p:last-child { justify-self: end; }
   .awards-text { margin-top: 16px; font-size: 9.5px; line-height: 1.7; }
   .contact-lede { font-size: 9.5px; }
   .about-image { height: 310px; border-radius: 10px; background: transparent; }
+  .about-name { font-size: 7px; gap: 10px; letter-spacing: .28em; }
+  .about-title { font-size: clamp(40px, 14vw, 64px); }
+  .about-role { font-size: 10px; margin-top: 12px; }
+  .about-awards { padding: 40px 0 48px; }
+  .about-awards-head h2 { font-size: 30px; }
+  .about-award-box { width: 190px; min-height: 250px; padding: 16px 13px 15px; }
+  .about-award-icon { width: 48px; height: 60px; }
+  .about-award-film { font-size: 15px; }
+  .about-award-recognition { font-size: 10px; }
+  .about-awards-row { gap: 12px; padding-right: 12px; }
   footer { grid-template-columns: 1fr; gap: 18px; text-align: left; }
   footer > p:last-child { justify-self: start; }
   .contact-details-section { padding: 50px 20px 56px; }
