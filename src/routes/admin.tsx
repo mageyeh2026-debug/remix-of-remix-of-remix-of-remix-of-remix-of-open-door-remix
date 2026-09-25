@@ -1143,6 +1143,19 @@ function Dashboard({ user }: { user: User }) {
                           </select>
                         </label>
                       </div>
+                      <ImageField
+                        label="Service image (shown in the grid)"
+                        value={item.image ?? ""}
+                        folder="services"
+                        onChange={(v) =>
+                          patch({
+                            services: {
+                              ...draft.services,
+                              items: draft.services.items.map((s, idx) => (idx === i ? { ...s, image: v } : s)),
+                            },
+                          })
+                        }
+                      />
                       <Area
                         label="Description"
                         rows={3}
