@@ -48,6 +48,8 @@
   --support-friend: oklch(0.62 0.16 235);
   --support-production: oklch(0.57 0.22 28);
   --support-donate: oklch(0.58 0.16 150);
+  --support-cta: oklch(0.56 0.17 150);
+  --support-cta-hover: oklch(0.48 0.15 150);
   --recognition-navy: oklch(0.25 0.075 255);
   --recognition-navy-deep: oklch(0.17 0.07 255);
   --recognition-gold: oklch(0.7 0.14 72);
@@ -333,7 +335,7 @@ footer > p:last-child { justify-self: end; }
   .service-copy { padding: 16px; }
   .service h3 { font-size: 11px; letter-spacing: .06em; margin: 0 0 8px; }
   .service p { font-size: 11px; line-height: 1.55; }
-  .services-carousel .rail-arrow { display: none; }
+  .services-carousel .rail-arrow { display: grid; top: 42%; }
   .project-carousel .carousel-arrow { display: none; }
   .portfolio-section { padding: 22px 0 22px; }
   .portfolio-title { padding-inline: 12px; }
@@ -1275,9 +1277,11 @@ footer > p:last-child { justify-self: end; }
 .detail-support .support-tier { min-height: 70px; }
 .detail-support .support-tier strong { font-size: 17px; }
 .detail-support .support-tier span { font-size: 9.5px; }
-.support-film-button { min-width: 180px; }
+.support-film-button { min-width: 190px; min-height: 46px; border: 0; border-radius: 7px; color: var(--primary-foreground); background: var(--support-cta); box-shadow: 0 12px 24px color-mix(in oklab, var(--support-cta) 28%, transparent); font-weight: 750; }
+.support-film-button:hover { background: var(--support-cta-hover); box-shadow: 0 15px 28px color-mix(in oklab, var(--support-cta) 34%, transparent); }
+.support-film-button-mobile { display: none; }
 .support-suggested { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; width: 100%; margin-bottom: 0; }
-.support-suggested button { min-height: 62px; border: 1px solid var(--border); border-radius: 12px; color: var(--foreground); background: var(--card); font: inherit; font-size: 1.35rem; font-weight: 750; letter-spacing: .01em; cursor: pointer; transition: transform .18s ease, border-color .18s ease, background .18s ease; }
+.support-suggested button { min-height: 44px; border: 1px solid var(--border); border-radius: 8px; color: var(--foreground); background: var(--card); font: inherit; font-size: .95rem; font-weight: 750; letter-spacing: 0; cursor: pointer; transition: transform .18s ease, border-color .18s ease, background .18s ease; }
 .support-suggested button:hover { transform: translateY(-2px); border-color: var(--primary); }
 .support-suggested button.selected { border-color: var(--primary); color: var(--primary-foreground); background: var(--primary); }
 .support-custom { margin-top: 18px; }
@@ -1286,6 +1290,14 @@ footer > p:last-child { justify-self: end; }
 .support-custom-row input { flex: 1; min-width: 0; padding: 11px 13px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--foreground); font-family: inherit; font-size: 14px; }
 .support-custom-row button { padding-inline: 22px; }
 .support-custom-row button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+@media (max-width: 720px) {
+  .film-detail-actions { flex-wrap: nowrap; }
+  .film-detail-actions .film-btn { flex: 1 1 0; min-width: 0; min-height: 44px; padding-inline: 10px; }
+  .support-film-button-mobile { display: inline-flex; }
+  .detail-support .support-film-button { display: none; }
+  .support-suggested { gap: 8px; }
+  .support-suggested button { min-height: 40px; font-size: .88rem; }
+}
 
 /* Home — About & Services reveal transitions */
 .reveal { opacity: 0; transform: translateY(34px) scale(.98); filter: blur(6px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1), filter .8s ease; transition-delay: var(--reveal-delay, 0ms); }

@@ -38,3 +38,6 @@
 - [x] Keep Latest News & Updates in one horizontal line on phones
 - [x] Simplify upcoming film support and move suggested amounts into the payment window
 - [x] Show the newest uploaded news and media first
+- [x] Put compact suggested amounts below the amount field and default the amount to zero
+- [x] Align and restyle the mobile Trailer and Support the film buttons
+- [x] Use gallery photography for Services and show mobile Services as a horizontal carousel

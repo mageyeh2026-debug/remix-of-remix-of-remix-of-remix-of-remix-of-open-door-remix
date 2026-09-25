@@ -383,8 +383,8 @@ export function SupportPayModal({
   const [error, setError] = useState<string | null>(null);
   const [paid, setPaid] = useState(false);
   const [currency, setCurrency] = useState<"USD" | "UGX">("USD");
-  const [usdAmount, setUsdAmount] = useState(String(amountUsd));
-  const [ugxAmount, setUgxAmount] = useState("5000");
+  const [usdAmount, setUsdAmount] = useState("0");
+  const [ugxAmount, setUgxAmount] = useState("0");
   const [phone, setPhone] = useState("");
   const startedAt = useRef(0);
 
@@ -406,8 +406,8 @@ export function SupportPayModal({
     setError(null);
     setPaid(false);
     setCurrency("USD");
-    setUsdAmount(String(amountUsd));
-    setUgxAmount("5000");
+    setUsdAmount("0");
+    setUgxAmount("0");
     setPhone("");
   }, [open, slug, amountUsd]);
 
@@ -581,6 +581,19 @@ export function SupportPayModal({
               </div>
               <div className="support-checkout-copy">
                 <label htmlFor="support-payment-amount">Amount</label>
+                <div className="support-amount-entry">
+                  <span>{currency}</span>
+                  <input
+                    id="support-payment-amount"
+                    type="number"
+                    min={currency === "USD" ? "1" : "1000"}
+                    step={currency === "USD" ? "0.01" : "1000"}
+                    inputMode="decimal"
+                    value={currency === "USD" ? usdAmount : ugxAmount}
+                    onChange={(event) => currency === "USD" ? setUsdAmount(event.target.value) : setUgxAmount(event.target.value)}
+                    aria-label={`Support amount in ${currency}`}
+                  />
+                </div>
                 {currency === "USD" ? (
                   <div className="support-suggested" aria-label="Suggested amounts">
                     {[25, 50, 100].map((amount) => (
@@ -595,19 +608,6 @@ export function SupportPayModal({
                     ))}
                   </div>
                 ) : null}
-                <div className="support-amount-entry">
-                  <span>{currency}</span>
-                  <input
-                    id="support-payment-amount"
-                    type="number"
-                    min={currency === "USD" ? "1" : "1000"}
-                    step={currency === "USD" ? "0.01" : "1000"}
-                    inputMode="decimal"
-                    value={currency === "USD" ? usdAmount : ugxAmount}
-                    onChange={(event) => currency === "USD" ? setUsdAmount(event.target.value) : setUgxAmount(event.target.value)}
-                    aria-label={`Support amount in ${currency}`}
-                  />
-                </div>
                 <span>{currency === "USD" ? "Pay by Visa or Mastercard" : "Pay by MTN or Airtel Money"}</span>
               </div>
               {currency === "UGX" ? (
