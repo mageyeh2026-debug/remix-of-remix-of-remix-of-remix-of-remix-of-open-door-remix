@@ -12,12 +12,32 @@ const EMPTY_LIVE_CONTENT = mergeContent({});
 /** Keeps the last database snapshot so pages paint real content instantly. */
 let memoryCache: SiteContent | null = null;
 
-/**
- * No picture is fetched ahead of time. Every image loads exactly where it is
- * shown, the same way the film posters do, so no extra data is used.
- */
-function warmImageCache(_content: SiteContent) {
-  /* intentionally empty: images load where they are displayed */
+const warmedImages = new Set<string>();
+
+/** Starts every saved site image once, so moving between sections and pages
+ * uses the browser cache instead of waiting for each picture to begin later. */
+function warmImageCache(content: SiteContent) {
+  if (typeof window === "undefined") return;
+  const urls = new Set<string>();
+  const collect = (value: unknown) => {
+    if (typeof value === "string") {
+      if (/^(https?:\/\/|\/)/.test(value) && /\.(avif|gif|jpe?g|png|webp)(\?|$)/i.test(value)) urls.add(value);
+      return;
+    }
+    if (Array.isArray(value)) {
+      value.forEach(collect);
+      return;
+    }
+    if (value && typeof value === "object") Object.values(value).forEach(collect);
+  };
+  collect(content);
+  urls.forEach((url) => {
+    if (warmedImages.has(url)) return;
+    warmedImages.add(url);
+    const image = new Image();
+    image.decoding = "async";
+    image.src = url;
+  });
 }
 
 

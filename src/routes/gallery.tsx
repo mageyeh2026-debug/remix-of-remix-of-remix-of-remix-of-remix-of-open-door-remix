@@ -92,7 +92,7 @@ function GalleryPage() {
               alt={item.alt}
               loading="eager"
               decoding="async"
-              fetchPriority="high"
+              fetchPriority={index < 8 ? "high" : "auto"}
               width={1200}
               height={800}
               onError={hideBrokenImage}
