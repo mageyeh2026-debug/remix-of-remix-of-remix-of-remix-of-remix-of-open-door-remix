@@ -1295,7 +1295,7 @@ footer > p:last-child { justify-self: end; }
 
 /* Home awards — gradient edges */
 .recognition-card, .recognition-feature, .recognition-wide { position: relative; border: 1.5px solid transparent; border-radius: 12px; }
-.recognition-card, .recognition-wide { background: linear-gradient(var(--card), var(--card)) padding-box, linear-gradient(135deg, var(--recognition-gold), var(--recognition-gold-soft) 35%, var(--recognition-navy) 70%, var(--recognition-gold)) border-box; }
+.recognition-card:not(.recognition-card-dark), .recognition-wide:not(.recognition-academy) { background: linear-gradient(var(--card), var(--card)) padding-box, linear-gradient(135deg, var(--recognition-gold), var(--recognition-gold-soft) 35%, var(--recognition-navy) 70%, var(--recognition-gold)) border-box; }
 .recognition-feature { background: linear-gradient(to top, var(--recognition-navy-deep), color-mix(in oklab, var(--recognition-navy) 72%, transparent)) padding-box, var(--recognition-bg) padding-box, linear-gradient(135deg, var(--recognition-gold), var(--recognition-gold-soft), var(--recognition-navy), var(--recognition-gold)) border-box; background-size: cover; background-position: center; }
 .recognition-card-dark { background: linear-gradient(var(--recognition-navy-deep), var(--recognition-navy-deep)) padding-box, linear-gradient(135deg, var(--recognition-gold), var(--recognition-gold-soft), var(--recognition-gold)) border-box; }
 .recognition-card, .recognition-wide, .recognition-feature { transition: transform .3s ease, box-shadow .3s ease; }
@@ -1315,3 +1315,4 @@ footer > p:last-child { justify-self: end; }
   .contact-details-section { padding: 34px 16px 38px; }
   .contact-details-grid { grid-template-columns: 1fr; gap: 10px; }
 }
+.recognition-academy { border-color: var(--recognition-gold); }
