@@ -256,7 +256,7 @@ function Index() {
     }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
     items.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [content]);
 
   useEffect(() => {
     projectRailRef.current?.scrollTo({ left: 0 });
@@ -386,7 +386,7 @@ function Index() {
       </section>
 
       <section className="services-section services-intro-section" id="services">
-        <div className="services-intro reveal">
+        <div className="services-intro">
           <h2 id="services-title">{content.services.title}</h2>
           <p className="services-lede">{content.services.lede}</p>
           <a className="button button-dark" href="#contact">{content.services.buttonLabel}</a>
@@ -402,7 +402,7 @@ function Index() {
           {content.services.items.map((item) => {
             const Icon = iconMap[item.icon] ?? Play;
             return (
-              <article className="service reveal" key={item.id}>
+              <article className="service" key={item.id}>
                 {item.image || serviceGalleryImages[item.id] ? (
                   <img
                     className="service-image"
