@@ -135,20 +135,22 @@ function FilmDetail() {
             </dl>
             <div className="film-detail-actions">
               {film.status ? (
-                <button
-                  type="button"
-                  className="film-btn film-btn-ghost"
-                  onClick={() => setTrailerOpen(true)}
-                >
-                  <Play size={13} /> Trailer
-                </button>
-                <button
-                  type="button"
-                  className="film-btn support-film-button support-film-button-mobile"
-                  onClick={() => setSupportOpen(true)}
-                >
-                  Support the film
-                </button>
+                <>
+                  <button
+                    type="button"
+                    className="film-btn film-btn-ghost"
+                    onClick={() => setTrailerOpen(true)}
+                  >
+                    <Play size={13} /> Trailer
+                  </button>
+                  <button
+                    type="button"
+                    className="film-btn support-film-button support-film-button-mobile"
+                    onClick={() => setSupportOpen(true)}
+                  >
+                    Support the film
+                  </button>
+                </>
               ) : (
                 <>
                   <Link
