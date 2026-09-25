@@ -726,7 +726,7 @@ footer > p:last-child { justify-self: end; }
   .recognition-additional ul { grid-column: 1 / -1; justify-content: center; flex-wrap: wrap; }
 }
 @media (max-width: 720px) {
-  .media-heading h2 { font-size: 40px; line-height: 1.05; }
+  .media-heading h2 { font-size: 34px; line-height: 1.05; }
   .media-heading > p:last-child { font-size: 13px; }
   .media-eyebrow span { width: 38px; }
   .press-carousel { margin: 30px 0 0; }
