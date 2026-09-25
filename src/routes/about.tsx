@@ -3,6 +3,18 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFooter, SiteHeader } from "@/components/SiteHeader";
 import { DEFAULT_SHARE_IMAGE, SITE_URL } from "@/lib/seo";
 import hassanOnSet from "@/assets/hassan-mageye-on-set.jpg.asset.json";
+import awardLaurel3d from "@/assets/award-laurel-reference-exact.png";
+
+const aboutAwards = [
+  { year: "2013", festival: "Pearl International Film Festival", film: "King’s Virgin", recognition: "Best Supporting Actor", result: "Award" },
+  { year: "2015", festival: "Uganda Film Festival", film: "The Tailor", recognition: "Best Director", result: "Nomination" },
+  { year: "2016", festival: "Uganda Film Festival", film: "Invisible Cuffs", recognition: "Best Actor in Film", result: "Award" },
+  { year: "2017", festival: "Uganda Film Festival", film: "Devil’s Chest", recognition: "Best Director · Best Feature Film", result: "Winner" },
+  { year: "2022", festival: "Africa Movie Academy Awards", film: "Tinka’s Story", recognition: "Best Visual Effects", result: "Nomination" },
+  { year: "2022", festival: "Africa Magic Viewers’ Choice Awards", film: "Tinka’s Story", recognition: "Best Sound Editor", result: "Nomination" },
+  { year: "2025", festival: "Uganda Film Festival", film: "Kimote", recognition: "Best Director · Best Screenplay", result: "Nominations" },
+  { year: "2025", festival: "Silicon Valley African Film Festival · USA", film: "Kimote", recognition: "Official Selection", result: "Selection" },
+];
 
 export const Route = createFileRoute("/about")({
   head: () => ({
