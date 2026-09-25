@@ -184,3 +184,7 @@ export async function uploadImage(
 ) {
   return uploadToR2(`media/${folder}`, file, onProgress);
 }
+
+export function isSeen(key: string) {
+  return seenIds.has(key);
+}

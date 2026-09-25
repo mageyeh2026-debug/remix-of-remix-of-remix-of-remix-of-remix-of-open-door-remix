@@ -37,7 +37,7 @@ import { firebaseAuth, firebaseDb, SITE_PATH } from "@/lib/firebase";
 import { createWhopPayout, getWhopWallet } from "@/lib/whop.functions";
 import { createMomoWithdrawal, getMomoWallet } from "@/lib/momo.functions";
 import { type FilmItem, type SiteContent } from "@/lib/site-content";
-import { saveAll, saveSection, useSiteContent } from "@/hooks/useSiteContent";
+import { isSeen, rememberItems, saveAll, saveSection, useSiteContent } from "@/hooks/useSiteContent";
 import { useUploader } from "@/components/UploadProgressOverlay";
 import { UPLOAD_BACKEND_STORAGE_KEY } from "@/lib/r2-upload";
 
