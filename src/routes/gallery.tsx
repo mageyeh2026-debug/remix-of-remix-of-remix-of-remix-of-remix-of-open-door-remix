@@ -7,7 +7,6 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 import { hideBrokenImage } from "@/lib/utils";
 import { DEFAULT_SHARE_IMAGE, SITE_URL } from "@/lib/seo";
 import galleryBackground from "@/assets/gallery-cinematic-landscape.jpg";
-import hassanCameraPortrait from "@/assets/hassan-mageye-camera-transparent.png.asset.json";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -76,14 +75,6 @@ function GalleryPage() {
         aria-labelledby="gallery-page-title"
         style={{ "--gallery-hero-bg": `url(${galleryBackground})` } as React.CSSProperties}
       >
-        <img
-          className="gallery-page-portrait"
-          src={hassanCameraPortrait.url}
-          alt="Hassan Mageye beside a cinema camera"
-          width={408}
-          height={612}
-          fetchPriority="high"
-        />
         <div className="gallery-page-heading">
           <p className="gallery-page-name">Hassan Mageye</p>
           <h1 id="gallery-page-title">Gallery</h1>
