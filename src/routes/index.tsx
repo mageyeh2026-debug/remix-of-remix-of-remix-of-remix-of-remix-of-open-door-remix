@@ -243,6 +243,16 @@ function Index() {
   // The rail must always start at the first uploaded film. Scroll snapping can
   // pull it sideways when films load in, so pin it back to the start.
   useEffect(() => {
+    const items = document.querySelectorAll<HTMLElement>(".reveal");
+    items.forEach((el, i) => el.style.setProperty("--reveal-delay", `${(i % 4) * 110}ms`));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); } });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+    items.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
     projectRailRef.current?.scrollTo({ left: 0 });
   }, [films.length]);
 
@@ -370,7 +380,7 @@ function Index() {
       </section>
 
       <section className="services-section services-intro-section" id="services">
-        <div className="services-intro">
+        <div className="services-intro reveal">
           <h2 id="services-title">{content.services.title}</h2>
           <p className="services-lede">{content.services.lede}</p>
           <a className="button button-dark" href="#contact">{content.services.buttonLabel}</a>
@@ -382,7 +392,7 @@ function Index() {
           {content.services.items.map((item) => {
             const Icon = iconMap[item.icon] ?? Play;
             return (
-              <article className="service" key={item.id}>
+              <article className="service reveal" key={item.id}>
                 {serviceImages[item.id] ? (
                   <img
                     className="service-image"
