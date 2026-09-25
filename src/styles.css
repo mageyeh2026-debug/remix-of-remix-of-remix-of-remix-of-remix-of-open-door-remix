@@ -118,6 +118,7 @@ img { display: block; max-width: 100%; }
 .service p { margin: 0; color: var(--muted-foreground); font-size: 12.5px; line-height: 1.7; }
 /* one service only: full-bleed feature instead of a squashed strip */
 @media (min-width: 861px) {
+  .services-carousel .rail-arrow { display: none; }
   .service:only-child { display: grid; grid-template-columns: 1.45fr 1fr; min-height: 400px; }
   .service:only-child .service-image { height: 100%; }
   .service:only-child .service-copy { display: grid; align-content: center; padding: clamp(30px, 4vw, 60px); }
