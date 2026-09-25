@@ -132,8 +132,24 @@ export async function saveSection<K extends keyof SiteContent>(key: K, value: Si
   await set(ref(firebaseDb(), `${SITE_PATH}/${String(key)}`), value);
 }
 
+/**
+ * Saves the dashboard, but never lets a stale or half-loaded draft wipe
+ * saved movies, gallery pictures, news or services. A list that is empty in
+ * the draft keeps whatever is already stored online.
+ */
 export async function saveAll(content: SiteContent) {
-  await set(ref(firebaseDb(), SITE_PATH), content);
+  const { get } = await import("firebase/database");
+  const snap = await get(ref(firebaseDb(), SITE_PATH));
+  const current = (snap.val() ?? {}) as any;
+  const next: any = JSON.parse(JSON.stringify(content));
+  const keep = (list: unknown, stored: unknown) =>
+    (!Array.isArray(list) || list.length === 0) && Array.isArray(stored) && stored.length > 0;
+  if (keep(next.films, current.films)) next.films = current.films;
+  if (keep(next.upcoming, current.upcoming)) next.upcoming = current.upcoming;
+  for (const key of ["gallery", "media", "services"]) {
+    if (next[key] && keep(next[key].items, current[key]?.items)) next[key].items = current[key].items;
+  }
+  await set(ref(firebaseDb(), SITE_PATH), next);
 }
 
 /** Media (images, videos, trailers) go straight to Cloudflare R2. */
