@@ -76,14 +76,6 @@ function GalleryPage() {
         aria-labelledby="gallery-page-title"
         style={{ "--gallery-hero-bg": `url(${galleryBackground})` } as React.CSSProperties}
       >
-        <img
-          className="gallery-page-portrait"
-          src={hassanCameraPortrait.url}
-          alt="Hassan Mageye beside a cinema camera"
-          width={408}
-          height={612}
-          fetchPriority="high"
-        />
         <div className="gallery-page-heading">
           <p className="gallery-page-name">Hassan Mageye</p>
           <h1 id="gallery-page-title">Gallery</h1>
