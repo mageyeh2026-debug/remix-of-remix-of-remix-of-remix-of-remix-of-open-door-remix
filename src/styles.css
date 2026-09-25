@@ -787,16 +787,13 @@ footer > p:last-child { justify-self: end; }
 }
 
 @media (max-width: 720px) {
-  .gallery-page-hero { min-height: 410px; grid-template-columns: 42% 58%; align-items: end; padding: 18px 8px 0; background-position: 60% center; }
-  .gallery-page-portrait { width: 118%; max-width: none; height: 250px; margin-left: -10%; align-self: end; }
-  .gallery-page-heading { grid-column: 1 / -1; grid-row: 1; align-self: start; padding: 22px 8px 0; }
+  .gallery-page-hero { min-height: 360px; padding: 22px 8px 0; background-position: 60% center; }
+  .gallery-page-heading { align-self: center; padding: 22px 8px 0; }
   .gallery-page-name { gap: 10px; font-size: 8px; letter-spacing: .28em; }
   .gallery-page-hero h1 { margin-top: 12px; font-size: clamp(52px, 17vw, 76px); }
   .gallery-page-kicker { flex-wrap: wrap; gap: 7px; margin-top: 16px; font-size: 6.5px; letter-spacing: .12em; }
-  .gallery-page-filters { justify-content: flex-start; padding: 12px 12px 16px; }
-  .gallery-page-filters span { min-width: 108px; min-height: 36px; padding-inline: 14px; font-size: 7px; }
-  .gallery-page-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding-inline: 8px; }
-  .gallery-page-item { min-height: 0; border-radius: 8px; }
+  .gallery-page-grid { columns: 2; column-gap: 8px; padding-inline: 8px; }
+  .gallery-page-item { margin-bottom: 8px; border-radius: 8px; }
   .gallery-page-item figcaption { padding: 28px 9px 8px; font-size: 8px; opacity: 1; transform: none; }
   .media-grid { grid-template-columns: 1fr; gap: 4px; margin: 26px -20px -50px; }
   .media-card { aspect-ratio: 16 / 11; border-radius: 6px; }
