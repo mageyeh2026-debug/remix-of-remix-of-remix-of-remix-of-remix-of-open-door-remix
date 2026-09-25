@@ -1405,8 +1405,8 @@ function Dashboard({ user }: { user: User }) {
                       media: {
                         ...draft.media,
                         items: [
-                          { id: `m-${Date.now()}`, src: "", alt: "", meta: "", title: "New award", link: "" },
                           ...draft.media.items,
+                          { id: `m-${Date.now()}`, src: "", alt: "", meta: "", title: "New award", link: "" },
                         ],
                       },
                     })
