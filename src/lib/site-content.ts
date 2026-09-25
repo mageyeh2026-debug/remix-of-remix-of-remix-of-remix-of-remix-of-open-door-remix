@@ -44,7 +44,7 @@ export type FilmItem = {
 
 export type GalleryItem = { id: string; src: string; alt: string; title: string };
 export type MediaItem = { id: string; src: string; alt: string; meta: string; title: string; link?: string };
-export type ServiceItem = { id: string; icon: string; title: string; text: string };
+export type ServiceItem = { id: string; icon: string; title: string; text: string; image?: string };
 
 export type WalletTransaction = {
   id: string;

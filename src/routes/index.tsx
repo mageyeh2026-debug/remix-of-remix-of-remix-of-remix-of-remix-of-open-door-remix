@@ -403,10 +403,10 @@ function Index() {
             const Icon = iconMap[item.icon] ?? Play;
             return (
               <article className="service reveal" key={item.id}>
-                {serviceGalleryImages[item.id] ? (
+                {item.image || serviceGalleryImages[item.id] ? (
                   <img
                     className="service-image"
-                    src={serviceGalleryImages[item.id]}
+                    src={item.image || serviceGalleryImages[item.id]}
                     alt={`${item.title} for film production`}
                     width={1200}
                     height={800}
