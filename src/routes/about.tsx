@@ -57,7 +57,7 @@ function AboutPage() {
           <img src={hassanOnSet.url} alt="Hassan Mageye on a film set" width={1080} height={1620} />
         </div>
         <div className="about-copy">
-          <p className="about-name">Hassan Mageye</p>
+          <p className="about-name">About</p>
           <h1 className="about-title">HASSAN MAGEYE</h1>
           <p className="about-role">Ugandan/American writer, director and producer.</p>
           <p>

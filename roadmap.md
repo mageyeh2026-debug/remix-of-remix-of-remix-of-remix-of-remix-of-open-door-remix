@@ -26,3 +26,4 @@
 - [x] Rework production support for Africa and America with supporting photography
 - [x] Replace the About portrait and remove the requested headings
 - [x] Verify the updated home, About, and film detail pages
+- [x] Rename the About label and add rounded animated gradient rings to sliding award cards
