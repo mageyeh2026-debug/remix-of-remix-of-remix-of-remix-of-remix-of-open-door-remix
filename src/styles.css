@@ -197,6 +197,52 @@ img { display: block; max-width: 100%; }
 .about-award-result--selection, .about-award-result--submission { background: color-mix(in oklab, var(--recognition-navy-deep) 85%, transparent); }
 @media (hover: hover) { .about-awards-track:hover .about-awards-row { animation-play-state: paused; } }
 
+/* Beautiful staggered entrance for the About page text. */
+@keyframes about-rise {
+  from { opacity: 0; transform: translateY(26px); filter: blur(7px); }
+  60%  { opacity: 1; filter: blur(0); }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes about-image-rise {
+  from { opacity: 0; transform: translateY(30px) scale(.985); clip-path: inset(8% 0 0 0); }
+  to   { opacity: 1; transform: translateY(0) scale(1); clip-path: inset(0 0 0 0); }
+}
+@keyframes about-title-glow {
+  0%   { opacity: 0; transform: translateY(20px) scale(.97); letter-spacing: .04em; filter: blur(9px); }
+  55%  { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) scale(1); letter-spacing: 0; filter: blur(0); }
+}
+@keyframes about-rule-sweep {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+@keyframes about-line-fade {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.about-image { animation: about-image-rise 1s cubic-bezier(.2,.7,.2,1) both; }
+.about-name { animation: about-line-fade .7s ease both; animation-delay: .12s; }
+.about-name::before, .about-name::after { transform-origin: center; animation: about-rule-sweep .8s cubic-bezier(.2,.7,.2,1) both; animation-delay: .22s; }
+.about-name::after { animation-delay: .3s; }
+.about-title { animation: about-title-glow 1.1s cubic-bezier(.2,.7,.2,1) both; animation-delay: .24s; }
+.about-role { animation: about-line-fade .7s ease both; animation-delay: .42s; }
+.about-copy > p:not(.about-name):not(.about-role) { animation: about-line-fade .7s ease both; }
+.about-copy > p:not(.about-name):not(.about-role):nth-of-type(1) { animation-delay: .52s; }
+.about-copy > p:not(.about-name):not(.about-role):nth-of-type(2) { animation-delay: .62s; }
+.about-copy > p:not(.about-name):not(.about-role):nth-of-type(3) { animation-delay: .72s; }
+.about-actions { animation: about-line-fade .8s cubic-bezier(.2,.7,.2,1) both; animation-delay: .8s; }
+.about-actions .button { animation: about-rise .7s cubic-bezier(.2,.7,.2,1) both; }
+.about-actions .button:nth-child(2) { animation-delay: .92s; }
+.about-awards-head { animation: about-rise 1s cubic-bezier(.2,.7,.2,1) both; animation-delay: .3s; }
+.about-awards-eyebrow { animation: about-line-fade .7s ease both; animation-delay: .4s; }
+.about-awards-head h2 { animation: about-title-glow 1s cubic-bezier(.2,.7,.2,1) both; animation-delay: .5s; }
+.about-awards-track { animation: about-rise 1.1s cubic-bezier(.2,.7,.2,1) both; animation-delay: .55s; }
+@media (prefers-reduced-motion: reduce) {
+  .about-image, .about-image img, .about-name, .about-name::before, .about-name::after,
+  .about-title, .about-role, .about-copy > p, .about-actions, .about-actions .button,
+  .about-awards-head, .about-awards-eyebrow, .about-awards-head h2, .about-awards-track { animation: none; }
+}
+
 .upcoming-section { padding: 28px 0 22px; background: var(--background); text-align: center; overflow: hidden; }
 .upcoming-heading { padding-inline: 20px; }
 .upcoming-section .eyebrow { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 5px; color: var(--foreground); }
