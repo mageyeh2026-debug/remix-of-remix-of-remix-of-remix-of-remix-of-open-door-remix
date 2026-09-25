@@ -519,7 +519,7 @@ export function SupportPayModal({
 
   return (
     <div className="pay-overlay" role="dialog" aria-modal="true" aria-label="Support this film">
-      <div className={`pay-modal${isCheckoutOpen ? " pay-modal-checkout" : ""}`}>
+      <div className={`pay-modal pay-modal-support${isCheckoutOpen ? " pay-modal-checkout" : ""}`}>
         <div className="pay-modal-head">
           <h2>{isCheckoutOpen ? "Complete support payment" : `Support ${title}`}</h2>
           <button
