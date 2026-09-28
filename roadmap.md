@@ -1,4 +1,5 @@
 ## Active
+- [x] Correct awards from the supplied record, capitalize the hero role, remove upcoming trailers, and remove “Based in”
 - [x] Restore the original film-card size and preload all saved site images without changing Firebase content
 - [x] Match Media and News to the supplied reference and remove the recognition paragraph
 - [ ] Refine the awards portrait and winner badge, remove all quotes, and rebuild the gallery from the supplied reference

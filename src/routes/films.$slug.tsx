@@ -89,8 +89,8 @@ function FilmDetail() {
   // Warm the playback link while the page is being read, so the trailer starts
   // as soon as the button is pressed.
   useEffect(() => {
-    prefetchTrailer(film?.slug ?? null);
-  }, [film?.slug]);
+    prefetchTrailer(film?.status ? null : film?.slug);
+  }, [film?.slug, film?.status]);
 
   if (!film) {
     return loaded ? <FilmNotFound /> : null;
@@ -135,22 +135,13 @@ function FilmDetail() {
             </dl>
             <div className="film-detail-actions">
               {film.status ? (
-                <>
-                  <button
-                    type="button"
-                    className="film-btn film-btn-ghost"
-                    onClick={() => setTrailerOpen(true)}
-                  >
-                    <Play size={13} /> Trailer
-                  </button>
-                  <button
-                    type="button"
-                    className="film-btn support-film-button support-film-button-mobile"
-                    onClick={() => setSupportOpen(true)}
-                  >
-                    Support the film
-                  </button>
-                </>
+                <button
+                  type="button"
+                  className="film-btn support-film-button support-film-button-mobile"
+                  onClick={() => setSupportOpen(true)}
+                >
+                  Support the film
+                </button>
               ) : (
                 <>
                   <Link
@@ -230,12 +221,14 @@ function FilmDetail() {
         />
       ) : null}
 
-      <PlayerModal
-        slug={trailerOpen ? film.slug : null}
-        title={film.name}
-        poster={film.image}
-        onClose={() => setTrailerOpen(false)}
-      />
+      {!isUpcoming ? (
+        <PlayerModal
+          slug={trailerOpen ? film.slug : null}
+          title={film.name}
+          poster={film.image}
+          onClose={() => setTrailerOpen(false)}
+        />
+      ) : null}
 
       <SiteFooter />
     </main>

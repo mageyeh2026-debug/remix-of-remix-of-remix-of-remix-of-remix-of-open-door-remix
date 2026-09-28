@@ -102,12 +102,18 @@ const iconMap: Record<string, typeof Play> = {
 
 const awardMilestones = [
   { year: "2013", festival: "Pearl International Film Festival", film: "King’s Virgin", recognition: "Best Supporting Actor", result: "Award" },
-  { year: "2015", festival: "Uganda Film Festival", film: "The Tailor", recognition: "Best Director", result: "Nomination" },
+  { year: "2015", festival: "Uganda Film Festival", film: "The Tailor", recognition: "Best Director nomination", result: "Nomination" },
   { year: "2016", festival: "Uganda Film Festival", film: "Invisible Cuffs", recognition: "Best Actor in Film", result: "Award" },
-  { year: "2017", festival: "Uganda Film Festival", film: "Devil’s Chest", recognition: "Best Director · Best Feature Film", result: "Winner" },
-  { year: "2022", festival: "Africa Movie Academy Awards", film: "Tinka’s Story", recognition: "Best Visual Effects", result: "Nomination" },
-  { year: "2022", festival: "Africa Magic Viewers’ Choice Awards", film: "Tinka’s Story", recognition: "Best Sound Editor", result: "Nomination" },
-  { year: "2025", festival: "Uganda Film Festival", film: "Kimote", recognition: "Best Director · Best Screenplay", result: "Nominations" },
+  { year: "2017", festival: "Uganda Film Festival", film: "Devil’s Chest", recognition: "Best Director", result: "Award" },
+  { year: "2017", festival: "Uganda Film Festival", film: "Devil’s Chest", recognition: "Best Feature Film", result: "Award" },
+  { year: "2022", festival: "Africa Movie Academy Awards, Nigeria", film: "Tinka’s Story", recognition: "Best Visual Effects nomination (film)", result: "Nomination" },
+  { year: "2022", festival: "Africa Movie Academy Awards, Nigeria", film: "Tinka’s Story", recognition: "Best Young/Promising Actor nomination — Agnes Knight Kebirungi", result: "Nomination" },
+  { year: "2022", festival: "Africa Magic Viewers’ Choice Awards, Nigeria", film: "Tinka’s Story", recognition: "Best Sound Editor nomination — Hassan Mageye", result: "Nomination" },
+  { year: "2025", festival: "Uganda Film Festival", film: "Kimote", recognition: "Best Director nomination", result: "Nomination" },
+  { year: "2025", festival: "Uganda Film Festival", film: "Kimote", recognition: "Best Screenplay nomination", result: "Nomination" },
+  { year: "2025", festival: "Silicon Valley African Film Festival · USA", film: "Kimote", recognition: "Official Selection", result: "Selection" },
+  { year: "2025", festival: "Academy Awards", film: "Kimote", recognition: "Uganda’s official submission for the 98th Academy Awards", result: "Submission" },
+  { year: "2026", festival: "Africa Magic Viewers’ Choice Awards, Nigeria", film: "Kimote", recognition: "Best Indigenous Language Film — East Africa nomination", result: "Nomination" },
 ];
 
 
@@ -571,17 +577,8 @@ function Index() {
         </header>
 
         <div className="recognition-grid">
-          <article className="recognition-feature recognition-feature-winner">
-            <time>2017</time>
-            <img src={awardLaurel3d} alt="Golden 3D laurel award emblem" width={1024} height={1024} loading="eager" />
-            <p>Uganda Film Festival</p>
-            <h3>Devil’s Chest</h3>
-            <div><strong>Best Director</strong><strong>Best Feature Film</strong></div>
-            <b>Winner</b>
-          </article>
-
-          {awardMilestones.filter((award) => award.year !== "2017").map((award, index) => (
-            <article className={`recognition-card${index === 4 ? " recognition-card-dark" : ""}`} key={`${award.year}-${award.festival}`}>
+          {awardMilestones.map((award, index) => (
+            <article className={`recognition-card${index === 4 ? " recognition-card-dark" : ""}`} key={`${award.year}-${award.festival}-${award.recognition}`}>
               <div className="recognition-card-top">
                 <img src={awardLaurel3d} alt="Golden 3D laurel award emblem" width={1024} height={1024} loading="eager" />
                 <time>{award.year}</time>
@@ -593,27 +590,6 @@ function Index() {
             </article>
           ))}
 
-          <article className="recognition-wide recognition-silicon">
-            <time>2025</time>
-            <p>Silicon Valley African Film Festival · USA</p>
-            <h3>Kimote</h3>
-            <strong>Official Selection</strong>
-          </article>
-          <article className="recognition-wide recognition-academy">
-            <img src={awardLaurel3d} alt="Golden 3D laurel award emblem" width={1024} height={1024} loading="eager" />
-            <div>
-              <time>2025</time>
-              <p>The Academy Awards</p>
-              <h3>Kimote</h3>
-              <strong>Uganda’s Official Submission for the 98th Academy Awards</strong>
-            </div>
-          </article>
-          <article className="recognition-wide recognition-amaa">
-            <time>2026</time>
-            <p>Africa Movie Academy Awards · Nigeria</p>
-            <h3>Kimote</h3>
-            <strong>Best Indigenous Language Film · East Africa — Nomination</strong>
-          </article>
         </div>
 
         <aside className="recognition-additional">
