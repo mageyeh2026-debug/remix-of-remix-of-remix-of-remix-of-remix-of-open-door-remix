@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { SiteFooter, SiteHeader } from "@/components/SiteHeader";
 import { DEFAULT_SHARE_IMAGE, SITE_URL } from "@/lib/seo";
-import hassanOnSet from "@/assets/hassan-mageye-on-set.jpg.asset.json";
+import hassanOnSet from "@/assets/hassan-mageye-on-set.webp";
 import awardLaurel3d from "@/assets/award-laurel-reference-exact.png";
 
 const aboutAwards = [
@@ -56,7 +56,7 @@ function AboutPage() {
 
       <section className="about-section" id="about">
         <div className="about-image">
-          <img src={hassanOnSet.url} alt="Hassan Mageye on a film set" width={1080} height={1620} />
+          <img src={hassanOnSet} alt="Hassan Mageye on a film set" width={720} height={1080} loading="eager" decoding="async" fetchPriority="high" />
         </div>
         <div className="about-copy">
           <p className="about-name">About</p>
