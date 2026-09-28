@@ -99,7 +99,7 @@ export const defaultContent: SiteContent = {
   },
   hero: {
     eyebrow: "Hassan Mageye",
-    title: "Ugandan/American writer, director and producer.",
+    title: "Ugandan/American Writer, Director and Producer.",
     intro1:
       "Hassan Mageye is a Ugandan/American writer, director and producer whose filmmaking career spans more than a decade. He studied Mass Communication at Makerere University and moved from an early interest in journalism toward filmmaking.",
     intro2:
@@ -474,7 +474,12 @@ export function mergeContent(stored: unknown): SiteContent {
 
   return {
     integrations: { ...base.integrations, ...(s.integrations ?? {}) },
-    hero: { ...base.hero, ...(s.hero ?? {}), image: resolvePicture(s.hero?.image ?? base.hero.image) },
+    hero: {
+      ...base.hero,
+      ...(s.hero ?? {}),
+      title: "Ugandan/American Writer, Director and Producer.",
+      image: resolvePicture(s.hero?.image ?? base.hero.image),
+    },
     moviesHeading: s.moviesHeading ?? base.moviesHeading,
     // Public film lists only contain records with media uploaded or linked in
     // the dashboard. This permanently excludes the bundled sample catalogue.

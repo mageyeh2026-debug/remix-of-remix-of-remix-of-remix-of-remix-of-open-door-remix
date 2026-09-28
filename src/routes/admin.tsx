@@ -1061,7 +1061,7 @@ function Dashboard({ user }: { user: User }) {
                 value={draft.hero.intro2}
                 onChange={(v) => patch({ hero: { ...draft.hero, intro2: v } })}
               />
-              <div className="admin-grid-3">
+              <div className="admin-grid-2">
                 <Field
                   label="Button 1"
                   value={draft.hero.primaryLabel}
@@ -1504,11 +1504,6 @@ function Dashboard({ user }: { user: User }) {
                   label="Phone"
                   value={draft.contact.phone}
                   onChange={(v) => patch({ contact: { ...draft.contact, phone: v } })}
-                />
-                <Field
-                  label="Based in"
-                  value={draft.contact.location}
-                  onChange={(v) => patch({ contact: { ...draft.contact, location: v } })}
                 />
               </div>
               <SaveBar onSave={() => persist()} saving={saving} saved={saved} />

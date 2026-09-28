@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BriefcaseBusiness, Mail, MapPin, Phone } from "lucide-react";
+import { BriefcaseBusiness, Mail, Phone } from "lucide-react";
 
 import { SiteFooter, SiteHeader } from "@/components/SiteHeader";
 import { SocialProfiles } from "@/components/SocialLinks";
@@ -40,7 +40,6 @@ function ContactPage() {
   const details = [
     { icon: Phone, label: "Phone", value: phone, href: `tel:${phone.replace(/\s/g, "")}` },
     { icon: Mail, label: "Email", value: c.email, href: `mailto:${c.email}` },
-    { icon: MapPin, label: "Based in", value: c.location },
   ];
 
   return (

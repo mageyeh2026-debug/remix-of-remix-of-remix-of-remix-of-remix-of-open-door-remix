@@ -7,13 +7,18 @@ import awardLaurel3d from "@/assets/award-laurel-reference-exact.png";
 
 const aboutAwards = [
   { year: "2013", festival: "Pearl International Film Festival", film: "King’s Virgin", recognition: "Best Supporting Actor", result: "Award" },
-  { year: "2015", festival: "Uganda Film Festival", film: "The Tailor", recognition: "Best Director", result: "Nomination" },
+  { year: "2015", festival: "Uganda Film Festival", film: "The Tailor", recognition: "Best Director nomination", result: "Nomination" },
   { year: "2016", festival: "Uganda Film Festival", film: "Invisible Cuffs", recognition: "Best Actor in Film", result: "Award" },
-  { year: "2017", festival: "Uganda Film Festival", film: "Devil’s Chest", recognition: "Best Director · Best Feature Film", result: "Winner" },
-  { year: "2022", festival: "Africa Movie Academy Awards", film: "Tinka’s Story", recognition: "Best Visual Effects", result: "Nomination" },
-  { year: "2022", festival: "Africa Magic Viewers’ Choice Awards", film: "Tinka’s Story", recognition: "Best Sound Editor", result: "Nomination" },
-  { year: "2025", festival: "Uganda Film Festival", film: "Kimote", recognition: "Best Director · Best Screenplay", result: "Nominations" },
+  { year: "2017", festival: "Uganda Film Festival", film: "Devil’s Chest", recognition: "Best Director", result: "Award" },
+  { year: "2017", festival: "Uganda Film Festival", film: "Devil’s Chest", recognition: "Best Feature Film", result: "Award" },
+  { year: "2022", festival: "Africa Movie Academy Awards, Nigeria", film: "Tinka’s Story", recognition: "Best Visual Effects nomination (film)", result: "Nomination" },
+  { year: "2022", festival: "Africa Movie Academy Awards, Nigeria", film: "Tinka’s Story", recognition: "Best Young/Promising Actor nomination — Agnes Knight Kebirungi", result: "Nomination" },
+  { year: "2022", festival: "Africa Magic Viewers’ Choice Awards, Nigeria", film: "Tinka’s Story", recognition: "Best Sound Editor nomination — Hassan Mageye", result: "Nomination" },
+  { year: "2025", festival: "Uganda Film Festival", film: "Kimote", recognition: "Best Director nomination", result: "Nomination" },
+  { year: "2025", festival: "Uganda Film Festival", film: "Kimote", recognition: "Best Screenplay nomination", result: "Nomination" },
   { year: "2025", festival: "Silicon Valley African Film Festival · USA", film: "Kimote", recognition: "Official Selection", result: "Selection" },
+  { year: "2025", festival: "Academy Awards", film: "Kimote", recognition: "Uganda’s official submission for the 98th Academy Awards", result: "Submission" },
+  { year: "2026", festival: "Africa Magic Viewers’ Choice Awards, Nigeria", film: "Kimote", recognition: "Best Indigenous Language Film — East Africa nomination", result: "Nomination" },
 ];
 
 export const Route = createFileRoute("/about")({
@@ -56,7 +61,7 @@ function AboutPage() {
         <div className="about-copy">
           <p className="about-name">About</p>
           <h1 className="about-title">HASSAN MAGEYE</h1>
-          <p className="about-role">Ugandan/American writer, director and producer.</p>
+          <p className="about-role">Ugandan/American Writer, Director and Producer.</p>
           <p>
             Hassan Mageye is a Ugandan/American writer, director and producer whose filmmaking career
             spans more than a decade. He studied Mass Communication at Makerere University and moved
