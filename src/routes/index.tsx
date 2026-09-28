@@ -578,7 +578,7 @@ function Index() {
 
         <div className="recognition-grid">
           {awardMilestones.map((award, index) => (
-            <article className={`recognition-card${index === 4 ? " recognition-card-dark" : ""}`} key={`${award.year}-${award.festival}`}>
+            <article className={`recognition-card${index === 4 ? " recognition-card-dark" : ""}`} key={`${award.year}-${award.festival}-${award.recognition}`}>
               <div className="recognition-card-top">
                 <img src={awardLaurel3d} alt="Golden 3D laurel award emblem" width={1024} height={1024} loading="eager" />
                 <time>{award.year}</time>

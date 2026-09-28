@@ -87,7 +87,7 @@ function AboutPage() {
           {(["about-awards-row--a", "about-awards-row--b"] as const).map((rowClass, rowIndex) => (
             <ul className={`about-awards-row ${rowClass}`} key={rowClass} aria-hidden={rowIndex === 1}>
               {aboutAwards.map((award) => (
-                <li className="about-award-box" key={`${rowClass}-${award.year}-${award.festival}`}>
+                <li className="about-award-box" key={`${rowClass}-${award.year}-${award.festival}-${award.recognition}`}>
                   <img className="about-award-icon" src={awardLaurel3d} alt="" width={1024} height={1024} loading="lazy" decoding="async" />
                   <span className="about-award-year">{award.year}</span>
                   <p className="about-award-festival">{award.festival}</p>
