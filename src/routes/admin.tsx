@@ -14,7 +14,6 @@ import {
 import { ref, set } from "firebase/database";
 import {
   Clapperboard,
-  CreditCard,
   Image as ImageIcon,
   LayoutDashboard,
   LogOut,
@@ -34,8 +33,6 @@ import {
 import { useServerFn } from "@tanstack/react-start";
 
 import { firebaseAuth, firebaseDb, SITE_PATH } from "@/lib/firebase";
-import { createWhopPayout, getWhopWallet } from "@/lib/whop.functions";
-import { createMomoWithdrawal, getMomoWallet } from "@/lib/momo.functions";
 import { type FilmItem, type SiteContent } from "@/lib/site-content";
 import { isSeen, rememberItems, saveAll, saveSection, useSiteContent } from "@/hooks/useSiteContent";
 import { useUploader } from "@/components/UploadProgressOverlay";
@@ -46,7 +43,7 @@ export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
       { title: "Admin dashboard | Mageye" },
-      { name: "description", content: "Manage Mageye films, gallery, news, services, contact and wallet." },
+      { name: "description", content: "Manage Mageye films, gallery, news, services and contact." },
       { property: "og:title", content: "Admin dashboard | Mageye" },
       { property: "og:description", content: "Private management dashboard for the Mageye website." },
       { property: "og:type", content: "website" },
@@ -480,7 +477,6 @@ const SECTIONS = [
   { id: "gallery", label: "Gallery", icon: ImageIcon },
   { id: "media", label: "Media & news", icon: Newspaper },
   { id: "contact", label: "Contact", icon: Mail },
-  { id: "wallet", label: "Wallet", icon: CreditCard },
   { id: "settings", label: "Settings", icon: Settings },
 ] as const;
 
