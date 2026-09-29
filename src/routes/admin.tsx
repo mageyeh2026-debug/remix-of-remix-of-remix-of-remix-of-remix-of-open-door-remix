@@ -1143,14 +1143,6 @@ function Dashboard({ user }: { user: User }) {
             </div>
           ) : null}
 
-          {section === "wallet" ? (
-            <>
-              <WalletPanel />
-              <MomoWalletPanel paymentBackendUrl={draft.integrations.paymentBackendUrl} />
-            </>
-
-
-          ) : null}
 
           {section === "settings" ? (
             <SettingsPanel
