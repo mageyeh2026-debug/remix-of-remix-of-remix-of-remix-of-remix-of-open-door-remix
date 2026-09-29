@@ -23,7 +23,7 @@ export const Route = createFileRoute("/sitemap-images.xml")({
             const images = page.images.map((image) =>
               `<image:image><image:loc>${escapeSitemapXml(image.location)}</image:loc>${imageTag(image.title, "title")}${imageTag(image.caption, "caption")}</image:image>`,
             ).join("");
-            return `<url><loc>${escapeSitemapXml(sitemapUrl(page.path))}</loc>${images}</url>`;
+            return `<url><loc>${escapeSitemapXml(sitemapUrl(page.path))}</loc><changefreq>hourly</changefreq>${images}</url>`;
           }).join("");
 
           return new Response(
