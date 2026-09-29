@@ -53,6 +53,12 @@ export function collectSitemapImagePages(content: SiteContent): SitemapImagePage
   const homeImages: SitemapImage[] = [];
   const heroImage = absoluteImageUrl(content.hero.image);
 
+  homeImages.push({
+    location: sitemapUrl("/icon-512.png"),
+    title: "Hassan Mageye site logo",
+    caption: "Sanyuka African Ent logo",
+  });
+
   if (heroImage) {
     homeImages.push({
       location: heroImage,

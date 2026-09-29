@@ -393,7 +393,8 @@ footer > p:last-child { justify-self: end; }
   .services-intro .button { margin-top: 24px; min-height: 44px; padding: 0 20px; font-size: 12px; }
   .awards-text { margin-top: 16px; font-size: 9.5px; line-height: 1.7; }
   .contact-lede { font-size: 9.5px; }
-  .about-image { height: 310px; border-radius: 10px; background: transparent; }
+  .about-image { height: auto; max-height: none; border-radius: 10px; background: transparent; }
+  .about-image img, .about-image img.about-img-desktop { height: auto; max-height: 68vh; object-fit: contain; object-position: center top; }
   .about-name { font-size: 7px; gap: 10px; letter-spacing: .28em; }
   .about-title { font-size: clamp(31px, 10vw, 48px); }
   .about-role { font-size: 10px; margin-top: 12px; }
