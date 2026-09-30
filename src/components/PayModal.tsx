@@ -23,8 +23,10 @@ import mastercardLogo from "@/assets/payment-logos/mastercard.svg";
 import airtelLogo from "@/assets/payment-logos/airtel.svg";
 import mtnLogo from "@/assets/payment-logos/mtn.svg";
 import type { PlaybackSource } from "@/lib/playback";
+import { PaypalButtons } from "@/components/PaypalButtons";
+import paypalLogo from "@/assets/payment-logos/paypal.svg";
 
-type Method = "mobile_money" | "card";
+type Method = "mobile_money" | "card" | "paypal";
 
 const BrandLogo = ({ src, label }: { src: string; label: string }) => (
   <img src={src} className="pay-logo-svg" alt={label} />
@@ -53,6 +55,13 @@ const METHODS: { id: Method; name: string; sub?: string; currency: string; logos
         <BrandLogo src={mastercardLogo} label="Mastercard" />
       </>
     ),
+  },
+  {
+    id: "paypal",
+    name: "PayPal",
+    sub: "(Venmo / Pay Later / Card)",
+    currency: "USD",
+    logos: <BrandLogo src={paypalLogo} label="PayPal" />,
   },
 ];
 
@@ -203,7 +212,7 @@ export function PayModal({
       const result = await startPayment({
         data: {
           slug,
-          method,
+          method: method === "paypal" ? "card" : method,
           origin: window.location.origin,
           ...(title ? { title } : {}),
           ...(isMomo && phone.trim() ? { phone: phone.trim() } : {}),
@@ -221,7 +230,7 @@ export function PayModal({
         slug,
         internalReference: result.orderTrackingId,
         startedAt: startedAt.current,
-        method,
+        method: method === "paypal" ? "card" : method,
         phone,
         redirectUrl: result.redirectUrl,
       });
@@ -302,7 +311,7 @@ export function PayModal({
             ))}
 
             <p className="pay-note">
-              Payments are processed securely by Pesapal. Mobile Money is charged in shillings,
+              Payments are processed securely by Pesapal and PayPal. Mobile Money is charged in shillings,
               cards in US dollars.
             </p>
 
@@ -341,6 +350,18 @@ export function PayModal({
               <strong>{amountLabel}</strong>
             </div>
 
+            {method === "paypal" ? (
+              <PaypalButtons
+                slug={slug}
+                title={title}
+                guestId={guestId || undefined}
+                onPaid={onPaid}
+                onMessage={(kind, text) => {
+                  setError(kind === "error" ? text : null);
+                  setStatus(kind === "status" ? text : null);
+                }}
+              />
+            ) : (
             <button
               type="button"
               className="pay-button"
@@ -349,6 +370,7 @@ export function PayModal({
             >
               {busy ? "Opening…" : `Pay ${amountLabel}`}
             </button>
+            )}
 
             {status ? <p className="pay-note">{status}</p> : null}
             {error ? <p className="pay-error">{error}</p> : null}
