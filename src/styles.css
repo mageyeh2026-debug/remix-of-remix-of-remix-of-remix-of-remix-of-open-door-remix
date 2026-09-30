@@ -1345,3 +1345,4 @@ footer > p:last-child { justify-self: end; }
   .contact-details-grid { grid-template-columns: 1fr; gap: 10px; }
 }
 .recognition-academy { border-color: var(--recognition-gold); }
+.paypal-buttons { margin-top: 12px; min-height: 48px; }
