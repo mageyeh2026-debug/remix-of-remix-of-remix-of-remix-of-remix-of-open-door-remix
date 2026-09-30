@@ -212,7 +212,7 @@ export function PayModal({
       const result = await startPayment({
         data: {
           slug,
-          method,
+          method: method === "paypal" ? "card" : method,
           origin: window.location.origin,
           ...(title ? { title } : {}),
           ...(isMomo && phone.trim() ? { phone: phone.trim() } : {}),
@@ -230,7 +230,7 @@ export function PayModal({
         slug,
         internalReference: result.orderTrackingId,
         startedAt: startedAt.current,
-        method,
+        method: method === "paypal" ? "card" : method,
         phone,
         redirectUrl: result.redirectUrl,
       });
