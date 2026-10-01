@@ -101,7 +101,7 @@ export const upcomingFilms: Film[] = [
     status: "In post production",
     logline: "A woman on the run. A truth they will kill to bury.",
     synopsis: "An upcoming film by Hassan Mageye.",
-    cast: ["Casting in progress"],
+    cast: ["Casting"],
   },
   {
     slug: "modern-road",
@@ -113,7 +113,7 @@ export const upcomingFilms: Film[] = [
     status: "Pre production",
     logline: "Some journeys change a nation.",
     synopsis: "An upcoming film written and directed by Hassan Mageye.",
-    cast: ["Casting in progress"],
+    cast: ["Casting"],
   },
   {
     slug: "john-bullock",

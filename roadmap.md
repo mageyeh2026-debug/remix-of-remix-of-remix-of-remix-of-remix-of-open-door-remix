@@ -1,4 +1,5 @@
 ## Active
+- [x] Correct upcoming casting and Modern Road status, and show the full About portrait
 - [x] Verify every moving About award against the supplied PDF and make the About portrait deployment-safe
 - [x] Correct awards from the supplied record, capitalize the hero role, remove upcoming trailers, and remove “Based in”
 - [x] Restore the original film-card size and preload all saved site images without changing Firebase content
