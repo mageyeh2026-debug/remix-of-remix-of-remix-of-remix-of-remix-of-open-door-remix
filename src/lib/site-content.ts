@@ -205,20 +205,20 @@ export const defaultContent: SiteContent = {
       logline: "A woman on the run. A truth they will kill to bury.",
       synopsis:
         "After fleeing her homeland with evidence connected to her father’s murder, a young woman seeks safety in America—only to discover that distance cannot silence the forces hunting her. The Silence We Flee is a tense drama about survival, displacement, truth, and the price of carrying a secret across borders.",
-      cast: ["Casting in progress"],
+      cast: ["Casting"],
     },
     {
       slug: "modern-road",
       name: "Modern Road",
       year: "",
-      runtime: "Coming soon",
+      runtime: "Pre production",
       genre: "Drama | Human Story | Contemporary",
       image: upcomingModernRoad,
-      status: "Coming soon",
+      status: "Pre production",
       logline: "Some journeys change a nation.",
       synopsis:
         "The Modern Road explores the lives, choices, and struggles of people navigating a rapidly changing world, where ambition, relationships, and survival collide. It is a human story about the roads we choose, the people we meet along the way, and the consequences that follow us.",
-      cast: ["Casting in progress"],
+      cast: ["Casting"],
     },
     {
       slug: "john-bullock",
@@ -444,6 +444,12 @@ export function mergeContent(stored: unknown): SiteContent {
       normalized.runtime = "In post production";
       normalized.status = "In post production";
       normalized.genre = "Political Thriller";
+      normalized.cast = ["Casting"];
+    }
+    if (f.slug === "modern-road" || f.slug === "mordern-road") {
+      normalized.runtime = "Pre production";
+      normalized.status = "Pre production";
+      normalized.cast = ["Casting"];
     }
     if (f.slug === "john-bullock") {
       normalized.runtime = "Pre production";
